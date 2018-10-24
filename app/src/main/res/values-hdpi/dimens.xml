@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?><!-- hdpi:480×800 -->
+<resources>
+    <!-- w = 750, h = 1334 -->
+    <!--width-->
+    <dimen name="margin_1334_750_w2">1.28px</dimen>
+    <dimen name="margin_1334_750_w8">5.12px</dimen>
+    <dimen name="margin_1334_750_w10">6.4px</dimen>
+    <dimen name="margin_1334_750_w12">7.68px</dimen>
+    <dimen name="margin_1334_750_w20">12.8px</dimen>
+    <dimen name="margin_1334_750_w28">17.92px</dimen>
+    <dimen name="margin_1334_750_w30">19.2px</dimen>
+    <dimen name="margin_1334_750_w32">20.48px</dimen>
+    <dimen name="margin_1334_750_w35">22.4px</dimen>
+    <dimen name="margin_1334_750_w37">23.68px</dimen>
+    <dimen name="margin_1334_750_w40">25.6px</dimen>
+    <dimen name="margin_1334_750_w44">28.16px</dimen>
+    <dimen name="margin_1334_750_w50">32px</dimen>
+    <dimen name="margin_1334_750_w61">39.04px</dimen>
+    <dimen name="margin_1334_750_w74">47.36px</dimen>
+    <dimen name="margin_1334_750_w84">53.76px</dimen>
+    <dimen name="margin_1334_750_w100">64px</dimen>
+    <dimen name="margin_1334_750_w106">67.84px</dimen>
+    <dimen name="margin_1334_750_w160">102.4px</dimen>
+    <dimen name="margin_1334_750_w165">105.6px</dimen>
+    <dimen name="margin_1334_750_w202">129.28px</dimen>
+    <dimen name="margin_1334_750_w204">130.56px</dimen>
+    <dimen name="margin_1334_750_w207">132.48px</dimen>
+    <dimen name="margin_1334_750_w210">134.4px</dimen>
+    <dimen name="margin_1334_750_w220">140.8px</dimen>
+    <dimen name="margin_1334_750_w262">167.68px</dimen>
+    <dimen name="margin_1334_750_w350">224px</dimen>
+    <dimen name="margin_1334_750_w590">377.6px</dimen>
+    <dimen name="margin_1334_750_w650">416px</dimen>
+    <dimen name="margin_1334_750_w670">428.8px</dimen>
+    <dimen name="margin_1334_750_w750">480px</dimen>
+    <!--height-->
+    <dimen name="margin_1334_750_h1">0.6px</dimen>
+    <dimen name="margin_1334_750_h2">1.199px</dimen>
+    <dimen name="margin_1334_750_h4">2.399px</dimen>
+    <dimen name="margin_1334_750_h8">4.798px</dimen>
+    <dimen name="margin_1334_750_h10">5.997px</dimen>
+    <dimen name="margin_1334_750_h12">7.196px</dimen>
+    <dimen name="margin_1334_750_h20">11.994px</dimen>
+    <dimen name="margin_1334_750_h24">14.393px</dimen>
+    <dimen name="margin_1334_750_h28">16.792px</dimen>
+    <dimen name="margin_1334_750_h30">17.991px</dimen>
+    <dimen name="margin_1334_750_h32">19.19px</dimen>
+    <dimen name="margin_1334_750_h40">23.988px</dimen>
+    <dimen name="margin_1334_750_h46">27.586px</dimen>
+    <dimen name="margin_1334_750_h50">29.985px</dimen>
+    <dimen name="margin_1334_750_h52">31.184px</dimen>
+    <dimen name="margin_1334_750_h60">35.982px</dimen>
+    <dimen name="margin_1334_750_h61">36.582px</dimen>
+    <dimen name="margin_1334_750_h64">38.381px</dimen>
+    <dimen name="margin_1334_750_h68">40.78px</dimen>
+    <dimen name="margin_1334_750_h72">43.178px</dimen>
+    <dimen name="margin_1334_750_h76">45.577px</dimen>
+    <dimen name="margin_1334_750_h80">47.976px</dimen>
+    <dimen name="margin_1334_750_h84">50.375px</dimen>
+    <dimen name="margin_1334_750_h100">59.97px</dimen>
+    <dimen name="margin_1334_750_h104">62.369px</dimen>
+    <dimen name="margin_1334_750_h110">65.967px</dimen>
+    <dimen name="margin_1334_750_h130">77.961px</dimen>
+    <dimen name="margin_1334_750_h136">81.559px</dimen>
+    <dimen name="margin_1334_750_h150">89.955px</dimen>
+    <dimen name="margin_1334_750_h166">99.55px</dimen>
+    <dimen name="margin_1334_750_h202">121.139px</dimen>
+    <dimen name="margin_1334_750_h204">122.339px</dimen>
+    <dimen name="margin_1334_750_h210">125.937px</dimen>
+    <dimen name="margin_1334_750_h212">127.136px</dimen>
+    <dimen name="margin_1334_750_h220">131.934px</dimen>
+    <dimen name="margin_1334_750_h250">149.925px</dimen>
+    <dimen name="margin_1334_750_h262">157.121px</dimen>
+    <dimen name="margin_1334_750_h300">179.91px</dimen>
+    <dimen name="margin_1334_750_h360">215.892px</dimen>
+    <dimen name="margin_1334_750_h368">220.69px</dimen>
+    <dimen name="margin_1334_750_h400">239.88px</dimen>
+    <dimen name="margin_1334_750_h486">291.454px</dimen>
+    <dimen name="margin_1334_750_h522">313.043px</dimen>
+
+    <dimen name="margin_1920_1080_w12">5.333px</dimen>
+</resources>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/dl_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.145" />
+
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="@string/app_name"
+        android:textColor="@color/color_4bab54"
+        android:textSize="30sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.155" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_1334_750_w50"
+        android:layout_marginRight="@dimen/margin_1334_750_w50"
+        android:background="@drawable/dl_input_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="46.5dp"
+            android:layout_marginLeft="@dimen/margin_1334_750_w30"
+            android:layout_marginRight="@dimen/margin_1334_750_w30"
+            android:layout_marginTop="@dimen/margin_1334_750_h30"
+            android:background="@drawable/dl_edt_style"
+            android:drawableLeft="@mipmap/dl_icon_yh"
+            android:drawablePadding="@dimen/margin_1334_750_w20"
+            android:drawableStart="@mipmap/dl_icon_yh"
+            android:hint="@string/dl_hint_username"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:maxLength="32"
+            android:paddingLeft="@dimen/margin_1334_750_w20"
+            android:singleLine="true"
+            android:textColor="@color/color_666666"
+            android:textColorHint="@color/color_999999"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="46.5dp"
+            android:layout_marginLeft="@dimen/margin_1334_750_w30"
+            android:layout_marginRight="@dimen/margin_1334_750_w30"
+            android:layout_marginTop="@dimen/margin_1334_750_h20"
+            android:background="@drawable/dl_edt_style"
+            android:drawableLeft="@mipmap/dl_icon_mm"
+            android:drawablePadding="@dimen/margin_1334_750_w20"
+            android:hint="@string/dl_hint_password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLength="32"
+            android:paddingLeft="@dimen/margin_1334_750_w20"
+            android:singleLine="true"
+            android:textColor="@color/color_666666"
+            android:textColorHint="@color/color_999999"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="46.5dp"
+            android:layout_marginBottom="@dimen/margin_1334_750_h30"
+            android:layout_marginLeft="@dimen/margin_1334_750_w30"
+            android:layout_marginRight="@dimen/margin_1334_750_w30"
+            android:layout_marginTop="@dimen/margin_1334_750_h30"
+            android:background="@drawable/dl_btn_style"
+            android:onClick="onClick"
+            android:text="@string/dl_bn_name"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_1334_750_h50"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/company_name"
+        android:textColor="@color/color_666666"
+        android:textSize="14sp" />
+</LinearLayout>

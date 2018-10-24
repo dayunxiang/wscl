@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">污水处理系统</string>
+    <string name="dl_bn_name">登录</string>
+    <string name="dl_hint_username">用户名</string>
+    <string name="dl_hint_password">密码</string>
+    <string name="company_name">Powered by XXX软件技术有限公司</string>
+</resources>
