@@ -1,5 +1,6 @@
 package com.tmxk.wscl.android.ui;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +28,6 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
-
         initView();
     }
 
@@ -50,7 +50,8 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
 
     @Override
     public void getDataSuccess(LoginModel model) {
-
+        startActivity(new Intent(this,HomeActivity.class));
+        finish();
     }
 
     @Override

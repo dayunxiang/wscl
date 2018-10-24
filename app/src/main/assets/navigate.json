@@ -1,0 +1,38 @@
+{
+  "navigate_0": {
+    "name": "用户管理",
+    "id": 0
+  },
+  "navigate_1": {
+    "name": "站点管理",
+    "id": 1
+  },
+  "navigate_2": {
+    "name": "实时监控",
+    "id": 2
+  },
+  "navigate_3": {
+    "name": "报警查询",
+    "id": 3
+  },
+  "navigate_4": {
+    "name": "智能运维",
+    "id": 4
+  },
+  "navigate_5": {
+    "name": "水质化验",
+    "id": 5
+  },
+  "navigate_6": {
+    "name": "数据分析",
+    "id": 6
+  },
+  "navigate_7": {
+    "name": "水量分析",
+    "id": 7
+  },
+  "navigate_8": {
+    "name": "报表管理",
+    "id": 8
+  }
+}
