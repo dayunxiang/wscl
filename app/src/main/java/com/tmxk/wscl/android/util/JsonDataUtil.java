@@ -14,16 +14,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MenuDataUtil {
+public class JsonDataUtil {
 
-    private MenuDataUtil() {
+    private JsonDataUtil() {
 
     }
 
-    public static List<MenuItem> loadNavigateItems(Context context) {
+    public static List<MenuItem> loadNavItems(Context context) {
         List<MenuItem> items = new ArrayList<>();
         try {
-            JSONObject obj = new JSONObject(loadJSONFromAsset(context, "navigate.json"));
+            JSONObject obj = new JSONObject(loadJSONFromAsset(context, "nav.json"));
             Iterator<String> keys = obj.keys();
             while (keys.hasNext()) {
                 String key = keys.next();

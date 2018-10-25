@@ -5,21 +5,22 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.bean.MenuItem;
-import com.tmxk.wscl.android.util.MenuDataUtil;
+import com.tmxk.wscl.android.util.JsonDataUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuPagerAdapter extends PagerAdapter {
+public class NavPagerAdapter extends PagerAdapter {
 
     private List<MenuItem> mItems = new ArrayList<>();
     private Context context;
 
-    public MenuPagerAdapter(Context context) {
+    public NavPagerAdapter(Context context) {
         this.context = context;
     }
 
@@ -28,8 +29,14 @@ public class MenuPagerAdapter extends PagerAdapter {
         View view = LayoutInflater.from(container.getContext())
                 .inflate(R.layout.layout_page, container, false);
         ListView listView = view.findViewById(R.id.listView);
-        MenuListAdapter menuListAdapter = new MenuListAdapter(context, MenuDataUtil.loadMenuItems(context, position));
+        MenuListAdapter menuListAdapter = new MenuListAdapter(context, JsonDataUtil.loadMenuItems(context, position));
         listView.setAdapter(menuListAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
         container.addView(view);
         return view;
     }
