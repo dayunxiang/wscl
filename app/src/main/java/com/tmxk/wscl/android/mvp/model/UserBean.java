@@ -5,7 +5,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class UserModel implements Serializable {
+public class UserBean implements Serializable {
     private int id;
     private String userName;
     private String loginPwd;

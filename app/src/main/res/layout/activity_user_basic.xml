@@ -35,7 +35,8 @@
             android:id="@+id/tvLoginName"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_weight="1"
+            android:gravity="start|center_vertical"
             android:maxLines="1" />
     </LinearLayout>
 

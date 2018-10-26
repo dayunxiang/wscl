@@ -11,9 +11,11 @@ import android.widget.TextView;
 import com.jaeger.library.StatusBarUtil;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.application.MainApplication;
-import com.tmxk.wscl.android.mvp.model.UserModel;
+import com.tmxk.wscl.android.mvp.model.HttpReturnBean;
+import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
 import com.tmxk.wscl.android.mvp.view.UserView;
+import com.tmxk.wscl.android.util.Constant;
 
 import java.util.Objects;
 
@@ -40,23 +42,23 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_user_info);
+        setContentView(R.layout.activity_user_basic);
         StatusBarUtil.setColor(this, getResources().getColor(R.color.primary));
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("用户管理");
+        toolbar.setTitle("基本信息");
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         application = (MainApplication) getApplication();
-        initData(application.getUserModel());
+        initData(application.getUserBean());
     }
 
-    private void initData(UserModel userModel) {
-        if (userModel != null) {
-            tvLoginName.setText(userModel.getLoginName());
-            edtUserName.setText(userModel.getUserName());
-            edtDepart.setText(userModel.getDepartment());
-            edtEmail.setText(userModel.getUserEmail());
-            edtTelephone.setText(userModel.getTelephone());
+    private void initData(UserBean userBean) {
+        if (userBean != null) {
+            tvLoginName.setText(userBean.getLoginName());
+            edtUserName.setText(userBean.getUserName());
+            edtDepart.setText(userBean.getDepartment());
+            edtEmail.setText(userBean.getUserEmail());
+            edtTelephone.setText(userBean.getTelephone());
         }
     }
 
@@ -66,9 +68,9 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
     }
 
     @Override
-    public void getDataSuccess(UserModel model) {
-        application.setUserModel(model);
-        toastShow("修改成功");
+    public void getDataSuccess(UserBean model) {
+        application.setUserBean(model);
+        toastShow(Constant.MODIFY_SUCCESS);
         finish();
     }
 
@@ -91,8 +93,8 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
         switch (view.getId()) {
             case R.id.btnOk:
                 mvpPresenter.modifyUserInfo(
-                        application.getUserModel().getId(),
-                        application.getUserModel().getLoginName(),
+                        application.getUserBean().getId(),
+                        application.getUserBean().getLoginName(),
                         edtUserName.getText().toString().trim(),
                         edtEmail.getText().toString().trim(),
                         edtDepart.getText().toString().trim(),
@@ -106,5 +108,12 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mvpPresenter.detachView();
+        mvpPresenter.onUnSubscribe();
     }
 }

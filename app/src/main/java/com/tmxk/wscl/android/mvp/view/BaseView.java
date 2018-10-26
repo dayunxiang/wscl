@@ -1,13 +1,13 @@
 package com.tmxk.wscl.android.mvp.view;
 
-import com.tmxk.wscl.android.mvp.model.UserModel;
+import com.tmxk.wscl.android.mvp.model.UserBean;
 
 public interface BaseView {
     void showLoading(String loadInfo);
 
     void hideLoading();
 
-    void getDataSuccess(UserModel model);
+    void getDataSuccess(UserBean model);
 
     void getDataFail(String msg);
 

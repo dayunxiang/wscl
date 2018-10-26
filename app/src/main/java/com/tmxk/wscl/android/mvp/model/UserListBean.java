@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class UserListBean implements Serializable {
     private MetaInfoEntity metaInfo;
-    private List<UserModel> object;
+    private List<UserBean> object;
 
     public class MetaInfoEntity implements Serializable {
         private int code;

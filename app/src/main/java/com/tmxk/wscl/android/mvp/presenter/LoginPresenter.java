@@ -2,7 +2,7 @@ package com.tmxk.wscl.android.mvp.presenter;
 
 import android.text.TextUtils;
 
-import com.tmxk.wscl.android.mvp.model.UserModel;
+import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.view.LoginView;
 import com.tmxk.wscl.android.retrofit.ApiCallback;
 import com.tmxk.wscl.android.util.Constant;
@@ -31,9 +31,9 @@ public class LoginPresenter extends BasePresenter<LoginView> {
             }
             RequestBody body = RequestBody.create(Route.JSON, strJson.toString());
             addSubscription(apiService.login(body),
-                    new ApiCallback<UserModel>() {
+                    new ApiCallback<UserBean>() {
                         @Override
-                        public void onSuccess(UserModel model) {
+                        public void onSuccess(UserBean model) {
                             mvpView.getDataSuccess(model);
                         }
 

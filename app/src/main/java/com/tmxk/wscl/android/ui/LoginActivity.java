@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.application.MainApplication;
-import com.tmxk.wscl.android.mvp.model.UserModel;
+import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.presenter.LoginPresenter;
 import com.tmxk.wscl.android.mvp.view.LoginView;
 
@@ -58,9 +58,9 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     }
 
     @Override
-    public void getDataSuccess(UserModel model) {
+    public void getDataSuccess(UserBean model) {
         if (model != null) {
-            application.setUserModel(model);
+            application.setUserBean(model);
             startActivity(new Intent(this, HomeActivity.class));
             finish();
         } else {
@@ -71,5 +71,12 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     @Override
     public void getDataFail(String msg) {
         toastShow(msg);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mvpPresenter.detachView();
+        mvpPresenter.onUnSubscribe();
     }
 }
