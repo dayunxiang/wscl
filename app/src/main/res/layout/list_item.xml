@@ -15,7 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeight"
-        android:background="@drawable/menu_bg"
+        android:background="@drawable/shape_e6e6e6"
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:paddingLeft="16dp"

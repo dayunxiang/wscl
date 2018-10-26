@@ -10,7 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.tmxk.wscl.android.R;
-import com.tmxk.wscl.android.mvp.model.LoginModel;
+import com.tmxk.wscl.android.application.MainApplication;
+import com.tmxk.wscl.android.mvp.model.UserModel;
 import com.tmxk.wscl.android.mvp.presenter.LoginPresenter;
 import com.tmxk.wscl.android.mvp.view.LoginView;
 
@@ -27,6 +28,7 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     EditText edtPassword;
     @BindView(R.id.appName)
     TextView tvAppName;
+    private MainApplication application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     }
 
     private void initView() {
+        application = (MainApplication) getApplication();
         tvAppName.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/TTLingHeiJ.ttf"));//设置登录页面标题字体
     }
 
@@ -55,9 +58,14 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     }
 
     @Override
-    public void getDataSuccess(LoginModel model) {
-        startActivity(new Intent(this,HomeActivity.class));
-        finish();
+    public void getDataSuccess(UserModel model) {
+        if (model != null) {
+            application.setUserModel(model);
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+        } else {
+            toastShow("登录失败");
+        }
     }
 
     @Override

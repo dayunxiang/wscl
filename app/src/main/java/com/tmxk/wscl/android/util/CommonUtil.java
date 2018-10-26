@@ -1,7 +1,15 @@
 package com.tmxk.wscl.android.util;
 
+import com.tmxk.wscl.android.ui.HomeActivity;
+import com.tmxk.wscl.android.ui.UserInfoActivity;
+import com.tmxk.wscl.android.ui.UserLoginLogActivity;
+import com.tmxk.wscl.android.ui.UserManageActivity;
+import com.tmxk.wscl.android.ui.UserPwdActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CommonUtil {
     /*
@@ -27,5 +35,17 @@ public class CommonUtil {
         //这个是你要转成后的时间的格式
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(new Date(timeStamp));
+    }
+
+    public static Class<?> getClassById(String classKey) {
+        Map<String, Class<?>> classMap = new HashMap<>();
+        classMap.put("nav0_0", UserInfoActivity.class);
+        classMap.put("nav0_1", UserPwdActivity.class);
+        classMap.put("nav0_2", UserManageActivity.class);
+        classMap.put("nav0_3", UserLoginLogActivity.class);
+        if (classKey.contains(classKey)) {
+            return classMap.get(classKey);
+        }
+        return null;
     }
 }

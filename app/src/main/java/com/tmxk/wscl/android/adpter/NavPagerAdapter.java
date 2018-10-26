@@ -1,6 +1,7 @@
 package com.tmxk.wscl.android.adpter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.bean.MenuItem;
+import com.tmxk.wscl.android.util.CommonUtil;
 import com.tmxk.wscl.android.util.JsonDataUtil;
 
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class NavPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         View view = LayoutInflater.from(container.getContext())
                 .inflate(R.layout.layout_page, container, false);
         ListView listView = view.findViewById(R.id.listView);
@@ -33,8 +35,8 @@ public class NavPagerAdapter extends PagerAdapter {
         listView.setAdapter(menuListAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+                context.startActivity(new Intent(context, CommonUtil.getClassById("nav" + position + "_" + pos)));
             }
         });
         container.addView(view);

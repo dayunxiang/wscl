@@ -2,9 +2,16 @@ package com.tmxk.wscl.android.application;
 
 import android.app.Application;
 
+import com.tmxk.wscl.android.mvp.model.UserModel;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import static android.os.Debug.isDebuggerConnected;
 
 public class MainApplication extends Application {
+    @Getter @Setter
+    private UserModel userModel;
     @Override
     public void onCreate() {
         super.onCreate();

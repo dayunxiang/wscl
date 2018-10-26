@@ -1,8 +1,8 @@
 package com.tmxk.wscl.android.ui;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
 import com.jaeger.library.StatusBarUtil;
@@ -18,13 +18,13 @@ import java.util.List;
  * Created by wjf on 18/10/25.
  * home activity
  */
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home);
-        StatusBarUtil.setColor(this, Color.parseColor("#607D8B"));
+        StatusBarUtil.setColor(this, getResources().getColor(R.color.primary));
         List<MenuItem> items = JsonDataUtil.loadNavItems(this);
         NavPagerAdapter adapter = new NavPagerAdapter(this);
         adapter.addAll(items);
