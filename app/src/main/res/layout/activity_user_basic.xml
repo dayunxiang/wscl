@@ -32,15 +32,20 @@
             android:textSize="14sp"
             tools:ignore="HardcodedText" />
 
-        <TextView
-            android:id="@+id/tvLoginName"
+        <EditText
+            android:id="@+id/edtLoginName"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="46.5dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
-            android:ellipsize="end"
-            android:gravity="start|center_vertical"
-            android:maxLines="1" />
+            android:background="@drawable/dl_edt_style"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:textSize="14sp"
+            tools:ignore="Autofill,LabelFor" />
     </LinearLayout>
 
     <LinearLayout

@@ -4,7 +4,4 @@
     <string name="dl_hint_username">用户名</string>
     <string name="dl_hint_password">密码</string>
     <string name="company_name">Powered by XXX软件技术有限公司</string>
-
-    <string name="item_example_number_title">text1</string>
-    <string name="item_example_number_abstract">text2</string>
 </resources>

@@ -100,4 +100,9 @@ public class UserPwdActivity extends MvpActivity<UserPresenter> implements UserV
         mvpPresenter.detachView();
         mvpPresenter.onUnSubscribe();
     }
+
+    @Override
+    public void autoRefresh() {
+
+    }
 }

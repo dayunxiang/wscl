@@ -1,18 +1,17 @@
 package com.tmxk.wscl.android.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.application.MainApplication;
 import com.tmxk.wscl.android.mvp.model.UserBean;
-import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
 import com.tmxk.wscl.android.mvp.view.UserView;
 import com.tmxk.wscl.android.util.Constant;
@@ -27,8 +26,8 @@ import butterknife.BindView;
  */
 public class UserInfoActivity extends MvpActivity<UserPresenter> implements UserView {
     private MainApplication application;
-    @BindView(R.id.tvLoginName)
-    TextView tvLoginName;
+    @BindView(R.id.edtLoginName)
+    EditText edtLoginName;
     @BindView(R.id.edtDepart)
     EditText edtDepart;
     @BindView(R.id.edtEmail)
@@ -37,6 +36,9 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
     EditText edtTelephone;
     @BindView(R.id.edtUserName)
     EditText edtUserName;
+    private UserBean userBean;
+    private int position;
+    private boolean isAddUser = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +51,24 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         application = (MainApplication) getApplication();
-        initData(application.getUserBean());
+        initData();
     }
 
-    private void initData(UserBean userBean) {
+    private void initData() {
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("userBean")) {
+            edtLoginName.setEnabled(false);
+            userBean = (UserBean) intent.getSerializableExtra("userBean");
+            position = intent.getIntExtra("position", -1);
+        } else if (intent != null && intent.hasExtra("userAdd")) {
+            edtLoginName.setEnabled(true);
+            isAddUser = true;
+        } else {
+            edtLoginName.setEnabled(false);
+            userBean = application.getUserBean();
+        }
         if (userBean != null) {
-            tvLoginName.setText(userBean.getLoginName());
+            edtLoginName.setText(userBean.getLoginName());
             edtUserName.setText(userBean.getUserName());
             edtDepart.setText(userBean.getDepartment());
             edtEmail.setText(userBean.getUserEmail());
@@ -69,10 +83,10 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
 
     @Override
     public void getDataSuccess(Object model) {
+        toastShow(Constant.MODIFY_SUCCESS);
+        setResultIntent();
         if (model instanceof UserBean) {
             application.setUserBean((UserBean) model);
-            toastShow(Constant.MODIFY_SUCCESS);
-            finish();
         }
     }
 
@@ -85,7 +99,7 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+                setResultIntent();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -94,28 +108,57 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnOk:
-                mvpPresenter.modifyUserInfo(
-                        application.getUserBean().getId(),
-                        application.getUserBean().getLoginName(),
-                        edtUserName.getText().toString().trim(),
-                        edtEmail.getText().toString().trim(),
-                        edtDepart.getText().toString().trim(),
-                        edtTelephone.getText().toString().trim()
-                );
+                userBean.setUserName(edtLoginName.getText().toString().trim());
+                userBean.setUserName(edtUserName.getText().toString().trim());
+                userBean.setUserEmail(edtEmail.getText().toString().trim());
+                userBean.setDepartment(edtDepart.getText().toString().trim());
+                userBean.setTelephone(edtTelephone.getText().toString().trim());
+                if (!isAddUser) {
+                    mvpPresenter.modifyUserInfo(userBean);
+                } else {
+                    mvpPresenter.addUserInfo(userBean);
+                }
                 break;
+        }
+    }
+
+    private void setResultIntent() {
+        if (!isAddUser) {
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("userBean", userBean);
+            bundle.putInt("position", position);
+            intent.putExtras(bundle);
+            setResult(RESULT_OK, intent);
+            finish();
+        } else {
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("hasAddUser", true);
+            intent.putExtras(bundle);
+            setResult(RESULT_OK, intent);
+            finish();
         }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
+        setResultIntent();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mvpPresenter.detachView();
-        mvpPresenter.onUnSubscribe();
+        if (mvpPresenter != null) {
+            mvpPresenter.detachView();
+            mvpPresenter.onUnSubscribe();
+            mvpPresenter = null;
+        }
+    }
+
+    @Override
+    public void autoRefresh() {
+
     }
 }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class UserListAdapter extends BaseAdapter {
@@ -29,7 +30,7 @@ public class UserListAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return userBeanList.get(position);
     }
 
     @Override
@@ -44,16 +45,31 @@ public class UserListAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.simple_list_item_2, null);
             holder = new ViewHolder();
-            holder.tvUserName = convertView.findViewById(R.id.username);
+            holder.tvUserName = convertView.findViewById(R.id.userName);
+            holder.tvLoginName = convertView.findViewById(R.id.loginName);
+            holder.tvDepartment = convertView.findViewById(R.id.department);
+            holder.tvTelephone = convertView.findViewById(R.id.telephone);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.tvUserName.setText(userBeanList.get(position).getUserName());
+        UserBean userBean = userBeanList.get(position);
+        if (userBean != null) {
+            holder.tvLoginName.setText("用户名：".concat(userBean.getLoginName()));
+            holder.tvUserName.setText("姓名：".concat(userBean.getUserName()));
+            holder.tvDepartment.setText("部门：".concat(userBean.getDepartment()));
+            holder.tvTelephone.setText("联系电话：".concat(userBean.getTelephone()));
+        }
         return convertView;
     }
 
+    public void updateUserList(UserBean userBean, int position) {
+        if (userBean != null && position != -1 && userBeanList.size() > position) {
+            userBeanList.set(position, userBean);
+        }
+    }
+
     private static class ViewHolder {
-        private TextView tvUserName;
+        private TextView tvLoginName, tvUserName, tvTelephone, tvDepartment;
     }
 }
