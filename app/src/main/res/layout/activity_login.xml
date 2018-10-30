@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/dl_bg"
@@ -53,7 +54,8 @@
             android:textColor="@color/color_666666"
             android:textColorHint="@color/color_999999"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            tools:ignore="Autofill,RtlSymmetry" />
 
         <EditText
             android:id="@+id/password"
@@ -74,7 +76,8 @@
             android:textColor="@color/color_666666"
             android:textColorHint="@color/color_999999"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            tools:ignore="Autofill,RtlSymmetry" />
 
         <Button
             android:id="@+id/login"

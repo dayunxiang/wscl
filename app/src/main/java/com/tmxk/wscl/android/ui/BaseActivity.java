@@ -38,7 +38,6 @@ public class BaseActivity extends AppCompatActivity {
         mActivity = this;
     }
 
-
     @Override
     public void setContentView(View view) {
         super.setContentView(view);

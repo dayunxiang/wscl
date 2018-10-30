@@ -12,6 +12,7 @@ import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.application.MainApplication;
 import com.tmxk.wscl.android.mvp.model.HttpReturnBean;
 import com.tmxk.wscl.android.mvp.model.UserBean;
+import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
 import com.tmxk.wscl.android.mvp.view.UserView;
 import com.tmxk.wscl.android.util.Constant;
@@ -52,7 +53,7 @@ public class UserPwdActivity extends MvpActivity<UserPresenter> implements UserV
     }
 
     @Override
-    public void getDataSuccess(UserBean model) {
+    public void getDataSuccess(Object model) {
         application.getUserBean().setLoginPwd(edtNewPassword.getText().toString().trim());
         toastShow(Constant.MODIFY_SUCCESS);
         finish();

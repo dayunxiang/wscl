@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.jaeger.library.StatusBarUtil;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.application.MainApplication;
-import com.tmxk.wscl.android.mvp.model.HttpReturnBean;
 import com.tmxk.wscl.android.mvp.model.UserBean;
+import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
 import com.tmxk.wscl.android.mvp.view.UserView;
 import com.tmxk.wscl.android.util.Constant;
@@ -68,10 +68,12 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
     }
 
     @Override
-    public void getDataSuccess(UserBean model) {
-        application.setUserBean(model);
-        toastShow(Constant.MODIFY_SUCCESS);
-        finish();
+    public void getDataSuccess(Object model) {
+        if (model instanceof UserBean) {
+            application.setUserBean((UserBean) model);
+            toastShow(Constant.MODIFY_SUCCESS);
+            finish();
+        }
     }
 
     @Override

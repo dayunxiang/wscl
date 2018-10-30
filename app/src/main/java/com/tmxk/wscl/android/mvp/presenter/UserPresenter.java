@@ -1,6 +1,7 @@
 package com.tmxk.wscl.android.mvp.presenter;
 
 import com.tmxk.wscl.android.mvp.model.UserBean;
+import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.view.UserView;
 import com.tmxk.wscl.android.retrofit.ApiCallback;
 import com.tmxk.wscl.android.util.Constant;
@@ -13,6 +14,9 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 public class UserPresenter extends BasePresenter<UserView> {
+
+    private int page = 1;
+    private int perPage = 10;
 
     public UserPresenter(UserView view) {
         attachView(view);
@@ -86,5 +90,34 @@ public class UserPresenter extends BasePresenter<UserView> {
                         }
                     });
         }
+    }
+
+    public void getSysUsers(boolean isRefresh) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getSysUsers(page, perPage),
+                new ApiCallback<UserListBean>() {
+                    @Override
+                    public void onSuccess(UserListBean userList) {
+                        if (Route.STATUS_CODE == userList.getMetaInfo().getCode()) {
+                            mvpView.getDataSuccess(userList);
+                        } else {
+                            mvpView.toastShow("获取用户列表失败");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
     }
 }

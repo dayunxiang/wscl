@@ -10,6 +10,7 @@ public class UserListBean implements Serializable {
     private MetaInfoEntity metaInfo;
     private List<UserBean> object;
 
+    @Data
     public class MetaInfoEntity implements Serializable {
         private int code;
         private int totalSize;

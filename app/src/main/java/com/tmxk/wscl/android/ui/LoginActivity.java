@@ -58,9 +58,9 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     }
 
     @Override
-    public void getDataSuccess(UserBean model) {
-        if (model != null) {
-            application.setUserBean(model);
+    public void getDataSuccess(Object model) {
+        if (model instanceof UserBean) {
+            application.setUserBean((UserBean) model);
             startActivity(new Intent(this, HomeActivity.class));
             finish();
         } else {

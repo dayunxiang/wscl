@@ -7,33 +7,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import com.tmxk.wscl.android.R;
-import com.tmxk.wscl.android.bean.MenuItem;
+import com.tmxk.wscl.android.mvp.model.UserBean;
 
 import java.util.List;
 
-public class MenuListAdapter extends BaseAdapter {
-    private final List<MenuItem> list;
+public class UserListAdapter extends BaseAdapter {
+    private final List<UserBean> userBeanList;
     private final LayoutInflater mInflater;
 
-    public MenuListAdapter(Context context, List<MenuItem> list) {
-        this.list = list;
+    public UserListAdapter(Context context, List<UserBean> userBeanList) {
+        this.userBeanList = userBeanList;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        return userBeanList.size();
     }
 
     @Override
-    public String getItem(int position) {
-        return list.get(position).name;
+    public Object getItem(int position) {
+        return null;
     }
 
     @Override
     public long getItemId(int position) {
-        return getItem(position).hashCode();
+        return 0;
     }
 
     @SuppressLint("InflateParams")
@@ -41,18 +42,18 @@ public class MenuListAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.simple_list_item_1, null);
+            convertView = mInflater.inflate(R.layout.simple_list_item_2, null);
             holder = new ViewHolder();
-            holder.tvName = convertView.findViewById(R.id.name);
+            holder.tvUserName = convertView.findViewById(R.id.username);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.tvName.setText(getItem(position));
+        holder.tvUserName.setText(userBeanList.get(position).getUserName());
         return convertView;
     }
 
     private static class ViewHolder {
-        private TextView tvName;
+        private TextView tvUserName;
     }
 }
