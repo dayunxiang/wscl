@@ -25,7 +25,6 @@ import butterknife.BindView;
  * user basic info
  */
 public class UserInfoActivity extends MvpActivity<UserPresenter> implements UserView {
-    private MainApplication application;
     @BindView(R.id.edtLoginName)
     EditText edtLoginName;
     @BindView(R.id.edtDepart)
@@ -36,16 +35,19 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
     EditText edtTelephone;
     @BindView(R.id.edtUserName)
     EditText edtUserName;
+    @BindView(R.id.edtPassword)
+    EditText edtLoginPwd;
     private UserBean userBean;
     private int position;
     private boolean isAddUser = false;
+    private MainApplication application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_user_basic);
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.primary));
+        StatusBarUtil.setColorNoTranslucent(this, getResources().getColor(R.color.primary));
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("基本信息");
         setSupportActionBar(toolbar);
@@ -56,14 +58,17 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
 
     private void initData() {
         Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("userBean")) {
+        if (intent.hasExtra("userBean")) {
+            findViewById(R.id.ll6).setVisibility(View.GONE);
             edtLoginName.setEnabled(false);
             userBean = (UserBean) intent.getSerializableExtra("userBean");
             position = intent.getIntExtra("position", -1);
-        } else if (intent != null && intent.hasExtra("userAdd")) {
+        } else if (intent.hasExtra("addUser")) {
+            findViewById(R.id.ll6).setVisibility(View.VISIBLE);
             edtLoginName.setEnabled(true);
             isAddUser = true;
         } else {
+            findViewById(R.id.ll6).setVisibility(View.GONE);
             edtLoginName.setEnabled(false);
             userBean = application.getUserBean();
         }
@@ -73,6 +78,8 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
             edtDepart.setText(userBean.getDepartment());
             edtEmail.setText(userBean.getUserEmail());
             edtTelephone.setText(userBean.getTelephone());
+        } else {
+            userBean = new UserBean();
         }
     }
 
@@ -108,14 +115,15 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnOk:
-                userBean.setUserName(edtLoginName.getText().toString().trim());
+                userBean.setLoginName(edtLoginName.getText().toString().trim());
                 userBean.setUserName(edtUserName.getText().toString().trim());
                 userBean.setUserEmail(edtEmail.getText().toString().trim());
                 userBean.setDepartment(edtDepart.getText().toString().trim());
                 userBean.setTelephone(edtTelephone.getText().toString().trim());
                 if (!isAddUser) {
-                    mvpPresenter.modifyUserInfo(userBean);
+                    mvpPresenter.updateUserInfo(userBean);
                 } else {
+                    userBean.setLoginPwd(edtLoginPwd.getText().toString().trim());
                     mvpPresenter.addUserInfo(userBean);
                 }
                 break;
@@ -142,6 +150,11 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
     }
 
     @Override
+    public void onRefresh() {
+        //no used
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         setResultIntent();
@@ -155,10 +168,5 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
             mvpPresenter.onUnSubscribe();
             mvpPresenter = null;
         }
-    }
-
-    @Override
-    public void autoRefresh() {
-
     }
 }

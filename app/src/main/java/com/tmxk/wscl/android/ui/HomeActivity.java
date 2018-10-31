@@ -24,7 +24,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home);
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.primary));
+        StatusBarUtil.setColorNoTranslucent(this, getResources().getColor(R.color.primary));
+
         List<MenuItem> items = JsonDataUtil.loadNavItems(this);
         NavPagerAdapter adapter = new NavPagerAdapter(this);
         adapter.addAll(items);

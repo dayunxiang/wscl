@@ -5,7 +5,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#039BE5</color>
     <!--不透明20%-->
-    <color name="color_e0ffffff">#e0ffffff</color>
+
     <color name="color_334caa54">#334CAA54</color>
     <color name="color_4caa54">#4CAA54</color>
     <color name="color_e04caa54">#E04CAA54</color>
@@ -13,6 +13,7 @@
     <color name="color_666666">#666666</color>
     <color name="color_999999">#999999</color>
     <!--半透明-->
+    <color name="color_e0ffffff">#E0FFFFFF</color>
     <color name="color_e0989a9f">#E0989A9F</color>
     <color name="color_33fa7b05">#33FA7B05</color>
     <color name="color_fa7b05">#FA7B05</color>
@@ -31,7 +32,7 @@
     <color name="color_bddad0">#bddad0</color>
     <color name="color_e031353e">#e031353e</color>
     <color name="color_20000000">#20000000</color>
-
+    <color name="color_505050">#505050</color>
     <color name="black_1">#333333</color>
 
     <color name="primary">#607D8B</color>

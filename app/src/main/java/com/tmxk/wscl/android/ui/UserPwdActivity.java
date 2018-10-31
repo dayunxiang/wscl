@@ -10,9 +10,6 @@ import android.widget.EditText;
 import com.jaeger.library.StatusBarUtil;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.application.MainApplication;
-import com.tmxk.wscl.android.mvp.model.HttpReturnBean;
-import com.tmxk.wscl.android.mvp.model.UserBean;
-import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
 import com.tmxk.wscl.android.mvp.view.UserView;
 import com.tmxk.wscl.android.util.Constant;
@@ -39,7 +36,7 @@ public class UserPwdActivity extends MvpActivity<UserPresenter> implements UserV
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_user_pwd);
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.primary));
+        StatusBarUtil.setColorNoTranslucent(this, getResources().getColor(R.color.primary));
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("密码修改");
         setSupportActionBar(toolbar);
@@ -77,7 +74,7 @@ public class UserPwdActivity extends MvpActivity<UserPresenter> implements UserV
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnOk:
-                mvpPresenter.modifyUserPwd(
+                mvpPresenter.updateUserPwd(
                         application.getUserBean().getId(),
                         application.getUserBean().getLoginPwd(),
                         edtOldPassword.getText().toString().trim(),
@@ -97,12 +94,15 @@ public class UserPwdActivity extends MvpActivity<UserPresenter> implements UserV
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mvpPresenter.detachView();
-        mvpPresenter.onUnSubscribe();
+        if (mvpPresenter != null) {
+            mvpPresenter.detachView();
+            mvpPresenter.onUnSubscribe();
+            mvpPresenter = null;
+        }
     }
 
     @Override
-    public void autoRefresh() {
+    public void onRefresh() {
 
     }
 }

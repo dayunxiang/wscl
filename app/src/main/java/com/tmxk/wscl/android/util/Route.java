@@ -9,5 +9,5 @@ public class Route {
     public static final String USER_SYS_URL = "/tmxk/users/sys";
     public static final String USER_SYS_PWD_URL = "/tmxk/users/sys/modifyPwd";
     public static final String USER_SYS_DEL_URL = "/tmxk/users/sys/delete/name";
-    public static final int STATUS_CODE= 200;
+    public static final int STATUS_CODE = 200;
 }

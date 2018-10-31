@@ -28,7 +28,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".ui.HomeActivity"
+            android:name=".ui.LoginActivity"
             android:protectionLevel="signature"
             android:screenOrientation="portrait"
             android:theme="@style/AppLauncherTheme">
@@ -42,7 +42,7 @@
             android:name=".ui.BaseActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.HomeActivity"
             android:launchMode="singleTask"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity

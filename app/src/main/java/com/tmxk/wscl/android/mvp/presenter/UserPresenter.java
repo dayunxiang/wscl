@@ -21,7 +21,7 @@ public class UserPresenter extends BasePresenter<UserView> {
         attachView(view);
     }
 
-    public void modifyUserInfo(UserBean userBean) {
+    public void updateUserInfo(UserBean userBean) {
 
         if (userBean.getLoginName().isEmpty()) {
             mvpView.toastShow("请输入用户名");
@@ -67,7 +67,7 @@ public class UserPresenter extends BasePresenter<UserView> {
         }
     }
 
-    public void modifyUserPwd(int userId, String sysPassword, String oldPassword, String newPassword, String confPassword) {
+    public void updateUserPwd(int userId, String sysPassword, String oldPassword, String newPassword, String confPassword) {
         if (!sysPassword.equals(oldPassword)) {
             mvpView.toastShow(Constant.OLD_PWD_ERROR);
         } else if (!newPassword.equals(confPassword)) {
@@ -150,6 +150,7 @@ public class UserPresenter extends BasePresenter<UserView> {
             JSONObject strJson = new JSONObject();
             try {
                 strJson.put("loginName", userBean.getLoginName());
+                strJson.put("loginPwd", userBean.getLoginPwd());
                 strJson.put("userName", userBean.getUserName());
                 strJson.put("userEmail", userBean.getUserEmail());
                 strJson.put("department", userBean.getDepartment());
@@ -188,7 +189,7 @@ public class UserPresenter extends BasePresenter<UserView> {
                         @Override
                         public void onSuccess(ResponseBody responseBody) {
                             mvpView.toastShow("用户删除成功");
-                            mvpView.autoRefresh();
+                            mvpView.onRefresh();
                         }
 
                         @Override

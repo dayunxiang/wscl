@@ -1,14 +1,22 @@
 package com.tmxk.wscl.android.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -16,6 +24,7 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.adpter.UserListAdapter;
+import com.tmxk.wscl.android.application.MainApplication;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
@@ -38,20 +47,22 @@ public class UserManageActivity extends MvpActivity<UserPresenter> implements Us
     private UserListAdapter userListAdapter;
     private static final int USER_MANAGE_UPDATE_REQUEST_CODE = 0;
     private static final int USER_MANAGE_ADD_REQUEST_CODE = 1;
+    private MainApplication application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_user_manage);
-        //toolbar
-        StatusBarUtil.setColor(this, getResources().getColor(R.color.primary));
+        //status bar
+        StatusBarUtil.setColorNoTranslucent(this, getResources().getColor(R.color.primary));
+        //tool bar
         Toolbar toolbar = findViewById(R.id.toolbar);
-        Button btnRight = toolbar.findViewById(R.id.btnRight);
+        ImageView imgRight = toolbar.findViewById(R.id.imgRight);
         toolbar.setTitle("用户管理");
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        btnRight.setOnClickListener(new View.OnClickListener() {
+        imgRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -62,6 +73,7 @@ public class UserManageActivity extends MvpActivity<UserPresenter> implements Us
                 startActivityForResult(intent, USER_MANAGE_ADD_REQUEST_CODE);
             }
         });
+        application = (MainApplication) getApplication();
         //smart
         refreshLayout.setEnableLoadMore(true);
         refreshLayout.setEnableRefresh(true);
@@ -94,11 +106,44 @@ public class UserManageActivity extends MvpActivity<UserPresenter> implements Us
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                mvpPresenter.delUserInfo(((UserBean) userListAdapter.getItem(position)).getLoginName());
+                showDelDialog(position);
                 return true;
             }
         });
         refreshLayout.autoRefresh();
+    }
+
+    private void showDelDialog(final int position) {
+        final UserBean userBean = ((UserBean) userListAdapter.getItem(position));
+        if (userBean != null) {
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert inflater != null;
+            @SuppressLint("InflateParams")
+            View contentView = inflater.inflate(R.layout.dialog_del, null);
+            final PopupWindow popupWindow = new PopupWindow(contentView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setTouchable(true);
+            popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
+            ((TextView) contentView.findViewById(R.id.tv_tips)).setText("用户".concat(userBean.getLoginName()).concat("删除后不可恢复"));
+            contentView.findViewById(R.id.btn_ok).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    popupWindow.dismiss();
+                    mvpPresenter.delUserInfo(userBean.getLoginName());
+                }
+            });
+            contentView.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    popupWindow.dismiss();
+                }
+            });
+            if (!popupWindow.isShowing()) {
+                popupWindow.showAtLocation(findViewById(R.id.parentView), Gravity.CENTER, 0, 0);
+            } else {
+                popupWindow.dismiss();
+            }
+        }
     }
 
     @Override
@@ -106,13 +151,20 @@ public class UserManageActivity extends MvpActivity<UserPresenter> implements Us
         super.onActivityResult(requestCode, resultCode, intent);
         if (requestCode == USER_MANAGE_UPDATE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             if (intent.hasExtra("userBean") && intent.hasExtra("position")) {
+                UserBean userBean=(UserBean) intent.getSerializableExtra("userBean");
+                //update local login user data
+                if(userBean.getLoginName().equals(application.getUserBean().getLoginName())){
+                    application.setUserBean(userBean);
+                }
+                //update remote user data
                 userListAdapter.updateUserList(
-                        (UserBean) intent.getSerializableExtra("userBean"),
+                        userBean,
                         intent.getIntExtra("position", -1));
                 userListAdapter.notifyDataSetChanged();
             }
         } else if (requestCode == USER_MANAGE_ADD_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             if (intent.hasExtra("hasAddUser")) {
+                userListAdapter = null;
                 refreshLayout.autoRefresh();
             }
         }
@@ -141,7 +193,17 @@ public class UserManageActivity extends MvpActivity<UserPresenter> implements Us
     }
 
     @Override
-    public void autoRefresh() {
+    public void onRefresh() {
         refreshLayout.autoRefresh();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mvpPresenter != null) {
+            mvpPresenter.detachView();
+            mvpPresenter.onUnSubscribe();
+            mvpPresenter = null;
+        }
     }
 }
