@@ -17,4 +17,8 @@
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@mipmap/dl_bg</item>
     </style>
+
+    <style name="ToolbarStyle" parent="Base.Widget.AppCompat.ActionBar">
+        <item name="android:minHeight">@dimen/tab_height</item>
+    </style>
 </resources>

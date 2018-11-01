@@ -151,9 +151,9 @@ public class UserManageActivity extends MvpActivity<UserPresenter> implements Us
         super.onActivityResult(requestCode, resultCode, intent);
         if (requestCode == USER_MANAGE_UPDATE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             if (intent.hasExtra("userBean") && intent.hasExtra("position")) {
-                UserBean userBean=(UserBean) intent.getSerializableExtra("userBean");
+                UserBean userBean = (UserBean) intent.getSerializableExtra("userBean");
                 //update local login user data
-                if(userBean.getLoginName().equals(application.getUserBean().getLoginName())){
+                if (userBean.getLoginName().equals(application.getUserBean().getLoginName())) {
                     application.setUserBean(userBean);
                 }
                 //update remote user data

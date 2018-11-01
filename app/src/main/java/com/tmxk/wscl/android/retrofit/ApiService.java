@@ -2,7 +2,10 @@ package com.tmxk.wscl.android.retrofit;
 
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
+import com.tmxk.wscl.android.mvp.model.UserLoginLogListBean;
 import com.tmxk.wscl.android.util.Route;
+
+import java.util.Date;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -32,4 +35,15 @@ public interface ApiService {
 
     @DELETE(Route.IP_URL + Route.USER_SYS_DEL_URL)
     Observable<ResponseBody> delSysUser(@Query("loginName") String loginName);
+
+    @GET(Route.IP_URL + Route.USER_SYS_URL)
+    Observable<UserLoginLogListBean> getSysUserLoginLogs(
+            @Query("offset") int offset,
+            @Query("limit") int limit,
+            @Query("loginName") String loginName,
+            @Query("userName") String userName,
+            @Query("end") Date endTime,
+            @Query("start") Date startTime
+    );
+
 }

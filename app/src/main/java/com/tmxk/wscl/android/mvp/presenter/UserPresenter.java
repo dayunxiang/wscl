@@ -10,6 +10,8 @@ import com.tmxk.wscl.android.util.Route;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Date;
+
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
@@ -204,4 +206,33 @@ public class UserPresenter extends BasePresenter<UserView> {
                     });
         }
     }
+
+
+    public void getSysUserLoginLogs(boolean isRefresh, String loginName, String userName,
+                                    String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+//        int perPage = 10;
+//        addSubscription(apiService.getSysUserLoginLogs(page, perPage, loginName, userName, startTime, endTime),
+//                new ApiCallback<UserListBean>() {
+//                    @Override
+//                    public void onSuccess(UserListBean userList) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(String msg) {
+//                        mvpView.getDataFail(msg);
+//                    }
+//
+//                    @Override
+//                    public void onFinish() {
+//                        mvpView.hideLoading();
+//                    }
+//                });
+    }
+
 }

@@ -37,6 +37,9 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
     EditText edtUserName;
     @BindView(R.id.edtPassword)
     EditText edtLoginPwd;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     private UserBean userBean;
     private int position;
     private boolean isAddUser = false;
@@ -47,27 +50,28 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_user_basic);
+        application = (MainApplication) getApplication();
         StatusBarUtil.setColorNoTranslucent(this, getResources().getColor(R.color.primary));
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("基本信息");
+        initData();
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        application = (MainApplication) getApplication();
-        initData();
     }
 
     private void initData() {
         Intent intent = getIntent();
         if (intent.hasExtra("userBean")) {
+            toolbar.setTitle("基本信息");
             findViewById(R.id.ll6).setVisibility(View.GONE);
             edtLoginName.setEnabled(false);
             userBean = (UserBean) intent.getSerializableExtra("userBean");
             position = intent.getIntExtra("position", -1);
         } else if (intent.hasExtra("addUser")) {
+            toolbar.setTitle("新建用户");
             findViewById(R.id.ll6).setVisibility(View.VISIBLE);
             edtLoginName.setEnabled(true);
             isAddUser = true;
         } else {
+            toolbar.setTitle("基本信息");
             findViewById(R.id.ll6).setVisibility(View.GONE);
             edtLoginName.setEnabled(false);
             userBean = application.getUserBean();
