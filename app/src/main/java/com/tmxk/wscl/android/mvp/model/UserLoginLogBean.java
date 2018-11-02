@@ -11,7 +11,7 @@ public class UserLoginLogBean implements Serializable {
     private int id;
 
     @Data
-    public class SysuserEntity {
+    public class SysuserEntity implements Serializable {
         private int id;
         private String userName;
         private String loginPwd;

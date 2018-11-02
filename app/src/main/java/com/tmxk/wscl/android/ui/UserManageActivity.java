@@ -80,6 +80,7 @@ public class UserManageActivity extends MvpActivity<UserPresenter> implements Us
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@android.support.annotation.NonNull RefreshLayout refreshLayout) {
+                userListAdapter = null;
                 mvpPresenter.getSysUsers(true);
                 refreshLayout.finishRefresh();
             }
@@ -114,6 +115,9 @@ public class UserManageActivity extends MvpActivity<UserPresenter> implements Us
     }
 
     private void showDelDialog(final int position) {
+        if (userListAdapter == null) {
+            return;
+        }
         final UserBean userBean = ((UserBean) userListAdapter.getItem(position));
         if (userBean != null) {
             LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -157,10 +161,12 @@ public class UserManageActivity extends MvpActivity<UserPresenter> implements Us
                     application.setUserBean(userBean);
                 }
                 //update remote user data
-                userListAdapter.updateUserList(
-                        userBean,
-                        intent.getIntExtra("position", -1));
-                userListAdapter.notifyDataSetChanged();
+                if (userListAdapter != null) {
+                    userListAdapter.updateUserList(
+                            userBean,
+                            intent.getIntExtra("position", -1));
+                    userListAdapter.notifyDataSetChanged();
+                }
             }
         } else if (requestCode == USER_MANAGE_ADD_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             if (intent.hasExtra("hasAddUser")) {

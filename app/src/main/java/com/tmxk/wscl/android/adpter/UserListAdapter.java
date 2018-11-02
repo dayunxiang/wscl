@@ -49,6 +49,7 @@ public class UserListAdapter extends BaseAdapter {
             holder.tvLoginName = convertView.findViewById(R.id.loginName);
             holder.tvDepartment = convertView.findViewById(R.id.department);
             holder.tvTelephone = convertView.findViewById(R.id.telephone);
+            holder.tvEmail = convertView.findViewById(R.id.email);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -59,6 +60,7 @@ public class UserListAdapter extends BaseAdapter {
             holder.tvUserName.setText("姓名：".concat(userBean.getUserName()));
             holder.tvDepartment.setText("部门：".concat(userBean.getDepartment()));
             holder.tvTelephone.setText("联系电话：".concat(userBean.getTelephone()));
+            holder.tvEmail.setText("邮箱：".concat(userBean.getUserEmail()));
         }
         return convertView;
     }
@@ -70,6 +72,6 @@ public class UserListAdapter extends BaseAdapter {
     }
 
     private static class ViewHolder {
-        private TextView tvLoginName, tvUserName, tvTelephone, tvDepartment;
+        private TextView tvLoginName, tvUserName, tvTelephone, tvDepartment,tvEmail;
     }
 }

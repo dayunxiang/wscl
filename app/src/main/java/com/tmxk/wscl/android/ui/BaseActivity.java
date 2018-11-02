@@ -25,6 +25,10 @@ import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 
+/**
+ * Created by wjf.
+ * base activity
+ */
 public class BaseActivity extends AppCompatActivity {
     public Activity mActivity;
     private CompositeDisposable mCompositeDisposable;

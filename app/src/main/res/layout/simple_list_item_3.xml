@@ -46,4 +46,12 @@
         android:maxLines="1"
         android:textColor="@color/secondary_text"
         android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/loginTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:textColor="@color/secondary_text"
+        android:textSize="12sp" />
 </LinearLayout>

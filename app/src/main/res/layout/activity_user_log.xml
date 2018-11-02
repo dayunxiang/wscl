@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
+        android:onClick="onClick"
         android:background="@android:color/transparent"
         app:srlAccentColor="@android:color/white"
         app:srlEnablePreviewInEditMode="true"
@@ -155,21 +156,22 @@
                     android:textSize="14sp"
                     tools:ignore="HardcodedText" />
 
-                <EditText
-                    android:id="@+id/edtStartDate"
+                <Button
+                    android:id="@+id/btnStartDate"
                     android:layout_width="0dp"
                     android:layout_height="46.5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/dl_edt_style"
+                    android:background="@drawable/selector_e6e6e6"
                     android:ems="10"
-                    android:imeOptions="actionNext"
-                    android:inputType="date"
                     android:maxLength="20"
                     android:maxLines="1"
+                    android:onClick="onClick"
                     android:padding="2dp"
+                    android:text="不限"
+                    android:textColor="#333"
                     android:textSize="14sp"
-                    tools:ignore="Autofill,LabelFor" />
+                    tools:ignore="HardcodedText,LabelFor" />
             </LinearLayout>
 
             <LinearLayout
@@ -187,21 +189,22 @@
                     android:textSize="14sp"
                     tools:ignore="HardcodedText" />
 
-                <EditText
-                    android:id="@+id/edtEndDate"
+                <Button
+                    android:id="@+id/btnEndDate"
                     android:layout_width="0dp"
                     android:layout_height="46.5dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    android:background="@drawable/dl_edt_style"
+                    android:background="@drawable/selector_e6e6e6"
                     android:ems="10"
-                    android:imeOptions="actionNext"
-                    android:inputType="date"
                     android:maxLength="20"
                     android:maxLines="1"
+                    android:onClick="onClick"
                     android:padding="2dp"
+                    android:text="不限"
+                    android:textColor="#333"
                     android:textSize="14sp"
-                    tools:ignore="Autofill,LabelFor" />
+                    tools:ignore="HardcodedText,LabelFor" />
             </LinearLayout>
 
             <Button
@@ -209,10 +212,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
                 android:layout_margin="10dp"
-                android:background="@drawable/selector_e6e6e6"
+                android:background="@drawable/dl_btn_style"
                 android:onClick="onClick"
                 android:text="搜索"
-                android:textColor="#333"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 tools:ignore="HardcodedText" />
         </LinearLayout>

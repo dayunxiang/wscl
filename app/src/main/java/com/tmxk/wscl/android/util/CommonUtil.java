@@ -1,5 +1,8 @@
 package com.tmxk.wscl.android.util;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
+
 import com.tmxk.wscl.android.ui.HomeActivity;
 import com.tmxk.wscl.android.ui.UserInfoActivity;
 import com.tmxk.wscl.android.ui.UserLoginLogActivity;
@@ -26,6 +29,7 @@ public class CommonUtil {
 
     public static String dateToStr(Date date) {
         //这个是你要转成后的时间的格式
+        @SuppressLint("SimpleDateFormat")
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         // 时间戳转换成时间
         return sdf.format(date);
@@ -33,6 +37,7 @@ public class CommonUtil {
 
     public static String stampToStr(long timeStamp) {
         //这个是你要转成后的时间的格式
+        @SuppressLint("SimpleDateFormat")
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(new Date(timeStamp));
     }
@@ -47,5 +52,11 @@ public class CommonUtil {
             return classMap.get(classKey);
         }
         return null;
+    }
+
+    public static String getTime(Date date) {
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(date);
     }
 }

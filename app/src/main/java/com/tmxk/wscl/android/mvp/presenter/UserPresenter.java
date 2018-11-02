@@ -1,7 +1,10 @@
 package com.tmxk.wscl.android.mvp.presenter;
 
+import android.util.Log;
+
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
+import com.tmxk.wscl.android.mvp.model.UserLoginLogListBean;
 import com.tmxk.wscl.android.mvp.view.UserView;
 import com.tmxk.wscl.android.retrofit.ApiCallback;
 import com.tmxk.wscl.android.util.Constant;
@@ -10,7 +13,8 @@ import com.tmxk.wscl.android.util.Route;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -210,29 +214,42 @@ public class UserPresenter extends BasePresenter<UserView> {
 
     public void getSysUserLoginLogs(boolean isRefresh, String loginName, String userName,
                                     String startTime, String endTime) {
+        Map<String, String> options = new HashMap<>();
+        if (loginName != null && !loginName.isEmpty()) {
+            options.put("loginName", loginName);
+        }
+        if (userName != null && !userName.isEmpty()) {
+            options.put("userName", userName);
+        }
+        if (startTime != null && !startTime.isEmpty() && !startTime.equals("不限")) {
+            options.put("start", startTime);
+        }
+        if (endTime != null && !endTime.isEmpty() && !endTime.equals("不限")) {
+            options.put("end", endTime);
+        }
         if (isRefresh) {
             page = 1;
         } else {
             page++;
         }
-//        int perPage = 10;
-//        addSubscription(apiService.getSysUserLoginLogs(page, perPage, loginName, userName, startTime, endTime),
-//                new ApiCallback<UserListBean>() {
-//                    @Override
-//                    public void onSuccess(UserListBean userList) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(String msg) {
-//                        mvpView.getDataFail(msg);
-//                    }
-//
-//                    @Override
-//                    public void onFinish() {
-//                        mvpView.hideLoading();
-//                    }
-//                });
+        Log.i("options", options.toString());
+        addSubscription(apiService.getSysUserLoginLogs(page, 10, options),
+                new ApiCallback<UserLoginLogListBean>() {
+                    @Override
+                    public void onSuccess(UserLoginLogListBean userLoginLogListBean) {
+                        mvpView.getDataSuccess(userLoginLogListBean);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
     }
 
 }

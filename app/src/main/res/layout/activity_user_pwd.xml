@@ -120,10 +120,10 @@
         android:layout_height="44dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
-        android:background="@drawable/selector_e6e6e6"
+        android:background="@drawable/dl_btn_style"
         android:onClick="onClick"
         android:text="提交修改"
-        android:textColor="#333"
+        android:textColor="@color/white"
         android:textSize="16sp"
         tools:ignore="HardcodedText" />
 </RelativeLayout>

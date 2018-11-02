@@ -6,6 +6,7 @@ import com.tmxk.wscl.android.mvp.model.UserLoginLogListBean;
 import com.tmxk.wscl.android.util.Route;
 
 import java.util.Date;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -16,6 +17,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface ApiService {
     @POST(Route.IP_URL + Route.LOGIN_URL)
@@ -36,14 +38,6 @@ public interface ApiService {
     @DELETE(Route.IP_URL + Route.USER_SYS_DEL_URL)
     Observable<ResponseBody> delSysUser(@Query("loginName") String loginName);
 
-    @GET(Route.IP_URL + Route.USER_SYS_URL)
-    Observable<UserLoginLogListBean> getSysUserLoginLogs(
-            @Query("offset") int offset,
-            @Query("limit") int limit,
-            @Query("loginName") String loginName,
-            @Query("userName") String userName,
-            @Query("end") Date endTime,
-            @Query("start") Date startTime
-    );
-
+    @GET(Route.IP_URL + Route.USER_SYS_LOGIN_LOG_URL)
+    Observable<UserLoginLogListBean> getSysUserLoginLogs(@Query("offset") int offset, @Query("limit") int limit,@QueryMap Map<String, String> options);
 }
