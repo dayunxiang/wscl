@@ -1,11 +1,12 @@
 package com.tmxk.wscl.android.retrofit;
 
+import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
+import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.model.UserLoginLogListBean;
 import com.tmxk.wscl.android.util.Route;
 
-import java.util.Date;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -39,5 +40,23 @@ public interface ApiService {
     Observable<ResponseBody> delSysUser(@Query("loginName") String loginName);
 
     @GET(Route.IP_URL + Route.USER_SYS_LOGIN_LOG_URL)
-    Observable<UserLoginLogListBean> getSysUserLoginLogs(@Query("offset") int offset, @Query("limit") int limit,@QueryMap Map<String, String> options);
+    Observable<UserLoginLogListBean> getSysUserLoginLogs(@Query("offset") int offset, @Query("limit") int limit, @QueryMap Map<String, String> options);
+
+    @GET(Route.IP_URL + Route.SITE_DEVICE_DOC_ALL_URL)
+    Observable<SiteDeviceDocListBean> getDeviceDocList(@Query("offset") int offset, @Query("limit") int limit);
+
+    @PUT(Route.IP_URL + Route.SITE_DEVICE_DOC_URL)
+    Observable<ResponseBody> updateDeviceDoc(@Body SiteDeviceDocBean siteDeviceDocBean);
+
+    @POST(Route.IP_URL + Route.SITE_DEVICE_DOC_URL)
+    Observable<ResponseBody> createDeviceDoc(@Body SiteDeviceDocBean siteDeviceDocBean);
+
+    @DELETE(Route.IP_URL + Route.SITE_DEVICE_DOC_ID_URL)
+    Observable<ResponseBody> deleteDeviceDocById(@Query("id") long id);
+
+    @DELETE(Route.IP_URL + Route.SITE_DEVICE_DOC_NAME_URL)
+    Observable<ResponseBody> deleteDeviceDocByName(@Query("deviceName") String deviceName);
+
+    @DELETE(Route.IP_URL + Route.SITE_DEVICE_DOC_SEWAGE_URL)
+    Observable<ResponseBody> deleteDeviceDocBySewage(@Query("sewageId") int sewageId);
 }

@@ -16,8 +16,10 @@
         android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="1"
-        android:text="@string/app_name"
+        android:maxLines="2"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/app_total_name"
         android:textColor="@color/color_4bab54"
         android:textSize="30sp" />
 

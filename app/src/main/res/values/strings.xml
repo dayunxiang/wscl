@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">污水处理系统</string>
+    <string name="app_name">wscl</string>
+    <string name="app_total_name">惠山智慧型农村水环境治理监管综合系统</string>
     <string name="dl_bn_name">登录</string>
     <string name="dl_hint_username">用户名</string>
     <string name="dl_hint_password">密码</string>
-    <string name="company_name">Powered by XXX软件技术有限公司</string>
+    <string name="company_name">Powered by 江苏启德水务有限公司</string>
 </resources>

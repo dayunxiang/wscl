@@ -3,6 +3,7 @@ package com.tmxk.wscl.android.util;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import com.tmxk.wscl.android.ui.DeviceManageActivity;
 import com.tmxk.wscl.android.ui.HomeActivity;
 import com.tmxk.wscl.android.ui.UserInfoActivity;
 import com.tmxk.wscl.android.ui.UserLoginLogActivity;
@@ -48,6 +49,9 @@ public class CommonUtil {
         classMap.put("nav0_1", UserPwdActivity.class);
         classMap.put("nav0_2", UserManageActivity.class);
         classMap.put("nav0_3", UserLoginLogActivity.class);
+
+        classMap.put("nav1_0", DeviceManageActivity.class);
+
         if (classKey.contains(classKey)) {
             return classMap.get(classKey);
         }

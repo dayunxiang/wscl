@@ -9,6 +9,11 @@ public class Route {
     public static final String USER_SYS_URL = "/tmxk/users/sys";
     public static final String USER_SYS_PWD_URL = "/tmxk/users/sys/modifyPwd";
     public static final String USER_SYS_DEL_URL = "/tmxk/users/sys/delete/name";
-    public static final String USER_SYS_LOGIN_LOG_URL ="/tmxk/users/loginRecord/query/all";
+    public static final String USER_SYS_LOGIN_LOG_URL = "/tmxk/users/loginRecord/query/all";
+    public static final String SITE_DEVICE_DOC_ALL_URL = "/tmxk/device/doc/query/all";
+    public static final String SITE_DEVICE_DOC_URL = "/tmxk/device/doc";
+    public static final String SITE_DEVICE_DOC_ID_URL = "/tmxk/device/doc/delete/id";
+    public static final String SITE_DEVICE_DOC_NAME_URL = "/tmxk/device/doc/delete/name";
+    public static final String SITE_DEVICE_DOC_SEWAGE_URL = "/tmxk/device/doc/delete/sewage";
     public static final int STATUS_CODE = 200;
 }

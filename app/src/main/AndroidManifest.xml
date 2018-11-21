@@ -61,6 +61,10 @@
             android:name=".ui.UserLoginLogActivity"
             android:launchMode="singleTask"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ui.DeviceManageActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>
