@@ -1,4 +1,4 @@
-package com.tmxk.wscl.android.ui;
+package com.tmxk.wscl.android.ui.base;
 
 import android.os.Bundle;
 

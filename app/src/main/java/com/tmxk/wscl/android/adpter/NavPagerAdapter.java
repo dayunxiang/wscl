@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.tmxk.wscl.android.R;
-import com.tmxk.wscl.android.bean.MenuItem;
+import com.tmxk.wscl.android.entity.MenuItemEntity;
 import com.tmxk.wscl.android.util.CommonUtil;
 import com.tmxk.wscl.android.util.JsonDataUtil;
 
@@ -19,7 +19,7 @@ import java.util.List;
 
 public class NavPagerAdapter extends PagerAdapter {
 
-    private List<MenuItem> mItems = new ArrayList<>();
+    private List<MenuItemEntity> mItems = new ArrayList<>();
     private Context context;
 
     public NavPagerAdapter(Context context) {
@@ -63,11 +63,11 @@ public class NavPagerAdapter extends PagerAdapter {
         return mItems.get(position).name;
     }
 
-    public MenuItem getColorItem(int position) {
+    public MenuItemEntity getColorItem(int position) {
         return mItems.get(position);
     }
 
-    public void addAll(List<MenuItem> items) {
+    public void addAll(List<MenuItemEntity> items) {
         mItems = new ArrayList<>(items);
     }
 }

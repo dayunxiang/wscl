@@ -1,4 +1,4 @@
-package com.tmxk.wscl.android.ui;
+package com.tmxk.wscl.android.ui.user;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -29,6 +29,7 @@ import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
 import com.tmxk.wscl.android.mvp.view.UserView;
+import com.tmxk.wscl.android.ui.base.MvpActivity;
 
 import java.util.Objects;
 

@@ -8,15 +8,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.tmxk.wscl.android.R;
-import com.tmxk.wscl.android.bean.MenuItem;
+import com.tmxk.wscl.android.entity.MenuItemEntity;
 
 import java.util.List;
 
 public class MenuListAdapter extends BaseAdapter {
-    private final List<MenuItem> list;
+    private final List<MenuItemEntity> list;
     private final LayoutInflater mInflater;
 
-    public MenuListAdapter(Context context, List<MenuItem> list) {
+    public MenuListAdapter(Context context, List<MenuItemEntity> list) {
         this.list = list;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

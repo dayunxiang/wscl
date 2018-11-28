@@ -1,4 +1,4 @@
-package com.tmxk.wscl.android.ui;
+package com.tmxk.wscl.android.ui.login;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -14,6 +14,8 @@ import com.tmxk.wscl.android.application.MainApplication;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.presenter.LoginPresenter;
 import com.tmxk.wscl.android.mvp.view.LoginView;
+import com.tmxk.wscl.android.ui.home.HomeActivity;
+import com.tmxk.wscl.android.ui.base.MvpActivity;
 
 import butterknife.BindView;
 

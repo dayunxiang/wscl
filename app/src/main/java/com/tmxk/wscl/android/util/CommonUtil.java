@@ -1,14 +1,12 @@
 package com.tmxk.wscl.android.util;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 
-import com.tmxk.wscl.android.ui.DeviceManageActivity;
-import com.tmxk.wscl.android.ui.HomeActivity;
-import com.tmxk.wscl.android.ui.UserInfoActivity;
-import com.tmxk.wscl.android.ui.UserLoginLogActivity;
-import com.tmxk.wscl.android.ui.UserManageActivity;
-import com.tmxk.wscl.android.ui.UserPwdActivity;
+import com.tmxk.wscl.android.ui.device.DeviceArchiveActivity;
+import com.tmxk.wscl.android.ui.user.UserInfoActivity;
+import com.tmxk.wscl.android.ui.user.UserLoginLogActivity;
+import com.tmxk.wscl.android.ui.user.UserManageActivity;
+import com.tmxk.wscl.android.ui.user.UserPwdActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -50,7 +48,7 @@ public class CommonUtil {
         classMap.put("nav0_2", UserManageActivity.class);
         classMap.put("nav0_3", UserLoginLogActivity.class);
 
-        classMap.put("nav1_0", DeviceManageActivity.class);
+        classMap.put("nav1_0", DeviceArchiveActivity.class);
 
         if (classKey.contains(classKey)) {
             return classMap.get(classKey);

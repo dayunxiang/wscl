@@ -1,4 +1,4 @@
-package com.tmxk.wscl.android.ui;
+package com.tmxk.wscl.android.ui.user;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +12,7 @@ import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.application.MainApplication;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
 import com.tmxk.wscl.android.mvp.view.UserView;
+import com.tmxk.wscl.android.ui.base.MvpActivity;
 import com.tmxk.wscl.android.util.Constant;
 
 import java.util.Objects;

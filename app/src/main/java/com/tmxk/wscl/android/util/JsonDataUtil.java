@@ -2,7 +2,7 @@ package com.tmxk.wscl.android.util;
 
 import android.content.Context;
 
-import com.tmxk.wscl.android.bean.MenuItem;
+import com.tmxk.wscl.android.entity.MenuItemEntity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,18 +20,18 @@ public class JsonDataUtil {
 
     }
 
-    public static List<MenuItem> loadNavItems(Context context) {
-        List<MenuItem> items = new ArrayList<>();
+    public static List<MenuItemEntity> loadNavItems(Context context) {
+        List<MenuItemEntity> items = new ArrayList<>();
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset(context, "nav.json"));
             Iterator<String> keys = obj.keys();
             while (keys.hasNext()) {
                 String key = keys.next();
                 JSONObject value = obj.getJSONObject(key);
-                MenuItem menuItem = new MenuItem();
-                menuItem.name = value.getString("name");
-                menuItem.id = value.getInt("id");
-                items.add(menuItem);
+                MenuItemEntity menuItemEntity = new MenuItemEntity();
+                menuItemEntity.name = value.getString("name");
+                menuItemEntity.id = value.getInt("id");
+                items.add(menuItemEntity);
             }
         } catch (IOException | JSONException e) {
             e.printStackTrace();
@@ -39,18 +39,18 @@ public class JsonDataUtil {
         return items;
     }
 
-    public static List<MenuItem> loadMenuItems(Context context, int position) {
-        List<MenuItem> items = new ArrayList<>();
+    public static List<MenuItemEntity> loadMenuItems(Context context, int position) {
+        List<MenuItemEntity> items = new ArrayList<>();
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset(context, "menu.json"));
             if (obj.has("menu_" + position)) {
                 JSONArray arrays = obj.getJSONArray("menu_" + position);
                 for (int i = 0; i < arrays.length(); i++) {
                     JSONObject subObj = arrays.getJSONObject(i);
-                    MenuItem menuItem = new MenuItem();
-                    menuItem.name = subObj.getString("name");
-                    menuItem.id = subObj.getInt("id");
-                    items.add(menuItem);
+                    MenuItemEntity menuItemEntity = new MenuItemEntity();
+                    menuItemEntity.name = subObj.getString("name");
+                    menuItemEntity.id = subObj.getInt("id");
+                    items.add(menuItemEntity);
                 }
             }
         } catch (IOException | JSONException e) {
