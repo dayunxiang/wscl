@@ -1,5 +1,7 @@
 package com.tmxk.wscl.android.retrofit;
 
+import com.tmxk.wscl.android.mvp.model.AreaListBean;
+import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
 import com.tmxk.wscl.android.mvp.model.UserBean;
@@ -59,4 +61,16 @@ public interface ApiService {
 
     @DELETE(Route.IP_URL + Route.SITE_DEVICE_DOC_SEWAGE_URL)
     Observable<ResponseBody> deleteDeviceDocBySewage(@Query("sewageId") int sewageId);
+
+    @GET(Route.IP_URL + Route.SITE_DEVICE_DOC_GET_SEWAGE_URL)
+    Observable<SiteDeviceDocListBean> getDeviceDocBySewage(@Query("offset") int offset, @Query("limit") int limit, @Query("sewageId") int sewageId);
+
+    @GET(Route.IP_URL + Route.SITE_SEWAGE_GET_SEWAGE_BY_AREA_URL)
+    Observable<SewageListBean> getSewageByArea(@Query("offset") int offset, @Query("limit") int limit, @Query("areaId") int areaId);
+
+    @GET(Route.IP_URL + Route.SITE_SEWAGE_GET_SEWAGE_BY_ID_URL)
+    Observable<SewageListBean.ObjectBean> getSewageById(@Query("id") int id);
+
+    @GET(Route.IP_URL + Route.AREA_GET_ALL_URL)
+    Observable<AreaListBean> getAllArea(@Query("offset") int offset, @Query("limit") int limit);
 }

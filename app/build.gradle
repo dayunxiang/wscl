@@ -21,6 +21,12 @@ android {
         }
     }
     buildToolsVersion '28.0.3'
+
+    sourceSets{
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 repositories {
@@ -49,4 +55,5 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
     implementation 'com.contrarywind:Android-PickerView:4.1.6'
     implementation 'com.github.dongjunkun:DropDownMenu:1.0.4'
+    compile fileTree(dir:  'libs' , include: ['*.jar'])
 }
