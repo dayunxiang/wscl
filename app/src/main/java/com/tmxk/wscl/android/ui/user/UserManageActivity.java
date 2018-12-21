@@ -25,6 +25,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.adpter.UserListAdapter;
 import com.tmxk.wscl.android.application.MainApplication;
+import com.tmxk.wscl.android.emuns.DataTypeEnum;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
@@ -183,7 +184,7 @@ public class UserManageActivity extends MvpActivity<UserPresenter> implements Us
     }
 
     @Override
-    public void getDataSuccess(Object userList) {
+    public void getDataSuccess(Object userList, DataTypeEnum dataTypeEnum) {
         if (userList instanceof UserListBean) {
             if (userListAdapter != null) {
                 userListAdapter.notifyDataSetChanged();

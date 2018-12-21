@@ -26,6 +26,7 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.adpter.LoginLogListAdapter;
+import com.tmxk.wscl.android.emuns.DataTypeEnum;
 import com.tmxk.wscl.android.mvp.model.UserLoginLogListBean;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
 import com.tmxk.wscl.android.mvp.view.UserView;
@@ -170,7 +171,7 @@ public class UserLoginLogActivity extends MvpActivity<UserPresenter> implements 
     }
 
     @Override
-    public void getDataSuccess(Object userLoginLogList) {
+    public void getDataSuccess(Object userLoginLogList, DataTypeEnum dataTypeEnum) {
         if (userLoginLogList instanceof UserLoginLogListBean) {
             if (loginLogListAdapter != null) {
                 loginLogListAdapter.notifyDataSetChanged();

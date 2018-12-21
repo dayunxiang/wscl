@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.jaeger.library.StatusBarUtil;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.application.MainApplication;
+import com.tmxk.wscl.android.emuns.DataTypeEnum;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
 import com.tmxk.wscl.android.mvp.view.UserView;
 import com.tmxk.wscl.android.ui.base.MvpActivity;
@@ -51,7 +52,7 @@ public class UserPwdActivity extends MvpActivity<UserPresenter> implements UserV
     }
 
     @Override
-    public void getDataSuccess(Object model) {
+    public void getDataSuccess(Object model, DataTypeEnum dataTypeEnum) {
         application.getUserBean().setLoginPwd(edtNewPassword.getText().toString().trim());
         toastShow(Constant.MODIFY_SUCCESS);
         finish();

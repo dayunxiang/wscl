@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.jaeger.library.StatusBarUtil;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.application.MainApplication;
+import com.tmxk.wscl.android.emuns.DataTypeEnum;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
 import com.tmxk.wscl.android.mvp.view.UserView;
@@ -94,7 +95,7 @@ public class UserInfoActivity extends MvpActivity<UserPresenter> implements User
     }
 
     @Override
-    public void getDataSuccess(Object model) {
+    public void getDataSuccess(Object model, DataTypeEnum dataTypeEnum) {
         toastShow(Constant.MODIFY_SUCCESS);
         setResultIntent();
         if (model instanceof UserBean) {

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.application.MainApplication;
+import com.tmxk.wscl.android.emuns.DataTypeEnum;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.presenter.LoginPresenter;
 import com.tmxk.wscl.android.mvp.view.LoginView;
@@ -60,7 +61,7 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     }
 
     @Override
-    public void getDataSuccess(Object model) {
+    public void getDataSuccess(Object model, DataTypeEnum dataTypeEnum) {
         if (model instanceof UserBean) {
             application.setUserBean((UserBean) model);
             startActivity(new Intent(this, HomeActivity.class));

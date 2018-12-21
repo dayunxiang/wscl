@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
 import com.tmxk.wscl.android.adpter.GirdDropDownAdapter;
+import com.tmxk.wscl.android.emuns.DataTypeEnum;
 import com.tmxk.wscl.android.emuns.SewageStationEnum;
 import com.tmxk.wscl.android.mvp.presenter.DeviceArchivePresenter;
 import com.tmxk.wscl.android.mvp.view.DeviceArchiveView;
@@ -142,7 +143,7 @@ public class DeviceArchiveActivity extends MvpActivity<DeviceArchivePresenter> i
     }
 
     @Override
-    public void getDataSuccess(Object model) {
+    public void getDataSuccess(Object model, DataTypeEnum dataTypeEnum) {
 
     }
 
