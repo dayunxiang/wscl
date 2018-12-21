@@ -57,7 +57,7 @@ public class UserPresenter extends BasePresenter<UserView> {
                     new ApiCallback<UserBean>() {
                         @Override
                         public void onSuccess(UserBean model) {
-                            mvpView.getDataSuccess(model);
+                            mvpView.getDataSuccess(model, null);
                         }
 
                         @Override
@@ -94,7 +94,7 @@ public class UserPresenter extends BasePresenter<UserView> {
                     new ApiCallback<ResponseBody>() {
                         @Override
                         public void onSuccess(ResponseBody responseBody) {
-                            mvpView.getDataSuccess(null);
+                            mvpView.getDataSuccess(null, null);
                         }
 
                         @Override
@@ -122,7 +122,7 @@ public class UserPresenter extends BasePresenter<UserView> {
                     @Override
                     public void onSuccess(UserListBean userList) {
                         if (Route.STATUS_CODE == userList.getMetaInfo().getCode()) {
-                            mvpView.getDataSuccess(userList);
+                            mvpView.getDataSuccess(userList, null);
                         } else {
                             mvpView.toastShow("获取用户列表失败");
                         }
@@ -169,7 +169,7 @@ public class UserPresenter extends BasePresenter<UserView> {
                     new ApiCallback<ResponseBody>() {
                         @Override
                         public void onSuccess(ResponseBody responseBody) {
-                            mvpView.getDataSuccess(null);
+                            mvpView.getDataSuccess(null, null);
                         }
 
                         @Override
@@ -237,7 +237,7 @@ public class UserPresenter extends BasePresenter<UserView> {
                 new ApiCallback<UserLoginLogListBean>() {
                     @Override
                     public void onSuccess(UserLoginLogListBean userLoginLogListBean) {
-                        mvpView.getDataSuccess(userLoginLogListBean);
+                        mvpView.getDataSuccess(userLoginLogListBean, null);
                     }
 
                     @Override

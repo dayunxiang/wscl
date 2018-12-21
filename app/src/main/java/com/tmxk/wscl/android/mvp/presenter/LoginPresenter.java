@@ -34,7 +34,7 @@ public class LoginPresenter extends BasePresenter<LoginView> {
                     new ApiCallback<UserBean>() {
                         @Override
                         public void onSuccess(UserBean model) {
-                            mvpView.getDataSuccess(model);
+                            mvpView.getDataSuccess(model,null);
                         }
 
                         @Override
