@@ -12,7 +12,20 @@
         android:background="@color/primary"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+        <ImageView
+            android:id="@+id/imgRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/selector_1affffff"
+            android:minWidth="?attr/actionBarSize"
+            android:minHeight="?attr/actionBarSize"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_add"
+            tools:ignore="ContentDescription,HardcodedText" />
+    </android.support.v7.widget.Toolbar>
 
     <com.yyydjk.library.DropDownMenu
         android:id="@+id/dropDownMenu"

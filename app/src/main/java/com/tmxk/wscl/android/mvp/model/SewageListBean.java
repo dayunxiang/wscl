@@ -307,6 +307,12 @@ public class SewageListBean {
         private int equipment4Power;
         private int equipment5Power;
 
+        public ObjectBean(int id) {
+            this.id = id;
+        }
+        public ObjectBean() {
+        }
+
         public int getId() {
             return id;
         }

@@ -3,12 +3,14 @@ package com.tmxk.wscl.android.util;
 import android.annotation.SuppressLint;
 
 import com.tmxk.wscl.android.ui.device.DeviceDocActivity;
+import com.tmxk.wscl.android.ui.device.DeviceDocCreateActivity;
 import com.tmxk.wscl.android.ui.device.SewageArchiveActivity;
 import com.tmxk.wscl.android.ui.user.UserInfoActivity;
 import com.tmxk.wscl.android.ui.user.UserLoginLogActivity;
 import com.tmxk.wscl.android.ui.user.UserManageActivity;
 import com.tmxk.wscl.android.ui.user.UserPwdActivity;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -30,7 +32,7 @@ public class CommonUtil {
     public static String dateToStr(Date date) {
         //这个是你要转成后的时间的格式
         @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.");
         // 时间戳转换成时间
         return sdf.format(date);
     }
@@ -42,6 +44,11 @@ public class CommonUtil {
         return sdf.format(new Date(timeStamp));
     }
 
+    public static Date String2Date(String dateStr) throws ParseException {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            return sdf.parse(dateStr);
+    }
+
     public static Class<?> getClassById(String classKey) {
         Map<String, Class<?>> classMap = new HashMap<>();
         classMap.put("nav0_0", UserInfoActivity.class);
@@ -50,7 +57,8 @@ public class CommonUtil {
         classMap.put("nav0_3", UserLoginLogActivity.class);
 
         classMap.put("nav1_0", SewageArchiveActivity.class);
-        classMap.put("nav1_3", DeviceDocActivity.class);
+//        classMap.put("nav1_2", DeviceDocCreateActivity.class);
+        classMap.put("nav1_2", DeviceDocActivity.class);
 
         if (classKey.contains(classKey)) {
             return classMap.get(classKey);

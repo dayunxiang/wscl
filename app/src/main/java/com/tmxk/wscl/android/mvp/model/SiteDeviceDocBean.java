@@ -1,6 +1,7 @@
 package com.tmxk.wscl.android.mvp.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -34,4 +35,100 @@ public class SiteDeviceDocBean implements Serializable {
     private int repairRecord;
     private String setupTime;
     private SewageListBean.ObjectBean sewage;
+
+    public String getDeviceName() {
+        return deviceName;
+    }
+
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
+    }
+
+    public String getDeviceNo() {
+        return deviceNo;
+    }
+
+    public void setDeviceNo(String deviceNo) {
+        this.deviceNo = deviceNo;
+    }
+
+    public int getDevicePower() {
+        return devicePower;
+    }
+
+    public void setDevicePower(int devicePower) {
+        this.devicePower = devicePower;
+    }
+
+    public String getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLastRepairTime() {
+        return lastRepairTime;
+    }
+
+    public void setLastRepairTime(String lastRepairTime) {
+        this.lastRepairTime = lastRepairTime;
+    }
+
+    public int getLimitYears() {
+        return limitYears;
+    }
+
+    public void setLimitYears(int limitYears) {
+        this.limitYears = limitYears;
+    }
+
+    public int getMaintainCycleDay() {
+        return maintainCycleDay;
+    }
+
+    public void setMaintainCycleDay(int maintainCycleDay) {
+        this.maintainCycleDay = maintainCycleDay;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public int getRepairRecord() {
+        return repairRecord;
+    }
+
+    public void setRepairRecord(int repairRecord) {
+        this.repairRecord = repairRecord;
+    }
+
+    public String getSetupTime() {
+        return setupTime;
+    }
+
+    public void setSetupTime(String setupTime) {
+        this.setupTime = setupTime;
+    }
+
+    public SewageListBean.ObjectBean getSewage() {
+        return sewage;
+    }
+
+    public void setSewage(SewageListBean.ObjectBean sewage) {
+        this.sewage = sewage;
+    }
 }

@@ -12,6 +12,7 @@ import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
 import com.tmxk.wscl.android.mvp.model.UserLoginLogBean;
+import com.tmxk.wscl.android.util.CommonUtil;
 
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class DeviceDocListAdapter extends BaseAdapter {
             holder.tvDeviceNumber.setText("设备编号：".concat(siteDeviceDocBean.getDeviceNo()));
             holder.tvDevicePower.setText("设备类型：".concat(siteDeviceDocBean.getDevicePower()+""));
             holder.tvDeviceType.setText("设备功率：".concat(siteDeviceDocBean.getDeviceType()));
-            holder.tvSetupTime.setText("安装时间：".concat(siteDeviceDocBean.getSetupTime()));
+            holder.tvSetupTime.setText("安装时间：".concat(CommonUtil.stampToDate(siteDeviceDocBean.getSetupTime())));
         }
         return convertView;
     }

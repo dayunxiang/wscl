@@ -11,4 +11,5 @@ public class Constant {
     public static final String OLD_PWD_ERROR = "原始密码输入不正确";
     public static final String NEW_PWD_ERROR = "新密码输入不一致";
     public static final String DATA_PROCESS = "数据处理中....";
+    public static final String CREATE_SUCCESS = "创建成功";
 }

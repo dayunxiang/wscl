@@ -1,6 +1,6 @@
 package com.tmxk.wscl.android.ui.device;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,13 +22,10 @@ import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.adpter.DeviceDocListAdapter;
 import com.tmxk.wscl.android.adpter.GirdDropDownAdapter;
 import com.tmxk.wscl.android.emuns.DataTypeEnum;
-import com.tmxk.wscl.android.emuns.SewageStationEnum;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
-import com.tmxk.wscl.android.mvp.model.ControlMethodBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
 import com.tmxk.wscl.android.mvp.presenter.DeviceDocPresenter;
-import com.tmxk.wscl.android.mvp.presenter.SewageArchivePresenter;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
 import com.tmxk.wscl.android.ui.base.MvpActivity;
 import com.yyydjk.library.DropDownMenu;
@@ -61,6 +58,7 @@ public class DeviceDocActivity extends MvpActivity<DeviceDocPresenter> implement
     @BindView(R.id.refreshLayout)
     RefreshLayout refreshLayout;
     private DeviceDocListAdapter deviceDocListAdapter;
+    private ImageView imgRight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +86,7 @@ public class DeviceDocActivity extends MvpActivity<DeviceDocPresenter> implement
         stationView = new ListView(this);
         //获取区域节点
         mvpPresenter.getAllAreas();
+        imgRight = toolbar.findViewById(R.id.imgRight);
     }
 
     @Override
@@ -180,6 +179,7 @@ public class DeviceDocActivity extends MvpActivity<DeviceDocPresenter> implement
                 public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                     stationAdapter.setCheckItem(position);
                     mDropDownMenu.setTabText(sewages.get(position));
+                    final int sewageId=sewageListBean.getObject().get(position).getId();
 
                     //smart
                     refreshLayout.setEnableLoadMore(true);
@@ -188,20 +188,32 @@ public class DeviceDocActivity extends MvpActivity<DeviceDocPresenter> implement
                         @Override
                         public void onRefresh(@android.support.annotation.NonNull RefreshLayout refreshLayout) {
                             deviceDocListAdapter = null;
-                            mvpPresenter.getDeviceDocs(true,sewageListBean.getObject().get(position).getId());
+                            mvpPresenter.getDeviceDocs(true,sewageId);
                             refreshLayout.finishRefresh();
                         }
                     });
                     refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
                         @Override
                         public void onLoadMore(@android.support.annotation.NonNull RefreshLayout refreshLayout) {
-                            mvpPresenter.getDeviceDocs(false,sewageListBean.getObject().get(position).getId());
+                            mvpPresenter.getDeviceDocs(false,sewageId);
                             refreshLayout.finishLoadMore();
                         }
                     });
                     refreshLayout.autoRefresh();
 
                     mDropDownMenu.closeMenu();
+                    imgRight.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent();
+                            intent.setClass(DeviceDocActivity.this, DeviceDocCreateActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putBoolean("addDevice", true);
+                            bundle.putInt("sewageId",sewageId);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                        }
+                    });
                 }
             });
         }
