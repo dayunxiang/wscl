@@ -217,4 +217,7 @@ public class SewageArchiveActivity extends MvpActivity<SewageArchivePresenter> i
     public void getDataFail(String msg) {
         toastShow(msg);
     }
+
+    @Override
+    public void onRefresh() {}
 }

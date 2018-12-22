@@ -188,6 +188,9 @@ public class DeviceDocCreateActivity extends MvpActivity<DeviceDocPresenter> imp
     private void setResultIntent() {
         if (isAddDeviceDoc) {
             Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("hasAddDevice", true);
+            intent.putExtras(bundle);
             setResult(RESULT_OK, intent);
             finish();
         }
@@ -208,4 +211,7 @@ public class DeviceDocCreateActivity extends MvpActivity<DeviceDocPresenter> imp
             mvpPresenter = null;
         }
     }
+
+    @Override
+    public void onRefresh() {}
 }

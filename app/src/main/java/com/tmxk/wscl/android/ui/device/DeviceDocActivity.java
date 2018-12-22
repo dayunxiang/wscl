@@ -1,17 +1,24 @@
 package com.tmxk.wscl.android.ui.device;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
@@ -24,6 +31,7 @@ import com.tmxk.wscl.android.adpter.GirdDropDownAdapter;
 import com.tmxk.wscl.android.emuns.DataTypeEnum;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
+import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
 import com.tmxk.wscl.android.mvp.presenter.DeviceDocPresenter;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
@@ -55,10 +63,11 @@ public class DeviceDocActivity extends MvpActivity<DeviceDocPresenter> implement
     Toolbar toolbar;
     @BindView(R.id.listView)
     ListView listView;
-    @BindView(R.id.refreshLayout)
+    @BindView(R.id.deviceRefreshLayout)
     RefreshLayout refreshLayout;
     private DeviceDocListAdapter deviceDocListAdapter;
     private ImageView imgRight;
+    private static final int DEVICE_MANAGE_ADD_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +96,14 @@ public class DeviceDocActivity extends MvpActivity<DeviceDocPresenter> implement
         //获取区域节点
         mvpPresenter.getAllAreas();
         imgRight = toolbar.findViewById(R.id.imgRight);
+        //长按删除
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                showDelDialog(position);
+                return true;
+            }
+        });
     }
 
     @Override
@@ -211,7 +228,7 @@ public class DeviceDocActivity extends MvpActivity<DeviceDocPresenter> implement
                             bundle.putBoolean("addDevice", true);
                             bundle.putInt("sewageId",sewageId);
                             intent.putExtras(bundle);
-                            startActivity(intent);
+                            startActivityForResult(intent, DEVICE_MANAGE_ADD_REQUEST_CODE);
                         }
                     });
                 }
@@ -222,5 +239,60 @@ public class DeviceDocActivity extends MvpActivity<DeviceDocPresenter> implement
     @Override
     public void getDataFail(String msg) {
         toastShow(msg);
+    }
+
+    private void showDelDialog(final int position) {
+        if (deviceDocListAdapter == null) {
+            return;
+        }
+        final SiteDeviceDocBean deviceBean = ((SiteDeviceDocBean) deviceDocListAdapter.getItem(position));
+        if (deviceBean != null) {
+            LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert inflater != null;
+            @SuppressLint("InflateParams")
+            View contentView = inflater.inflate(R.layout.dialog_del, null);
+            final PopupWindow popupWindow = new PopupWindow(contentView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setTouchable(true);
+            popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
+            ((TextView) contentView.findViewById(R.id.tv_tips)).setText("设备".concat(deviceBean.getDeviceName()).concat("删除后不可恢复"));
+            contentView.findViewById(R.id.btn_ok).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    popupWindow.dismiss();
+                    mvpPresenter.delDeviceDocById(deviceBean.getId());
+                }
+            });
+            contentView.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    popupWindow.dismiss();
+                }
+            });
+            if (!popupWindow.isShowing()) {
+                popupWindow.showAtLocation(findViewById(R.id.deviceParentView), Gravity.CENTER, 0, 0);
+            } else {
+                popupWindow.dismiss();
+            }
+        }
+    }
+
+    @Override
+    public void onRefresh() {
+        refreshLayout.autoRefresh();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        Log.d("DeviceDocActivity","onActivityResult-requestCode:"+requestCode);
+        Log.d("DeviceDocActivity","onActivityResult-resultCode:"+resultCode);
+        if (requestCode == DEVICE_MANAGE_ADD_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            if (intent.hasExtra("hasAddDevice")) {
+                deviceDocListAdapter = null;
+                Log.d("DeviceDocActivity","onActivityResult: refresh");
+                refreshLayout.autoRefresh();
+            }
+        }
     }
 }

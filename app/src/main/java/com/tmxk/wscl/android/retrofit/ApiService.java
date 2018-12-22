@@ -1,5 +1,6 @@
 package com.tmxk.wscl.android.retrofit;
 
+import com.tmxk.wscl.android.mvp.model.AdminListBean;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
@@ -54,7 +55,7 @@ public interface ApiService {
     Observable<ResponseBody> createDeviceDoc(@Body SiteDeviceDocBean siteDeviceDocBean);
 
     @DELETE(Route.IP_URL + Route.SITE_DEVICE_DOC_ID_URL)
-    Observable<ResponseBody> deleteDeviceDocById(@Query("id") long id);
+    Observable<ResponseBody> deleteDeviceDocById(@Query("id") int id);
 
     @DELETE(Route.IP_URL + Route.SITE_DEVICE_DOC_NAME_URL)
     Observable<ResponseBody> deleteDeviceDocByName(@Query("deviceName") String deviceName);
@@ -73,4 +74,13 @@ public interface ApiService {
 
     @GET(Route.IP_URL + Route.AREA_GET_ALL_URL)
     Observable<AreaListBean> getAllArea(@Query("offset") int offset, @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.ADMIN_GET_ALL_URL)
+    Observable<AdminListBean> getAllAdmin(@Query("offset") int offset, @Query("limit") int limit);
+
+    @POST(Route.IP_URL + Route.ADMIN_GET_ALL_URL)
+    Observable<ResponseBody> createAdmin(@Body AdminListBean.ObjectBean adminBean);
+
+    @DELETE(Route.IP_URL + Route.ADMIN_DEL_ALL_URL)
+    Observable<ResponseBody> delAdmin(@Query("id") int adminId);
 }

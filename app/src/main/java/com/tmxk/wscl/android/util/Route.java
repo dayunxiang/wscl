@@ -21,5 +21,7 @@ public class Route {
     public static final String SITE_SEWAGE_GET_SEWAGE_BY_AREA_URL = "/tmxk/sewage/query/area";
     public static final String SITE_SEWAGE_GET_SEWAGE_BY_ID_URL = "/tmxk/sewage/query/id";
     public static final String AREA_GET_ALL_URL = "/tmxk/areas/query/all";
+    public static final String ADMIN_GET_ALL_URL = "/tmxk/users/admin";
+    public static final String ADMIN_DEL_ALL_URL = "/tmxk/users/admin/delete/id";
     public static final int STATUS_CODE = 200;
 }

@@ -2,6 +2,7 @@ package com.tmxk.wscl.android.mvp.presenter;
 
 import android.util.Log;
 
+import com.tmxk.wscl.android.mvp.model.AdminListBean;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.model.UserLoginLogListBean;
@@ -211,7 +212,6 @@ public class UserPresenter extends BasePresenter<UserView> {
         }
     }
 
-
     public void getSysUserLoginLogs(boolean isRefresh, String loginName, String userName,
                                     String startTime, String endTime) {
         Map<String, String> options = new HashMap<>();
@@ -238,6 +238,87 @@ public class UserPresenter extends BasePresenter<UserView> {
                     @Override
                     public void onSuccess(UserLoginLogListBean userLoginLogListBean) {
                         mvpView.getDataSuccess(userLoginLogListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void delAdminUser(int adminId) {
+        mvpView.showLoading(Constant.DATA_PROCESS);
+        Log.d("delAdminUser","adminId:"+adminId);
+        addSubscription(apiService.delAdmin(adminId),
+                new ApiCallback<ResponseBody>() {
+                    @Override
+                    public void onSuccess(ResponseBody responseBody) {
+                        mvpView.toastShow("管理员删除成功");
+                        mvpView.onRefresh();
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void createAdmin(AdminListBean.ObjectBean adminBean) {
+        Map<String, String> options = new HashMap<>();
+        if (adminBean.getName() == null || adminBean.getName().isEmpty()) {
+            mvpView.toastShow("管理员名称不能为空");
+        }else if (adminBean.getTelephone() == null || adminBean.getTelephone().isEmpty()) {
+            mvpView.toastShow("管理员电话不能为空");
+        }else {
+            addSubscription(apiService.createAdmin(adminBean),
+                    new ApiCallback<ResponseBody>() {
+                        @Override
+                        public void onSuccess(ResponseBody responseBody) {
+                            mvpView.toastShow("管理员创建成功");
+                            mvpView.getDataSuccess(null, null);
+                        }
+
+                        @Override
+                        public void onFailure(String msg) {
+                            mvpView.getDataFail(msg);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            mvpView.hideLoading();
+                        }
+                    });
+        }
+    }
+
+    public void getAdminList(boolean isRefresh) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        int perPage = 10;
+        addSubscription(apiService.getAllAdmin(page, perPage),
+                new ApiCallback<AdminListBean>() {
+                    @Override
+                    public void onSuccess(AdminListBean adminListBean) {
+                        if (Route.STATUS_CODE == adminListBean.getMetaInfo().getCode()) {
+                            mvpView.getDataSuccess(adminListBean, null);
+                        } else {
+                            mvpView.toastShow("获取管理员列表失败");
+                        }
                     }
 
                     @Override

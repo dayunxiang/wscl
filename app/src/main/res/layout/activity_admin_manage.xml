@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/deviceParentView"
     android:layout_width="match_parent"
+    android:id="@+id/adminParentView"
     android:layout_height="match_parent"
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
@@ -27,26 +27,11 @@
             android:src="@mipmap/ic_add"
             tools:ignore="ContentDescription,HardcodedText" />
     </android.support.v7.widget.Toolbar>
-
-    <com.yyydjk.library.DropDownMenu
-        android:id="@+id/dropDownMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:dddividerColor="@color/gray"
-        app:ddmaskColor="@color/mask_color"
-        app:ddmenuBackgroundColor="@color/white"
-        app:ddmenuMenuHeightPercent="0.5"
-        app:ddmenuSelectedIcon="@mipmap/drop_down_selected_icon"
-        app:ddmenuTextSize="13sp"
-        app:ddmenuUnselectedIcon="@mipmap/drop_down_unselected_icon"
-        app:ddtextSelectedColor="@color/drop_down_selected"
-        app:ddtextUnselectedColor="@color/drop_down_unselected"
-        app:ddunderlineColor="@color/gray" />
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/deviceRefreshLayout"
+        android:id="@+id/adminRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="0dp"
         android:onClick="onClick"
         android:background="@android:color/transparent"
         app:srlAccentColor="@android:color/white"
@@ -65,7 +50,7 @@
             android:divider="@null"
             android:dividerHeight="10dp"
             android:overScrollMode="never"
-            tools:listitem="@layout/device_doc_list_item" />
+            tools:listitem="@layout/admin_list_item" />
 
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter
             android:layout_width="match_parent"

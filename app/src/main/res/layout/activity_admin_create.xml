@@ -22,18 +22,18 @@
         android:layout_height="54dp"
         android:layout_below="@+id/toolbar"
         android:layout_marginTop="10dp">
-        <!--设备名称、设备编号、设备类型、设备功率、安装时间-->
+        <!--名称、电话、email、地址-->
         <TextView
             android:id="@+id/tv1"
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="设备名称"
+            android:text="姓名"
             android:textSize="14sp"
             tools:ignore="HardcodedText" />
 
         <EditText
-            android:id="@+id/edtDeviceName"
+            android:id="@+id/edtAdminName"
             android:layout_width="0dp"
             android:layout_height="46.5dp"
             android:layout_marginEnd="10dp"
@@ -41,7 +41,7 @@
             android:background="@drawable/dl_edt_style"
             android:ems="10"
             android:imeOptions="actionNext"
-            android:inputType="text"
+            android:inputType="textPersonName"
             android:maxLength="20"
             android:maxLines="1"
             android:padding="2dp"
@@ -61,12 +61,12 @@
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="设备编号"
+            android:text="电话"
             android:textSize="14sp"
             tools:ignore="HardcodedText" />
 
         <EditText
-            android:id="@+id/edtDeviceNo"
+            android:id="@+id/edtAdminTelephone"
             android:layout_width="0dp"
             android:layout_height="46.5dp"
             android:layout_marginEnd="10dp"
@@ -74,7 +74,7 @@
             android:background="@drawable/dl_edt_style"
             android:ems="10"
             android:imeOptions="actionNext"
-            android:inputType="text"
+            android:inputType="phone"
             android:maxLength="20"
             android:maxLines="1"
             android:padding="2dp"
@@ -94,12 +94,12 @@
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="设备类型"
+            android:text="地址"
             android:textSize="14sp"
             tools:ignore="HardcodedText" />
 
         <EditText
-            android:id="@+id/edtDeviceType"
+            android:id="@+id/edtAdminAddress"
             android:layout_width="0dp"
             android:layout_height="46.5dp"
             android:layout_marginEnd="10dp"
@@ -127,12 +127,12 @@
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="设备功率"
+            android:text="邮箱"
             android:textSize="14sp"
             tools:ignore="HardcodedText" />
 
         <EditText
-            android:id="@+id/edtDevicePower"
+            android:id="@+id/edtAdminEmail"
             android:layout_width="0dp"
             android:layout_height="46.5dp"
             android:layout_marginEnd="10dp"
@@ -140,81 +140,13 @@
             android:background="@drawable/dl_edt_style"
             android:ems="10"
             android:imeOptions="actionNext"
-            android:inputType="number"
+            android:inputType="textEmailAddress"
             android:maxLength="20"
             android:maxLines="1"
             android:padding="2dp"
             android:textSize="14sp"
             tools:ignore="Autofill,LabelFor" />
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll5"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_below="@+id/ll4"
-        android:layout_marginTop="10dp">
-
-        <TextView
-            android:id="@+id/tv5"
-            android:layout_width="90dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="设备年限"
-            android:textSize="14sp"
-            tools:ignore="HardcodedText" />
-
-        <EditText
-            android:id="@+id/edtDeviceLimitYear"
-            android:layout_width="0dp"
-            android:layout_height="46.5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/dl_edt_style"
-            android:ems="10"
-            android:imeOptions="actionNext"
-            android:inputType="number"
-            android:maxLength="20"
-            android:maxLines="1"
-            android:padding="2dp"
-            android:textSize="14sp"
-            tools:ignore="Autofill,LabelFor" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll6"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_below="@+id/ll5"
-        android:layout_marginTop="10dp">
-
-        <TextView
-            android:id="@+id/tv6"
-            android:layout_width="90dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="安装时间"
-            android:textSize="14sp"
-            tools:ignore="HardcodedText" />
-
-        <Button
-            android:id="@+id/btnDeviceSetupDate"
-            android:layout_width="0dp"
-            android:layout_height="46.5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/selector_e6e6e6"
-            android:ems="10"
-            android:maxLength="20"
-            android:maxLines="1"
-            android:onClick="onClick"
-            android:padding="2dp"
-            android:text="请选择时间"
-            android:textColor="#333"
-            android:textSize="14sp"
-            tools:ignore="HardcodedText,LabelFor" />
-    </LinearLayout>
-
     <Button
         android:id="@+id/btnOk"
         android:layout_width="match_parent"

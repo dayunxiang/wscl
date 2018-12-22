@@ -146,4 +146,25 @@ public class DeviceDocPresenter extends BasePresenter<SewageArchiveView> {
                     });
         }
     }
+
+    public void delDeviceDocById(int id) {
+        addSubscription(apiService.deleteDeviceDocById(id),
+                new ApiCallback<ResponseBody>() {
+                    @Override
+                    public void onSuccess(ResponseBody responseBody) {
+                        mvpView.toastShow("设备档案删除成功");
+                        mvpView.onRefresh();
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
 }
