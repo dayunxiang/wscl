@@ -204,8 +204,8 @@ public class SewageListBean {
         private String shortTitle;
         private String name;
         private Object address;
-        private int coordinateX;
-        private int coordinateY;
+        private float coordinateX;
+        private float coordinateY;
         private String equipment1state;
         private String equipment2state;
         private String equipment3state;
@@ -215,8 +215,8 @@ public class SewageListBean {
         private int detection1UL;
         private int detection1DL;
         private int detection2;
-        private int detection2UL;
-        private int detection2DL;
+        private float detection2UL;
+        private float detection2DL;
         private int detection3;
         private int detection3UL;
         private int detection3DL;
@@ -369,19 +369,19 @@ public class SewageListBean {
             this.address = address;
         }
 
-        public int getCoordinateX() {
+        public float getCoordinateX() {
             return coordinateX;
         }
 
-        public void setCoordinateX(int coordinateX) {
+        public void setCoordinateX(float coordinateX) {
             this.coordinateX = coordinateX;
         }
 
-        public int getCoordinateY() {
+        public float getCoordinateY() {
             return coordinateY;
         }
 
-        public void setCoordinateY(int coordinateY) {
+        public void setCoordinateY(float coordinateY) {
             this.coordinateY = coordinateY;
         }
 
@@ -457,19 +457,19 @@ public class SewageListBean {
             this.detection2 = detection2;
         }
 
-        public int getDetection2UL() {
+        public float getDetection2UL() {
             return detection2UL;
         }
 
-        public void setDetection2UL(int detection2UL) {
+        public void setDetection2UL(float detection2UL) {
             this.detection2UL = detection2UL;
         }
 
-        public int getDetection2DL() {
+        public float getDetection2DL() {
             return detection2DL;
         }
 
-        public void setDetection2DL(int detection2DL) {
+        public void setDetection2DL(float detection2DL) {
             this.detection2DL = detection2DL;
         }
 
@@ -1204,6 +1204,13 @@ public class SewageListBean {
             private String introduce;
             private String isSendArea;
 
+            public AreaBean(int id) {
+                this.id = id;
+            }
+
+            public AreaBean() {
+            }
+
             public int getId() {
                 return id;
             }
@@ -1275,6 +1282,13 @@ public class SewageListBean {
             private String telephone;
             private String address;
             private String email;
+
+            public AdministratorBean(int id) {
+                this.id = id;
+            }
+
+            public AdministratorBean() {
+            }
 
             public int getId() {
                 return id;

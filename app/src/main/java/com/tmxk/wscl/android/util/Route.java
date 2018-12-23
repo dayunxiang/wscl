@@ -20,6 +20,8 @@ public class Route {
     public static final String SITE_DEVICE_DOC_GET_SEWAGE_URL = "/tmxk/device/doc/query/sewage";
     public static final String SITE_SEWAGE_GET_SEWAGE_BY_AREA_URL = "/tmxk/sewage/query/area";
     public static final String SITE_SEWAGE_GET_SEWAGE_BY_ID_URL = "/tmxk/sewage/query/id";
+    public static final String SITE_SEWAGE_DEL_SEWAGE_BY_ID_URL = "/tmxk/sewage/delete/id";
+    public static final String SITE_SEWAGE_URL = "/tmxk/sewage";
     public static final String AREA_GET_ALL_URL = "/tmxk/areas/query/all";
     public static final String ADMIN_GET_ALL_URL = "/tmxk/users/admin";
     public static final String ADMIN_DEL_ALL_URL = "/tmxk/users/admin/delete/id";

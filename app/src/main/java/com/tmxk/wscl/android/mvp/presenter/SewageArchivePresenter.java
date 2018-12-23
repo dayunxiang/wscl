@@ -5,6 +5,8 @@ import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
 import com.tmxk.wscl.android.retrofit.ApiCallback;
 
+import okhttp3.ResponseBody;
+
 public class SewageArchivePresenter extends BasePresenter<SewageArchiveView> {
     private int page = 1;
     public SewageArchivePresenter(SewageArchiveView view) {
@@ -75,4 +77,27 @@ public class SewageArchivePresenter extends BasePresenter<SewageArchiveView> {
                     }
                 });
     }
+
+    public void delSewageById(int id) {
+        addSubscription(apiService.delSewageById(id),
+                new ApiCallback<ResponseBody>() {
+                    @Override
+                    public void onSuccess(ResponseBody responseBody) {
+                        mvpView.toastShow("设备档案删除成功");
+                        mvpView.onRefresh();
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+
 }

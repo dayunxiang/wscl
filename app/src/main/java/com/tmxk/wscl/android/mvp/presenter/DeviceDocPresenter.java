@@ -1,11 +1,15 @@
 package com.tmxk.wscl.android.mvp.presenter;
 
+import android.util.Log;
+
+import com.tmxk.wscl.android.mvp.model.AdminListBean;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
 import com.tmxk.wscl.android.retrofit.ApiCallback;
+import com.tmxk.wscl.android.util.Route;
 
 import okhttp3.ResponseBody;
 
@@ -154,6 +158,57 @@ public class DeviceDocPresenter extends BasePresenter<SewageArchiveView> {
                     public void onSuccess(ResponseBody responseBody) {
                         mvpView.toastShow("设备档案删除成功");
                         mvpView.onRefresh();
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void createSewage(SewageListBean.ObjectBean sewageBean){
+        if(sewageBean==null){
+            mvpView.toastShow("请填写表单信息");
+        }else if(sewageBean.getName().isEmpty()){
+            mvpView.toastShow("请填写名称");
+        }else {
+            addSubscription(apiService.createSewage(sewageBean),
+                    new ApiCallback<ResponseBody>() {
+                        @Override
+                        public void onSuccess(ResponseBody responseBody) {
+                            mvpView.getDataSuccess(null, null);
+                        }
+
+                        @Override
+                        public void onFailure(String msg) {
+                            mvpView.getDataFail(msg);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            mvpView.hideLoading();
+                        }
+                    });
+        }
+    }
+
+    public void getAdminList() {
+        int perPage = 1000;
+        addSubscription(apiService.getAllAdmin(1, perPage),
+                new ApiCallback<AdminListBean>() {
+                    @Override
+                    public void onSuccess(AdminListBean adminListBean) {
+                        if (Route.STATUS_CODE == adminListBean.getMetaInfo().getCode()) {
+                            mvpView.getDataSuccess(adminListBean, null);
+                        } else {
+                            mvpView.toastShow("获取管理员列表失败");
+                        }
                     }
 
                     @Override

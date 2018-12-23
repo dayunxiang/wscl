@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import com.tmxk.wscl.android.ui.device.DeviceDocActivity;
 import com.tmxk.wscl.android.ui.device.DeviceDocCreateActivity;
 import com.tmxk.wscl.android.ui.device.SewageArchiveActivity;
+import com.tmxk.wscl.android.ui.device.SewageCreateActivity;
 import com.tmxk.wscl.android.ui.user.AdminActivity;
 import com.tmxk.wscl.android.ui.user.UserInfoActivity;
 import com.tmxk.wscl.android.ui.user.UserLoginLogActivity;
@@ -59,6 +60,7 @@ public class CommonUtil {
 
         classMap.put("nav1_0", SewageArchiveActivity.class);
 //        classMap.put("nav1_2", DeviceDocCreateActivity.class);
+        classMap.put("nav1_1", SewageCreateActivity.class);
         classMap.put("nav1_2", DeviceDocActivity.class);
         classMap.put("nav1_3", AdminActivity.class);
 

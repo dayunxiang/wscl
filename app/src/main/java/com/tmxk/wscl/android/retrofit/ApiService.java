@@ -72,6 +72,12 @@ public interface ApiService {
     @GET(Route.IP_URL + Route.SITE_SEWAGE_GET_SEWAGE_BY_ID_URL)
     Observable<SewageListBean.ObjectBean> getSewageById(@Query("id") int id);
 
+    @POST(Route.IP_URL + Route.SITE_SEWAGE_URL)
+    Observable<ResponseBody> createSewage(@Body SewageListBean.ObjectBean sewageBean);
+
+    @DELETE(Route.IP_URL + Route.SITE_SEWAGE_DEL_SEWAGE_BY_ID_URL)
+    Observable<ResponseBody> delSewageById(@Query("id") int Id);
+
     @GET(Route.IP_URL + Route.AREA_GET_ALL_URL)
     Observable<AreaListBean> getAllArea(@Query("offset") int offset, @Query("limit") int limit);
 

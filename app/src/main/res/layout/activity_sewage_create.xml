@@ -1,0 +1,1295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/dl_bg">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/primary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar">
+        <!--<HorizontalScrollView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <LinearLayout
+                android:id="@+id/mainLiner"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/l09"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:id="@+id/t9v"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="管理员"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/nice_spinner_admin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:arrowTint="@color/colorPrimary"
+                        app:textTint="@color/colorAccent"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/l10"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/l09">
+                    <TextView
+                        android:id="@+id/tv"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="区县"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/nice_spinner_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:arrowTint="@color/colorPrimary"
+                        app:textTint="@color/colorAccent"/>
+                </LinearLayout>
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll1"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="54dp"-->
+                <!--android:layout_below="@+id/l10"-->
+                <!--android:layout_marginTop="10dp">-->
+                <!--&lt;!&ndash;录入区县（下拉选择）、站点ID号、站点名称、简称、运营编号、控制方式（下拉选择）、工艺、-->
+                <!--经纬度（自动获取设备GPS定位数据，格式为度，不是度分秒）、温度上下限（有默认值，可配置）、-->
+                <!--PH上下限（有默认值，可配置）、ORP上下限（有默认值，可配置）、DO上下限（有默认值，可配置）、-->
+                <!--日消减COD值（有默认值，可配置）、日消减NH3-N值（有默认值，可配置）、日消减P值（有默认值，可配置）-->
+                <!--视频puid（非必填项）、设计吨位（有默认值，可配置）、排放标准（有默认值，可配置）&ndash;&gt;-->
+                <!--<TextView-->
+                <!--android:id="@+id/tv1"-->
+                <!--android:layout_width="90dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:text="站点ID号"-->
+                <!--android:textSize="14sp"-->
+                <!--tools:ignore="HardcodedText" />-->
+
+                <!--<EditText-->
+                <!--android:id="@+id/edtSewageId"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="46.5dp"-->
+                <!--android:layout_marginEnd="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@drawable/dl_edt_style"-->
+                <!--android:ems="10"-->
+                <!--android:imeOptions="actionNext"-->
+                <!--android:inputType="text"-->
+                <!--android:maxLength="20"-->
+                <!--android:maxLines="1"-->
+                <!--android:padding="2dp"-->
+                <!--android:textSize="14sp"-->
+                <!--tools:ignore="Autofill,LabelFor" />-->
+                <!--</LinearLayout>-->
+
+                <LinearLayout
+                    android:id="@+id/ll2"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l10"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv2"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="站点名称"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtSewageName"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll3"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/ll2"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv3"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="简称"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtSewageShortTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll30"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/ll3"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/t3"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="站点ID"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtSewageId"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:hint="唯一且不可变"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll4"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/ll30"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv4"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="运营编号"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtSewageOperateNum"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll5"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/ll4"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv5"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="控制方式"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+                    <org.angmarch.views.NiceSpinner
+                        android:id="@+id/nice_spinner_control_method"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        app:arrowTint="@color/colorPrimary"
+                        app:textTint="@color/colorAccent"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll6"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/ll5"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv6"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="控制ID"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtSewageControlId"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll7"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/ll6"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv7"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="纬度"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtSewageX"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll8"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/ll7"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv8"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="经度"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtSewageY"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll9"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/ll8"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv9"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="温度上限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtTempUp"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="30"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l20"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/ll9"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv10"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="温度下限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtTempDown"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="-10"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l21"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l20"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv11"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="PH上限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtPhUp"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:maxLength="20"
+                        android:text="9.6"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l22"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l21"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv12"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="PH下限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtPhDown"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:text="6"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l23"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l22"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv13"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="ORP上限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtOrpUp"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:text="700"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l24"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l23"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv14"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="ORP下限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtOrpDown"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="-700"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l25"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l24"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv15"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="DO上限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtDoUp"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="15"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l26"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l25"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv16"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="DO下限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtDoDown"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="2"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l27"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l26"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv17"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="COD上限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtCodUp"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="60"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l28"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l27"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv18"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="COD下限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtCodDown"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="0"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l29"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l28"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv19"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="NH3-N上限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtNh3nUp"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="5"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l30"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l29"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv20"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="NH3-N下限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtNh3nDown"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="0"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l31"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l30"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv21"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="TP上限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtTpUp"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="1"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l32"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l31"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv22"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="TP下限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtTpDown"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="0"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l33"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l32"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv23"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="日消减COD"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtCod"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="200"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l34"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l33"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv24"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="日消减NH3-N"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtNh3n"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="30"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l35"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l34"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv25"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="日消减P"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtP"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="8"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l36"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l35"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv26"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="视频puid"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtVideoPuid"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l37"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l36"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv27"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="设计吨位"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtTounge"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="10"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l38"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l37"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv28"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="排放标准"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtEmperStand"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:text="一级B"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l39"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l38"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv29"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="设备1功率"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtDevicePower1"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l40"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l39"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv30"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="设备2功率"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtDevicePower2"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l41"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l40"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv31"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="设备3功率"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtDevicePower3"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l42"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l41"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv32"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="设备4功率"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtDevicePower4"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l43"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l42"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv33"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="设备5功率"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtDevicePower5"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l44"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l43"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv34"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="SS上限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtSsUp"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="20"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/l45"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_below="@+id/l44"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv35"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="SS下限"
+                        android:textSize="14sp"
+                        tools:ignore="HardcodedText" />
+
+                    <EditText
+                        android:id="@+id/edtSsDown"
+                        android:layout_width="0dp"
+                        android:layout_height="46.5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/dl_edt_style"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:text="12"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:padding="2dp"
+                        android:textSize="14sp"
+                        tools:ignore="Autofill,LabelFor" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnOk"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/dl_btn_style"
+                    android:onClick="onClick"
+                    android:text="提交修改"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+        <!--</HorizontalScrollView>-->
+    </ScrollView>
+</RelativeLayout>

@@ -63,6 +63,7 @@ public class SewageArchiveListAdapter extends BaseAdapter {
         SewageListBean.ObjectBean swageBean = sewageBeans.get(position);
         if (swageBean != null) {
             List<ControlMethodBean> controlMethodBeans = new ArrayList<>();
+            controlMethodBeans.add(new ControlMethodBean(0,"请选择工艺"));
             controlMethodBeans.add(new ControlMethodBean(1,"AOF工艺"));
             controlMethodBeans.add(new ControlMethodBean(2,"AO+人工湿地"));
             controlMethodBeans.add(new ControlMethodBean(3,"AO工艺"));

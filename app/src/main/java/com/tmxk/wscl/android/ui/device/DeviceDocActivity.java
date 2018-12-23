@@ -33,8 +33,6 @@ import com.tmxk.wscl.android.mvp.model.AreaListBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
-import com.tmxk.wscl.android.mvp.model.UserLoginLogBean;
-import com.tmxk.wscl.android.mvp.model.UserLoginLogListBean;
 import com.tmxk.wscl.android.mvp.presenter.DeviceDocPresenter;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
 import com.tmxk.wscl.android.ui.base.MvpActivity;

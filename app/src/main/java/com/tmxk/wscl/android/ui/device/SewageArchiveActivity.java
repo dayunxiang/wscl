@@ -1,15 +1,21 @@
 package com.tmxk.wscl.android.ui.device;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
@@ -20,6 +26,7 @@ import com.tmxk.wscl.android.emuns.DataTypeEnum;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
 import com.tmxk.wscl.android.mvp.model.ControlMethodBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
+import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
 import com.tmxk.wscl.android.mvp.presenter.SewageArchivePresenter;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
 import com.tmxk.wscl.android.ui.base.MvpActivity;
@@ -65,6 +72,8 @@ public class SewageArchiveActivity extends MvpActivity<SewageArchivePresenter> i
     TextView sewageControlMethod;
     @BindView(R.id.sewageEmissionStandard)
     TextView sewageEmissionStandard;
+    @BindView(R.id.createSewageLiner)
+    LinearLayout linearLayout;
     private SewageArchiveListAdapter sewageArchiveListAdapter;
 
     @Override
@@ -184,6 +193,7 @@ public class SewageArchiveActivity extends MvpActivity<SewageArchivePresenter> i
                     stationAdapter.setCheckItem(position);
                     mDropDownMenu.setTabText(sewages.get(position));
                     List<ControlMethodBean> controlMethodBeans = new ArrayList<>();
+                    controlMethodBeans.add(new ControlMethodBean(0,"请选择工艺"));
                     controlMethodBeans.add(new ControlMethodBean(1,"AOF工艺"));
                     controlMethodBeans.add(new ControlMethodBean(2,"AO+人工湿地"));
                     controlMethodBeans.add(new ControlMethodBean(3,"AO工艺"));
@@ -207,9 +217,48 @@ public class SewageArchiveActivity extends MvpActivity<SewageArchivePresenter> i
                     sewageTonnage.setText("吨位："+sewageListBean.getObject().get(position).getTonnage()+" 吨");
                     sewageControlMethod.setText("处理工艺："+controlMethodBeans.get(sewageListBean.getObject().get(position).getControlMethod()).getName());
                     sewageEmissionStandard.setText("排放标准："+sewageListBean.getObject().get(position).getEmissionStandard());
+                    final int sewageId = sewageListBean.getObject().get(position).getId();
                     mDropDownMenu.closeMenu();
+                    linearLayout.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            showDelDialog(sewageId);
+                            return true;
+                        }
+                    });
                 }
             });
+        }
+    }
+
+    private void showDelDialog(final int sawegaId) {
+        Log.d("SewageArchActivity","showDelDialog-sawegaId:"+sawegaId);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        assert inflater != null;
+        @SuppressLint("InflateParams")
+        View contentView = inflater.inflate(R.layout.dialog_del, null);
+        final PopupWindow popupWindow = new PopupWindow(contentView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setTouchable(true);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
+        ((TextView) contentView.findViewById(R.id.tv_tips)).setText("站点".concat(sewageName.getText().toString()).concat("删除后不可恢复"));
+        contentView.findViewById(R.id.btn_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                mvpPresenter.delSewageById(sawegaId);
+            }
+        });
+        contentView.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+        if (!popupWindow.isShowing()) {
+            popupWindow.showAtLocation(findViewById(R.id.sewageParentView), Gravity.CENTER, 0, 0);
+        } else {
+            popupWindow.dismiss();
         }
     }
 
@@ -219,5 +268,8 @@ public class SewageArchiveActivity extends MvpActivity<SewageArchivePresenter> i
     }
 
     @Override
-    public void onRefresh() {}
+    public void onRefresh() {
+        sewageName.setText("站点" + sewageName.getText().toString() + "-已删除");
+        mDropDownMenu.refreshDrawableState();
+    }
 }
