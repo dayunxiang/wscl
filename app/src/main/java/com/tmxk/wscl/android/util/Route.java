@@ -25,5 +25,6 @@ public class Route {
     public static final String AREA_GET_ALL_URL = "/tmxk/areas/query/all";
     public static final String ADMIN_GET_ALL_URL = "/tmxk/users/admin";
     public static final String ADMIN_DEL_ALL_URL = "/tmxk/users/admin/delete/id";
+    public static final String MONITOR_SEWAGE_URL = "/tmxk/monitors/sewage";
     public static final int STATUS_CODE = 200;
 }

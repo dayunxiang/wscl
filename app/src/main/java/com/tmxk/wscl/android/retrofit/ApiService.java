@@ -3,6 +3,7 @@ package com.tmxk.wscl.android.retrofit;
 import com.tmxk.wscl.android.mvp.model.AdminListBean;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
+import com.tmxk.wscl.android.mvp.model.SewageMonitorBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
 import com.tmxk.wscl.android.mvp.model.UserBean;
@@ -89,4 +90,7 @@ public interface ApiService {
 
     @DELETE(Route.IP_URL + Route.ADMIN_DEL_ALL_URL)
     Observable<ResponseBody> delAdmin(@Query("id") int adminId);
+
+    @GET(Route.IP_URL + Route.MONITOR_SEWAGE_URL)
+    Observable<SewageMonitorBean> getSewageMonitor(@Query("id") int id);
 }

@@ -6,6 +6,7 @@ import com.tmxk.wscl.android.ui.device.DeviceDocActivity;
 import com.tmxk.wscl.android.ui.device.DeviceDocCreateActivity;
 import com.tmxk.wscl.android.ui.device.SewageArchiveActivity;
 import com.tmxk.wscl.android.ui.device.SewageCreateActivity;
+import com.tmxk.wscl.android.ui.monitor.MonitorSewageActivity;
 import com.tmxk.wscl.android.ui.user.AdminActivity;
 import com.tmxk.wscl.android.ui.user.UserInfoActivity;
 import com.tmxk.wscl.android.ui.user.UserLoginLogActivity;
@@ -30,6 +31,15 @@ public class CommonUtil {
         res = simpleDateFormat.format(date);
         return res;
     }
+    /*
+     * 将时间戳转换为时间
+     */
+    public static Date stamp2Date(String s) {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long lt = new Long(s);
+        return new Date(lt);
+    }
 
     public static String dateToStr(Date date) {
         //这个是你要转成后的时间的格式
@@ -47,8 +57,8 @@ public class CommonUtil {
     }
 
     public static Date String2Date(String dateStr) throws ParseException {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            return sdf.parse(dateStr);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.parse(dateStr);
     }
 
     public static Class<?> getClassById(String classKey) {
@@ -64,6 +74,8 @@ public class CommonUtil {
         classMap.put("nav1_2", DeviceDocActivity.class);
         classMap.put("nav1_3", AdminActivity.class);
 
+        classMap.put("nav2_0", MonitorSewageActivity.class);
+
         if (classKey.contains(classKey)) {
             return classMap.get(classKey);
         }
@@ -74,5 +86,9 @@ public class CommonUtil {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return format.format(date);
+    }
+
+    public static long diffDay(Date d1,Date d2) {
+        return (d2.getTime()-d1.getTime()+1000000)/(60*60*24*1000);
     }
 }
