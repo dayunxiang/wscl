@@ -9,17 +9,26 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.tmxk.wscl.android.R;
+import com.tmxk.wscl.android.mvp.model.AdminListBean;
 import com.tmxk.wscl.android.mvp.model.UserLoginLogBean;
 
 import java.util.List;
 
 public class LoginLogListAdapter extends BaseAdapter {
-    private final List<UserLoginLogBean> userLoginLogBeans;
+    private List<UserLoginLogBean> userLoginLogBeans;
     private final LayoutInflater mInflater;
 
     public LoginLogListAdapter(Context context, List<UserLoginLogBean> userLoginLogBeans) {
         this.userLoginLogBeans = userLoginLogBeans;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public List<UserLoginLogBean> getList() {
+        return this.userLoginLogBeans;
+    }
+
+    public void setList(List<UserLoginLogBean> userLoginLogBeans) {
+        this.userLoginLogBeans = userLoginLogBeans;
     }
 
     @Override

@@ -265,6 +265,7 @@ public class UserPresenter extends BasePresenter<UserView> {
 
                     @Override
                     public void onFailure(String msg) {
+                        Log.d("UserPresenter","delAdminUser-onFailure-msg:"+msg);
                         mvpView.getDataFail(msg);
                     }
 
@@ -310,6 +311,7 @@ public class UserPresenter extends BasePresenter<UserView> {
             page++;
         }
         int perPage = 10;
+        Log.d("UserPresenter","getAdminList-page:"+page);
         addSubscription(apiService.getAllAdmin(page, perPage),
                 new ApiCallback<AdminListBean>() {
                     @Override

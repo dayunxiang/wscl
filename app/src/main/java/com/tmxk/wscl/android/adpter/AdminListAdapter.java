@@ -16,12 +16,20 @@ import com.tmxk.wscl.android.util.CommonUtil;
 import java.util.List;
 
 public class AdminListAdapter extends BaseAdapter {
-    private final List<AdminListBean.ObjectBean> adminBeans;
+    private List<AdminListBean.ObjectBean> adminBeans;
     private final LayoutInflater mInflater;
 
     public AdminListAdapter(Context context, List<AdminListBean.ObjectBean> adminBeans) {
         this.adminBeans = adminBeans;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public List<AdminListBean.ObjectBean> getList() {
+        return this.adminBeans;
+    }
+
+    public void setList(List<AdminListBean.ObjectBean> adminBeans) {
+        this.adminBeans = adminBeans;
     }
 
     @Override

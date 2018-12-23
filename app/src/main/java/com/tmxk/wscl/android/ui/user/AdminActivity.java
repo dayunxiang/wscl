@@ -179,6 +179,9 @@ public class AdminActivity extends MvpActivity<UserPresenter> implements UserVie
     public void getDataSuccess(Object adminList, DataTypeEnum dataTypeEnum) {
         if (adminList instanceof AdminListBean) {
             if (adminListAdapter != null) {
+                List<AdminListBean.ObjectBean> adminBeans = adminListAdapter.getList();
+                adminBeans.addAll(((AdminListBean) adminList).getObject());
+                adminListAdapter.setList(adminBeans);
                 adminListAdapter.notifyDataSetChanged();
             } else {
                 adminListAdapter = new AdminListAdapter(this, ((AdminListBean) adminList).getObject());

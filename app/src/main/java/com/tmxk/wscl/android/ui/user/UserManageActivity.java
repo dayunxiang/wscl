@@ -26,12 +26,14 @@ import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.adpter.UserListAdapter;
 import com.tmxk.wscl.android.application.MainApplication;
 import com.tmxk.wscl.android.emuns.DataTypeEnum;
+import com.tmxk.wscl.android.mvp.model.AdminListBean;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
 import com.tmxk.wscl.android.mvp.view.UserView;
 import com.tmxk.wscl.android.ui.base.MvpActivity;
 
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -187,6 +189,9 @@ public class UserManageActivity extends MvpActivity<UserPresenter> implements Us
     public void getDataSuccess(Object userList, DataTypeEnum dataTypeEnum) {
         if (userList instanceof UserListBean) {
             if (userListAdapter != null) {
+                List<UserBean> userBeans = userListAdapter.getList();
+                userBeans.addAll(((UserListBean) userList).getObject());
+                userListAdapter.setList(userBeans);
                 userListAdapter.notifyDataSetChanged();
             } else {
                 userListAdapter = new UserListAdapter(this, ((UserListBean) userList).getObject());

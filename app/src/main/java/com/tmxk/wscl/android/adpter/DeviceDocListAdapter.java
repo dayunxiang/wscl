@@ -11,18 +11,27 @@ import android.widget.TextView;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
+import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.model.UserLoginLogBean;
 import com.tmxk.wscl.android.util.CommonUtil;
 
 import java.util.List;
 
 public class DeviceDocListAdapter extends BaseAdapter {
-    private final List<SiteDeviceDocBean> siteDeviceDocBeans;
+    private List<SiteDeviceDocBean> siteDeviceDocBeans;
     private final LayoutInflater mInflater;
 
     public DeviceDocListAdapter(Context context, List<SiteDeviceDocBean> siteDeviceDocBeans) {
         this.siteDeviceDocBeans = siteDeviceDocBeans;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public List<SiteDeviceDocBean> getList() {
+        return this.siteDeviceDocBeans;
+    }
+
+    public void setList(List<SiteDeviceDocBean> siteDeviceDocBeans) {
+        this.siteDeviceDocBeans = siteDeviceDocBeans;
     }
 
     @Override

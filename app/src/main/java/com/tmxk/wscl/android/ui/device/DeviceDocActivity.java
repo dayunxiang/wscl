@@ -33,6 +33,8 @@ import com.tmxk.wscl.android.mvp.model.AreaListBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
+import com.tmxk.wscl.android.mvp.model.UserLoginLogBean;
+import com.tmxk.wscl.android.mvp.model.UserLoginLogListBean;
 import com.tmxk.wscl.android.mvp.presenter.DeviceDocPresenter;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
 import com.tmxk.wscl.android.ui.base.MvpActivity;
@@ -120,6 +122,9 @@ public class DeviceDocActivity extends MvpActivity<DeviceDocPresenter> implement
         if (object instanceof SiteDeviceDocListBean) {
             Log.d("DeviceDocActivity","SiteDeviceDocListBean "+object.toString());
             if (deviceDocListAdapter != null) {
+                List<SiteDeviceDocBean> siteDeviceDocBeans = deviceDocListAdapter.getList();
+                siteDeviceDocBeans.addAll(((SiteDeviceDocListBean) object).getObject());
+                deviceDocListAdapter.setList(siteDeviceDocBeans);
                 deviceDocListAdapter.notifyDataSetChanged();
             } else {
                 deviceDocListAdapter = new DeviceDocListAdapter(this, ((SiteDeviceDocListBean) object).getObject());

@@ -9,18 +9,27 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.tmxk.wscl.android.R;
+import com.tmxk.wscl.android.mvp.model.AdminListBean;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 
 import java.io.Serializable;
 import java.util.List;
 
 public class UserListAdapter extends BaseAdapter {
-    private final List<UserBean> userBeanList;
+    private List<UserBean> userBeanList;
     private final LayoutInflater mInflater;
 
     public UserListAdapter(Context context, List<UserBean> userBeanList) {
         this.userBeanList = userBeanList;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public List<UserBean> getList() {
+        return this.userBeanList;
+    }
+
+    public void setList(List<UserBean> userBeanList) {
+        this.userBeanList = userBeanList;
     }
 
     @Override

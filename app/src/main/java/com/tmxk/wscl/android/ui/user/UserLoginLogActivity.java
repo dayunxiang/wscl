@@ -27,6 +27,8 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.adpter.LoginLogListAdapter;
 import com.tmxk.wscl.android.emuns.DataTypeEnum;
+import com.tmxk.wscl.android.mvp.model.AdminListBean;
+import com.tmxk.wscl.android.mvp.model.UserLoginLogBean;
 import com.tmxk.wscl.android.mvp.model.UserLoginLogListBean;
 import com.tmxk.wscl.android.mvp.presenter.UserPresenter;
 import com.tmxk.wscl.android.mvp.view.UserView;
@@ -35,6 +37,7 @@ import com.tmxk.wscl.android.util.CommonUtil;
 import com.tmxk.wscl.android.widget.DropDownMenuView;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -174,6 +177,9 @@ public class UserLoginLogActivity extends MvpActivity<UserPresenter> implements 
     public void getDataSuccess(Object userLoginLogList, DataTypeEnum dataTypeEnum) {
         if (userLoginLogList instanceof UserLoginLogListBean) {
             if (loginLogListAdapter != null) {
+                List<UserLoginLogBean> userLoginLogBeans = loginLogListAdapter.getList();
+                userLoginLogBeans.addAll(((UserLoginLogListBean) userLoginLogList).getObject());
+                loginLogListAdapter.setList(userLoginLogBeans);
                 loginLogListAdapter.notifyDataSetChanged();
             } else {
                 loginLogListAdapter = new LoginLogListAdapter(this, ((UserLoginLogListBean) userLoginLogList).getObject());
