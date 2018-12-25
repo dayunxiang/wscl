@@ -2,6 +2,7 @@ package com.tmxk.wscl.android.util;
 
 import android.annotation.SuppressLint;
 
+import com.tmxk.wscl.android.ui.alert.AlertSewageActivity;
 import com.tmxk.wscl.android.ui.device.DeviceDocActivity;
 import com.tmxk.wscl.android.ui.device.DeviceDocCreateActivity;
 import com.tmxk.wscl.android.ui.device.SewageArchiveActivity;
@@ -75,6 +76,8 @@ public class CommonUtil {
         classMap.put("nav1_3", AdminActivity.class);
 
         classMap.put("nav2_0", MonitorSewageActivity.class);
+
+        classMap.put("nav3_0", AlertSewageActivity.class);
 
         if (classKey.contains(classKey)) {
             return classMap.get(classKey);

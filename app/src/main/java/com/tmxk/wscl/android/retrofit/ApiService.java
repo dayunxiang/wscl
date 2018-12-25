@@ -1,6 +1,7 @@
 package com.tmxk.wscl.android.retrofit;
 
 import com.tmxk.wscl.android.mvp.model.AdminListBean;
+import com.tmxk.wscl.android.mvp.model.AlertEquipStatusBean;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.SewageMonitorBean;
@@ -93,4 +94,7 @@ public interface ApiService {
 
     @GET(Route.IP_URL + Route.MONITOR_SEWAGE_URL)
     Observable<SewageMonitorBean> getSewageMonitor(@Query("id") int id);
+
+    @GET(Route.IP_URL + Route.ALERT_EQUIP_STATUS_URL)
+    Observable<AlertEquipStatusBean> getAlertEquipmentStatus(@Query("offset") int offset, @Query("limit") int limit);
 }
