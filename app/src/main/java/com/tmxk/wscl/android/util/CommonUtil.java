@@ -2,7 +2,10 @@ package com.tmxk.wscl.android.util;
 
 import android.annotation.SuppressLint;
 
+import com.tmxk.wscl.android.ui.alert.AlertDataTransferActivity;
+import com.tmxk.wscl.android.ui.alert.AlertPowerOffActivity;
 import com.tmxk.wscl.android.ui.alert.AlertSewageActivity;
+import com.tmxk.wscl.android.ui.alert.AlertWaterQulityActivity;
 import com.tmxk.wscl.android.ui.device.DeviceDocActivity;
 import com.tmxk.wscl.android.ui.device.DeviceDocCreateActivity;
 import com.tmxk.wscl.android.ui.device.SewageArchiveActivity;
@@ -58,7 +61,7 @@ public class CommonUtil {
     }
 
     public static Date String2Date(String dateStr) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         return sdf.parse(dateStr);
     }
 
@@ -78,6 +81,9 @@ public class CommonUtil {
         classMap.put("nav2_0", MonitorSewageActivity.class);
 
         classMap.put("nav3_0", AlertSewageActivity.class);
+        classMap.put("nav3_1", AlertWaterQulityActivity.class);
+        classMap.put("nav3_2", AlertPowerOffActivity.class);
+        classMap.put("nav3_3", AlertDataTransferActivity.class);
 
         if (classKey.contains(classKey)) {
             return classMap.get(classKey);

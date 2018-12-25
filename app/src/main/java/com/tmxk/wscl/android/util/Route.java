@@ -27,5 +27,8 @@ public class Route {
     public static final String ADMIN_DEL_ALL_URL = "/tmxk/users/admin/delete/id";
     public static final String MONITOR_SEWAGE_URL = "/tmxk/monitors/sewage";
     public static final String ALERT_EQUIP_STATUS_URL = "/tmxk/alerts/query/equipmentStatus";
+    public static final String ALERT_WATER_QUALITY_URL = "/tmxk/alerts/query/waterQuality";
+    public static final String ALERT_POWER_OFF_URL = "/tmxk/alerts/query/powerOffTime";
+    public static final String ALERT_DATA_TRANSFER_URL = "/tmxk/alerts/query/dataTransfer";
     public static final int STATUS_CODE = 200;
 }

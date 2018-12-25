@@ -3,6 +3,8 @@ package com.tmxk.wscl.android.retrofit;
 import com.tmxk.wscl.android.mvp.model.AdminListBean;
 import com.tmxk.wscl.android.mvp.model.AlertEquipStatusBean;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
+import com.tmxk.wscl.android.mvp.model.DataTransferBean;
+import com.tmxk.wscl.android.mvp.model.PowerOffBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.SewageMonitorBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
@@ -10,8 +12,10 @@ import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.model.UserLoginLogListBean;
+import com.tmxk.wscl.android.mvp.model.WaterQualityStatusBean;
 import com.tmxk.wscl.android.util.Route;
 
+import java.util.Date;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -97,4 +101,13 @@ public interface ApiService {
 
     @GET(Route.IP_URL + Route.ALERT_EQUIP_STATUS_URL)
     Observable<AlertEquipStatusBean> getAlertEquipmentStatus(@Query("offset") int offset, @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.ALERT_WATER_QUALITY_URL)
+    Observable<WaterQualityStatusBean> getAlertWaterQualityStatus(@Query("offset") int offset, @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.ALERT_POWER_OFF_URL)
+    Observable<PowerOffBean> getAlertPowerOff(@Query("offset") int offset, @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.ALERT_DATA_TRANSFER_URL)
+    Observable<DataTransferBean> getAlertDataTransfer(@Query("startTime") String startTime, @Query("offset") int offset, @Query("limit") int limit);
 }
