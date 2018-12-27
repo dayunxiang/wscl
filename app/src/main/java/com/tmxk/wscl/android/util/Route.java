@@ -30,5 +30,10 @@ public class Route {
     public static final String ALERT_WATER_QUALITY_URL = "/tmxk/alerts/query/waterQuality";
     public static final String ALERT_POWER_OFF_URL = "/tmxk/alerts/query/powerOffTime";
     public static final String ALERT_DATA_TRANSFER_URL = "/tmxk/alerts/query/dataTransfer";
+    public static final String WATER_ANALYSIS_MONTH_URL = "/tmxk/waters/query-month/{date}";
+    public static final String WATER_ANALYSIS_YEAR_URL = "/tmxk/waters/query-year/{date}";
+    public static final String WATER_UP_SEWAGE_URL = "/tmxk/waters/query-month-status/{date}";
+    public static final String WATER_UP_MONTH_URL = "/tmxk/waters/query-month-status-all/{date}";
+    public static final String WATER_UP_YEAR_URL = "/tmxk/waters/query-year-status-all/{date}";
     public static final int STATUS_CODE = 200;
 }

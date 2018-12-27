@@ -12,7 +12,12 @@ import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.model.UserLoginLogListBean;
+import com.tmxk.wscl.android.mvp.model.WaterAnalysisMonthBean;
+import com.tmxk.wscl.android.mvp.model.WaterAnalysisYearBean;
 import com.tmxk.wscl.android.mvp.model.WaterQualityStatusBean;
+import com.tmxk.wscl.android.mvp.model.WaterSupBySewageBean;
+import com.tmxk.wscl.android.mvp.model.WaterUpMonthBean;
+import com.tmxk.wscl.android.mvp.model.WaterUpYearBean;
 import com.tmxk.wscl.android.util.Route;
 
 import java.util.Date;
@@ -26,6 +31,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -110,4 +116,22 @@ public interface ApiService {
 
     @GET(Route.IP_URL + Route.ALERT_DATA_TRANSFER_URL)
     Observable<DataTransferBean> getAlertDataTransfer(@Query("startTime") String startTime, @Query("offset") int offset, @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.WATER_ANALYSIS_MONTH_URL)
+    Observable<WaterAnalysisMonthBean> getWaterAnalysisMonth(@Path ("date")String date, @Query("sewageId") int sewageId,
+                                                             @Query("offset") int offset, @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.WATER_ANALYSIS_YEAR_URL)
+    Observable<WaterAnalysisYearBean> getWaterAnalysisYear(@Path ("date")String date, @Query("sewageId") int sewageId,
+                                                           @Query("offset") int offset, @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.WATER_UP_SEWAGE_URL)
+    Observable<WaterSupBySewageBean> getWaterUpBySewage(@Path ("date")String date, @Query("sewageId") int sewageId,
+                                                        @Query("offset") int offset, @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.WATER_UP_MONTH_URL)
+    Observable<WaterUpMonthBean> getWaterUpMonth(@Path ("date")String date, @Query("offset") int offset, @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.WATER_UP_YEAR_URL)
+    Observable<WaterUpYearBean> getWaterUpYear(@Path ("date")String date, @Query("offset") int offset, @Query("limit") int limit);
 }

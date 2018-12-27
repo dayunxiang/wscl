@@ -16,6 +16,11 @@ import com.tmxk.wscl.android.ui.user.UserInfoActivity;
 import com.tmxk.wscl.android.ui.user.UserLoginLogActivity;
 import com.tmxk.wscl.android.ui.user.UserManageActivity;
 import com.tmxk.wscl.android.ui.user.UserPwdActivity;
+import com.tmxk.wscl.android.ui.water.WaterAnalysisMonthActivity;
+import com.tmxk.wscl.android.ui.water.WaterAnalysisYearActivity;
+import com.tmxk.wscl.android.ui.water.WaterUpByMonthActivity;
+import com.tmxk.wscl.android.ui.water.WaterUpBySewageActivity;
+import com.tmxk.wscl.android.ui.water.WaterUpByYearActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -84,6 +89,12 @@ public class CommonUtil {
         classMap.put("nav3_1", AlertWaterQulityActivity.class);
         classMap.put("nav3_2", AlertPowerOffActivity.class);
         classMap.put("nav3_3", AlertDataTransferActivity.class);
+
+        classMap.put("nav7_0", WaterAnalysisMonthActivity.class);
+        classMap.put("nav7_1", WaterAnalysisYearActivity.class);
+        classMap.put("nav7_2", WaterUpBySewageActivity.class);
+        classMap.put("nav7_3", WaterUpByMonthActivity.class);
+        classMap.put("nav7_4", WaterUpByYearActivity.class);
 
         if (classKey.contains(classKey)) {
             return classMap.get(classKey);
