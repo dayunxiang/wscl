@@ -20,6 +20,15 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.jaeger.library.StatusBarUtil;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.adpter.GirdDropDownAdapter;
@@ -41,7 +50,6 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import lecho.lib.hellocharts.view.LineChartView;
 
 public class WaterAnalysisMonthActivity extends MvpActivity<WaterAnalysisPresenter> implements SewageArchiveView {
     @BindView(R.id.dropDownMenu)
@@ -61,7 +69,7 @@ public class WaterAnalysisMonthActivity extends MvpActivity<WaterAnalysisPresent
     Toolbar toolbar;
     private Button btnCheckDate;
     private Button btnOk;
-    private LineChartView chart;
+    private LineChart chart;
     private TimePickerView pvTime;
     private int timerPickerPos = -1;
 
@@ -88,7 +96,8 @@ public class WaterAnalysisMonthActivity extends MvpActivity<WaterAnalysisPresent
 
         btnCheckDate = (Button) findViewById(R.id.btnCheckTime);
         btnOk = (Button) findViewById(R.id.btnOk);
-        chart = (LineChartView) findViewById(R.id.chart);
+        chart = (LineChart) findViewById(R.id.chart);
+        chart.setVisibility(View.INVISIBLE);
         //init region menu
         regionView = new ListView(this);
         stationView = new ListView(this);
@@ -188,17 +197,61 @@ public class WaterAnalysisMonthActivity extends MvpActivity<WaterAnalysisPresent
             Log.d("WaterAnalysisActivity", "WaterAnalysisMonthBean.size " + waterAnalysisMonthBean.getObject().size());
             if (waterAnalysisMonthBean != null && waterAnalysisMonthBean.getObject().size() > 0) {
                 Log.d("WaterAnalysisActivity", "size>0");
-                ArrayList<String> xValues = new ArrayList<>();
-                ArrayList<Double> yValues = new ArrayList<>();
-                for (WaterAnalysisMonthBean.ObjectBean w : waterAnalysisMonthBean.getObject()) {
-                    Log.d("WaterAnalysisActivity", "for loop");
+                final ArrayList<String> xValues = new ArrayList<>();
+                List<Entry> yValues = new ArrayList<>();
+                List<Entry> y2Values = new ArrayList<>();
+                for (int i=0;i<waterAnalysisMonthBean.getObject().size();i++) {
                     //初始化数据
-                    xValues.add(CommonUtil.stampToStr(w.getDate()));
-                    yValues.add(w.getDailyData());
+                    // the labels that should be drawn on the XAxis
+                    xValues.add(CommonUtil.stampToStr(waterAnalysisMonthBean.getObject().get(i).getDate()).substring(5,10));
+                    yValues.add(new Entry(i, waterAnalysisMonthBean.getObject().get(i).getDailyData()));
+                    y2Values.add(new Entry(i, waterAnalysisMonthBean.getObject().get(i).getDesignData()));
                 }
                 //TODO 绘制曲线
+                chart.setVisibility(View.VISIBLE);
+                LineDataSet setComp1 = new LineDataSet(yValues, "水量值");
+                setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
+                setComp1.setColor(Color.BLUE);
+                LineDataSet setComp2 = new LineDataSet(y2Values, "设计值");
+                setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
+                setComp2.setColor(Color.RED);
+                IAxisValueFormatter formatter = new IAxisValueFormatter() {
+                    @Override
+                    public String getFormattedValue(float value, AxisBase axis) {
+                        return xValues.get((int) value);
+                    }
+                };
+                XAxis xAxis = chart.getXAxis();
+//                xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
+                xAxis.setValueFormatter(formatter);
+                xAxis.setTextSize(10f);
+                xAxis.setTextColor(Color.BLACK);
+                xAxis.setDrawAxisLine(false);
+                xAxis.setDrawGridLines(false);
+
+                YAxis yAxis = chart.getAxisLeft();
+                yAxis.setTextSize(10f); // set the text size
+//                yAxis.setAxisMinimum(0f); // start at zero
+//                yAxis.setAxisMaximum(100f); // the axis maximum is 100
+                yAxis.setTextColor(Color.BLACK);
+                yAxis.setGranularity(1f); // interval 1
+//                yAxis.setLabelCount(6, true); // force 6 labels
+                YAxis yAxisR = chart.getAxisRight();
+                yAxisR.setEnabled(false);
+
+                List<ILineDataSet> dataSets = new ArrayList<>();
+                dataSets.add(setComp1);
+                dataSets.add(setComp2);
+//                dataSets.setColor(...);
+//                dataSets.setValueTextColor(...);
+
+                LineData data = new LineData(dataSets);
+                chart.setPinchZoom(true);
+                chart.setData(data);
+                chart.invalidate(); // refresh
 
             }else {
+                chart.setVisibility(View.INVISIBLE);
                 toastShow("无数据");
             }
         }

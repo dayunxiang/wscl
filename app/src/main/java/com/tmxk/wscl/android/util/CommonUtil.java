@@ -2,6 +2,7 @@ package com.tmxk.wscl.android.util;
 
 import android.annotation.SuppressLint;
 
+import com.tmxk.wscl.android.ui.NullActivity;
 import com.tmxk.wscl.android.ui.alert.AlertDataTransferActivity;
 import com.tmxk.wscl.android.ui.alert.AlertPowerOffActivity;
 import com.tmxk.wscl.android.ui.alert.AlertSewageActivity;
@@ -84,17 +85,50 @@ public class CommonUtil {
         classMap.put("nav1_3", AdminActivity.class);
 
         classMap.put("nav2_0", MonitorSewageActivity.class);
+        classMap.put("nav2_1", NullActivity.class);
+        classMap.put("nav2_2", NullActivity.class);
+        classMap.put("nav2_3", NullActivity.class);
 
         classMap.put("nav3_0", AlertSewageActivity.class);
         classMap.put("nav3_1", AlertWaterQulityActivity.class);
         classMap.put("nav3_2", AlertPowerOffActivity.class);
         classMap.put("nav3_3", AlertDataTransferActivity.class);
 
+        classMap.put("nav4_0", NullActivity.class);
+        classMap.put("nav4_1", NullActivity.class);
+        classMap.put("nav4_2", NullActivity.class);
+        classMap.put("nav4_3", NullActivity.class);
+        classMap.put("nav4_4", NullActivity.class);
+        classMap.put("nav4_5", NullActivity.class);
+        classMap.put("nav4_6", NullActivity.class);
+        classMap.put("nav4_7", NullActivity.class);
+        classMap.put("nav4_8", NullActivity.class);
+
+        classMap.put("nav5_0", NullActivity.class);
+        classMap.put("nav5_1", NullActivity.class);
+        classMap.put("nav5_2", NullActivity.class);
+
+        classMap.put("nav6_0", NullActivity.class);
+        classMap.put("nav6_1", NullActivity.class);
+        classMap.put("nav6_2", NullActivity.class);
+
         classMap.put("nav7_0", WaterAnalysisMonthActivity.class);
         classMap.put("nav7_1", WaterAnalysisYearActivity.class);
         classMap.put("nav7_2", WaterUpBySewageActivity.class);
         classMap.put("nav7_3", WaterUpByMonthActivity.class);
         classMap.put("nav7_4", WaterUpByYearActivity.class);
+        classMap.put("nav7_5", NullActivity.class);
+        classMap.put("nav7_6", NullActivity.class);
+
+        classMap.put("nav8_0", NullActivity.class);
+        classMap.put("nav8_1", NullActivity.class);
+        classMap.put("nav8_2", NullActivity.class);
+        classMap.put("nav8_3", NullActivity.class);
+        classMap.put("nav8_4", NullActivity.class);
+        classMap.put("nav8_5", NullActivity.class);
+        classMap.put("nav8_6", NullActivity.class);
+        classMap.put("nav8_7", NullActivity.class);
+        classMap.put("nav8_8", NullActivity.class);
 
         if (classKey.contains(classKey)) {
             return classMap.get(classKey);

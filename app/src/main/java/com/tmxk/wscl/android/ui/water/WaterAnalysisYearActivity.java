@@ -20,13 +20,21 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.jaeger.library.StatusBarUtil;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.adpter.GirdDropDownAdapter;
 import com.tmxk.wscl.android.emuns.DataTypeEnum;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
-import com.tmxk.wscl.android.mvp.model.WaterAnalysisMonthBean;
 import com.tmxk.wscl.android.mvp.model.WaterAnalysisYearBean;
 import com.tmxk.wscl.android.mvp.presenter.WaterAnalysisPresenter;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
@@ -42,7 +50,6 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import lecho.lib.hellocharts.view.LineChartView;
 
 public class WaterAnalysisYearActivity extends MvpActivity<WaterAnalysisPresenter> implements SewageArchiveView {
     @BindView(R.id.dropDownMenu)
@@ -62,7 +69,7 @@ public class WaterAnalysisYearActivity extends MvpActivity<WaterAnalysisPresente
     Toolbar toolbar;
     private Button btnCheckDate;
     private Button btnOk;
-    private LineChartView chart;
+    private LineChart chart;
     private TimePickerView pvTime;
     private int timerPickerPos = -1;
 
@@ -89,7 +96,8 @@ public class WaterAnalysisYearActivity extends MvpActivity<WaterAnalysisPresente
 
         btnCheckDate = (Button) findViewById(R.id.btnCheckTime);
         btnOk = (Button) findViewById(R.id.btnOk);
-        chart = (LineChartView) findViewById(R.id.chart);
+        chart = (LineChart) findViewById(R.id.chart);
+        chart.setVisibility(View.INVISIBLE);
         //init region menu
         regionView = new ListView(this);
         stationView = new ListView(this);
@@ -189,17 +197,60 @@ public class WaterAnalysisYearActivity extends MvpActivity<WaterAnalysisPresente
             Log.d("WaterAnalysisYActivity", "WaterAnalysisYearBean.size " + waterAnalysisYearBean.getObject().size());
             if (waterAnalysisYearBean != null && waterAnalysisYearBean.getObject().size() > 0) {
                 Log.d("WaterAnalysisYActivity", "size>0");
-                ArrayList<String> xValues = new ArrayList<>();
-                ArrayList<Double> yValues = new ArrayList<>();
-                for (WaterAnalysisYearBean.ObjectBean w : waterAnalysisYearBean.getObject()) {
-                    Log.d("WaterAnalysisYActivity", "for loop");
+                final ArrayList<String> xValues = new ArrayList<>();
+                List<Entry> yValues = new ArrayList<>();
+                List<Entry> y2Values = new ArrayList<>();
+                for (int i=0;i<waterAnalysisYearBean.getObject().size();i++) {
                     //初始化数据
-                    xValues.add(CommonUtil.stampToStr(w.getDate()));
-                    yValues.add(w.getDailyData());
+                    // the labels that should be drawn on the XAxis
+                    xValues.add(CommonUtil.stampToStr(waterAnalysisYearBean.getObject().get(i).getDate()).substring(0,7));
+                    yValues.add(new Entry(i, waterAnalysisYearBean.getObject().get(i).getDailyData()));
+                    y2Values.add(new Entry(i, waterAnalysisYearBean.getObject().get(i).getDesignData()));
                 }
                 //TODO 绘制曲线
+                chart.setVisibility(View.VISIBLE);chart.setVisibility(View.VISIBLE);
+                LineDataSet setComp1 = new LineDataSet(yValues, "水量值");
+                setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
+                setComp1.setColor(Color.BLUE);
+                LineDataSet setComp2 = new LineDataSet(y2Values, "设计值");
+                setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
+                setComp2.setColor(Color.RED);
+                IAxisValueFormatter formatter = new IAxisValueFormatter() {
+                    @Override
+                    public String getFormattedValue(float value, AxisBase axis) {
+                        return xValues.get((int) value);
+                    }
+                };
+                XAxis xAxis = chart.getXAxis();
+                xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
+                xAxis.setValueFormatter(formatter);
+                xAxis.setTextSize(10f);
+                xAxis.setTextColor(Color.BLACK);
+                xAxis.setDrawAxisLine(true);
+                xAxis.setDrawGridLines(false);
 
+                YAxis yAxis = chart.getAxisLeft();
+                yAxis.setTextSize(10f); // set the text size
+//                yAxis.setAxisMinimum(0f); // start at zero
+//                yAxis.setAxisMaximum(100f); // the axis maximum is 100
+                yAxis.setTextColor(Color.BLACK);
+                yAxis.setGranularity(1f); // interval 1
+                yAxis.setLabelCount(6, true); // force 6 labels
+                YAxis yAxisR = chart.getAxisRight();
+                yAxisR.setEnabled(false);
+
+                List<ILineDataSet> dataSets = new ArrayList<>();
+                dataSets.add(setComp1);
+                dataSets.add(setComp2);
+//                dataSets.setColor(...);
+//                dataSets.setValueTextColor(...);
+
+                LineData data = new LineData(dataSets);
+                chart.setPinchZoom(true);
+                chart.setData(data);
+                chart.invalidate(); // refresh
             }else {
+                chart.setVisibility(View.INVISIBLE);
                 toastShow("无数据");
             }
         }

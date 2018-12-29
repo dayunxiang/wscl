@@ -95,10 +95,10 @@ public class WaterAnalysisMonthBean {
          */
 
         private long date;
-        private double dailyData;
-        private double designData;
-        private double totalData;
-        private double diffData;
+        private float dailyData;
+        private float designData;
+        private float totalData;
+        private float diffData;
         private String status;
 
         public long getDate() {
@@ -109,35 +109,35 @@ public class WaterAnalysisMonthBean {
             this.date = date;
         }
 
-        public double getDailyData() {
+        public float getDailyData() {
             return dailyData;
         }
 
-        public void setDailyData(double dailyData) {
+        public void setDailyData(float dailyData) {
             this.dailyData = dailyData;
         }
 
-        public double getDesignData() {
+        public float getDesignData() {
             return designData;
         }
 
-        public void setDesignData(double designData) {
+        public void setDesignData(float designData) {
             this.designData = designData;
         }
 
-        public double getTotalData() {
+        public float getTotalData() {
             return totalData;
         }
 
-        public void setTotalData(double totalData) {
+        public void setTotalData(float totalData) {
             this.totalData = totalData;
         }
 
-        public double getDiffData() {
+        public float getDiffData() {
             return diffData;
         }
 
-        public void setDiffData(double diffData) {
+        public void setDiffData(float diffData) {
             this.diffData = diffData;
         }
 

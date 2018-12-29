@@ -1,7 +1,15 @@
 package com.tmxk.wscl.android.ui.device;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -10,6 +18,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.jaeger.library.StatusBarUtil;
 import com.tmxk.wscl.android.R;
@@ -80,6 +89,7 @@ public class SewageCreateActivity extends MvpActivity<DeviceDocPresenter> implem
     private EditText edtSsDown;
     private EditText etdSewageId;
     private Button btnOk;
+    private double longitude, latitude, altitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +146,66 @@ public class SewageCreateActivity extends MvpActivity<DeviceDocPresenter> implem
     }
 
     private void initData() {
+        //GPS
+        /**
+         * 参1:选择定位的方式
+         * 参2:定位的间隔时间
+         * 参3:当位置改变多少时进行重新定位
+         * 参4:位置的回调监听
+         */
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            toastShow("GPS权限未设置，不能自动获取定位");
+        }else{
+            //获取LocationManager
+            LocationManager lManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 0, new LocationListener() {
+                //当位置改变的时候调用
+                @Override
+                public void onLocationChanged(Location location) {
+                    //经度
+                    longitude = location.getLongitude();
+                    Log.d("SewageCreateActivity","经度:"+longitude);
+                    //纬度
+                    latitude = location.getLatitude();
+                    Log.d("SewageCreateActivity","纬度:"+latitude);
+                    //海拔
+                    altitude = location.getAltitude();
+                    Log.d("SewageCreateActivity","海拔:"+altitude);
+                }
+                //当GPS状态发生改变的时候调用
+                @Override
+                public void onStatusChanged(String provider, int status, Bundle extras) {
+                    switch (status) {
+                        case LocationProvider.AVAILABLE:
+                            Log.d("SewageCreateActivity","当前GPS为可用状态!");
+                            break;
+                        case LocationProvider.OUT_OF_SERVICE:
+                            Log.d("SewageCreateActivity","当前GPS不在服务内!");
+                            break;
+                        case LocationProvider.TEMPORARILY_UNAVAILABLE:
+                            Log.d("SewageCreateActivity","当前GPS为暂停服务状态!");
+                            break;
+                    }
+
+                }
+                //GPS开启的时候调用
+                @Override
+                public void onProviderEnabled(String provider) {
+                    Log.d("SewageCreateActivity","GPS开启了!");
+
+                }
+
+                //GPS关闭的时候调用
+                @Override
+                public void onProviderDisabled(String provider) {
+                    Log.d("SewageCreateActivity","GPS关闭了!");
+                }
+            });
+        }
+
+
+        edtSewageX.setText(longitude+"");
+        edtSewageY.setText(latitude+"");
         isAddSewage = true;
         mvpPresenter.getAllAreas();
         mvpPresenter.getAdminList();
