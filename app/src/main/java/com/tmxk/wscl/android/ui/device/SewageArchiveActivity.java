@@ -209,14 +209,24 @@ public class SewageArchiveActivity extends MvpActivity<SewageArchivePresenter> i
                     controlMethodBeans.add(new ControlMethodBean(13,"厌氧滤池+好氧流化床工艺"));
                     controlMethodBeans.add(new ControlMethodBean(14,"转笼式生物膜工艺"));
 
-                    sewageName.setText("站点名称："+sewageListBean.getObject().get(position).getName());
-                    sewageShortName.setText("简称："+sewageListBean.getObject().get(position).getShortTitle());
-                    sewageOperator.setText("管理员："+sewageListBean.getObject().get(position).getAdministrator().getName());
+                    if(sewageListBean.getObject().get(position).getName()!=null){
+                        sewageName.setText("站点名称："+sewageListBean.getObject().get(position).getName());
+                    }
+                    if(sewageListBean.getObject().get(position).getShortTitle()!=null){
+                        sewageShortName.setText("简称："+sewageListBean.getObject().get(position).getShortTitle());
+                    }
+                    if(sewageListBean.getObject().get(position).getAdministrator()!=null){
+                        sewageOperator.setText("管理员："+sewageListBean.getObject().get(position).getAdministrator().getName());
+                    }
                     sewageControlId.setText("控制ID："+sewageListBean.getObject().get(position).getControlId()+"");
-                    sewageOperateNo.setText("运营编号："+sewageListBean.getObject().get(position).getOperationNum());
+                    if(sewageListBean.getObject().get(position).getOperationNum()!=null){
+                        sewageOperateNo.setText("运营编号："+sewageListBean.getObject().get(position).getOperationNum());
+                    }
                     sewageTonnage.setText("吨位："+sewageListBean.getObject().get(position).getTonnage()+" 吨");
                     sewageControlMethod.setText("处理工艺："+controlMethodBeans.get(sewageListBean.getObject().get(position).getControlMethod()).getName());
-                    sewageEmissionStandard.setText("排放标准："+sewageListBean.getObject().get(position).getEmissionStandard());
+                    if(sewageListBean.getObject().get(position).getEmissionStandard()!=null){
+                        sewageEmissionStandard.setText("排放标准："+sewageListBean.getObject().get(position).getEmissionStandard());
+                    }
                     final int sewageId = sewageListBean.getObject().get(position).getId();
                     mDropDownMenu.closeMenu();
                     linearLayout.setOnLongClickListener(new View.OnLongClickListener() {

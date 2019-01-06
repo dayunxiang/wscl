@@ -65,10 +65,18 @@ public class AdminListAdapter extends BaseAdapter {
         AdminListBean.ObjectBean adminBean = adminBeans.get(position);
         if (adminBean != null) {
 //          设备名称、设备编号、设备类型、设备功率、安装时间（选择）
-            holder.tvAdminName.setText("姓名：".concat(adminBean.getName()));
-            holder.tvAdminTelephone.setText("手机：".concat(adminBean.getTelephone()));
-            holder.tvAdminEmail.setText("邮箱：".concat(adminBean.getEmail()));
-            holder.tvAdminAddress.setText("地址：".concat(adminBean.getAddress()+""));
+            if(adminBean.getName()!=null){
+                holder.tvAdminName.setText("姓名：".concat(adminBean.getName()));
+            }
+            if(adminBean.getTelephone()!=null){
+                holder.tvAdminTelephone.setText("手机：".concat(adminBean.getTelephone()));
+            }
+            if(adminBean.getEmail()!=null){
+                holder.tvAdminEmail.setText("邮箱：".concat(adminBean.getEmail()));
+            }
+            if(adminBean.getAddress()!=null){
+                holder.tvAdminAddress.setText("地址：".concat(adminBean.getAddress()));
+            }
         }
         return convertView;
     }

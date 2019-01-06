@@ -68,11 +68,19 @@ public class DeviceDocListAdapter extends BaseAdapter {
         SiteDeviceDocBean siteDeviceDocBean = siteDeviceDocBeans.get(position);
         if (siteDeviceDocBean != null) {
 //          设备名称、设备编号、设备类型、设备功率、安装时间（选择）
+            if(siteDeviceDocBean.getDeviceName()!=null){
+            }
             holder.tvDeviceName.setText("设备名称：".concat(siteDeviceDocBean.getDeviceName()));
-            holder.tvDeviceNumber.setText("设备编号：".concat(siteDeviceDocBean.getDeviceNo()));
+            if(siteDeviceDocBean.getDeviceNo()!=null){
+                holder.tvDeviceNumber.setText("设备编号：".concat(siteDeviceDocBean.getDeviceNo()));
+            }
             holder.tvDevicePower.setText("设备类型：".concat(siteDeviceDocBean.getDevicePower()+""));
-            holder.tvDeviceType.setText("设备功率：".concat(siteDeviceDocBean.getDeviceType()));
-            holder.tvSetupTime.setText("安装时间：".concat(CommonUtil.stampToDate(siteDeviceDocBean.getSetupTime())));
+            if(siteDeviceDocBean.getDeviceType()!=null){
+                holder.tvDeviceType.setText("设备功率：".concat(siteDeviceDocBean.getDeviceType()));
+            }
+            if(siteDeviceDocBean.getSetupTime()!=null){
+                holder.tvSetupTime.setText("安装时间：".concat(CommonUtil.stampToDate(siteDeviceDocBean.getSetupTime())));
+            }
         }
         return convertView;
     }

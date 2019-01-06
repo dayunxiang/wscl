@@ -65,11 +65,21 @@ public class UserListAdapter extends BaseAdapter {
         }
         UserBean userBean = userBeanList.get(position);
         if (userBean != null) {
-            holder.tvLoginName.setText("用户名：".concat(userBean.getLoginName()));
-            holder.tvUserName.setText("姓名：".concat(userBean.getUserName()));
-            holder.tvDepartment.setText("部门：".concat(userBean.getDepartment()));
-            holder.tvTelephone.setText("联系电话：".concat(userBean.getTelephone()));
-            holder.tvEmail.setText("邮箱：".concat(userBean.getUserEmail()));
+            if(userBean.getLoginName()!=null){
+                holder.tvLoginName.setText("用户名：".concat(userBean.getLoginName()));
+            }
+            if(userBean.getUserName()!=null){
+                holder.tvUserName.setText("姓名：".concat(userBean.getUserName()));
+            }
+            if(userBean.getDepartment()!=null){
+                holder.tvDepartment.setText("部门：".concat(userBean.getDepartment()));
+            }
+            if(userBean.getTelephone()!=null){
+                holder.tvTelephone.setText("联系电话：".concat(userBean.getTelephone()));
+            }
+            if(userBean.getUserEmail()!=null){
+                holder.tvEmail.setText("邮箱：".concat(userBean.getUserEmail()));
+            }
         }
         return convertView;
     }

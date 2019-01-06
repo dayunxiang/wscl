@@ -66,11 +66,21 @@ public class LoginLogListAdapter extends BaseAdapter {
         UserLoginLogBean userLoginLogBean = userLoginLogBeans.get(position);
         if (userLoginLogBean != null) {
             if (userLoginLogBean.getSysuser() != null) {
-                holder.tvLoginName.setText("用户名：".concat(userLoginLogBean.getSysuser().getLoginName()));
-                holder.tvUserName.setText("姓名：".concat(userLoginLogBean.getSysuser().getUserName()));
-                holder.tvDepartment.setText("部门：".concat(userLoginLogBean.getSysuser().getDepartment()));
-                holder.tvTelephone.setText("联系电话：".concat(userLoginLogBean.getSysuser().getTelephone()));
-                holder.tvEmail.setText("邮箱：".concat(userLoginLogBean.getSysuser().getUserEmail()));
+                if(userLoginLogBean.getSysuser().getLoginName()!=null){
+                    holder.tvLoginName.setText("用户名：".concat(userLoginLogBean.getSysuser().getLoginName()));
+                }
+                if(userLoginLogBean.getSysuser().getUserName()!=null){
+                    holder.tvUserName.setText("姓名：".concat(userLoginLogBean.getSysuser().getUserName()));
+                }
+                if(userLoginLogBean.getSysuser().getDepartment()!=null){
+                    holder.tvDepartment.setText("部门：".concat(userLoginLogBean.getSysuser().getDepartment()));
+                }
+                if(userLoginLogBean.getSysuser().getTelephone()!=null){
+                    holder.tvTelephone.setText("联系电话：".concat(userLoginLogBean.getSysuser().getTelephone()));
+                }
+                if(userLoginLogBean.getSysuser().getUserEmail()!=null){
+                    holder.tvEmail.setText("邮箱：".concat(userLoginLogBean.getSysuser().getUserEmail()));
+                }
             }
             holder.tvLoginTime.setText("登录时间：".concat(userLoginLogBean.getUserlogintime() + ""));
         }
