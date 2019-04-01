@@ -17,6 +17,7 @@ import com.tmxk.wscl.android.mvp.presenter.LoginPresenter;
 import com.tmxk.wscl.android.mvp.view.LoginView;
 import com.tmxk.wscl.android.ui.home.HomeActivity;
 import com.tmxk.wscl.android.ui.base.MvpActivity;
+import com.tmxk.wscl.android.util.Const;
 
 import butterknife.BindView;
 
@@ -63,7 +64,10 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements LoginV
     @Override
     public void getDataSuccess(Object model, DataTypeEnum dataTypeEnum) {
         if (model instanceof UserBean) {
-            application.setUserBean((UserBean) model);
+            UserBean userBean = (UserBean) model;
+            application.setUserBean(userBean);
+            Const.OPERATE_USER_ID = userBean.getId();
+            Const.OPERATE_USER_NAME = userBean.getUserName();
             startActivity(new Intent(this, HomeActivity.class));
             finish();
         } else {

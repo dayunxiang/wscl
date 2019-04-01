@@ -22,6 +22,9 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.bin.david.form.core.SmartTable;
 import com.jaeger.library.StatusBarUtil;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.adpter.GirdDropDownAdapter;
 import com.tmxk.wscl.android.emuns.DataTypeEnum;
@@ -61,6 +64,8 @@ public class WaterUpByYearActivity extends MvpActivity<WaterAnalysisPresenter> i
     private int timerPickerPos = -1;
     private SmartTable table;
     private boolean flag = false;
+    @BindView(R.id.upYearRefreshLayout)
+    RefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,8 +193,10 @@ public class WaterUpByYearActivity extends MvpActivity<WaterAnalysisPresenter> i
         toastShow(msg);
     }
 
+
     @Override
     public void onRefresh() {
+        refreshLayout.autoRefresh();
     }
 
     public void onClick(View view) {
@@ -199,7 +206,25 @@ public class WaterUpByYearActivity extends MvpActivity<WaterAnalysisPresenter> i
 //                  Date startDate = CommonUtil.String2Date(btnDeviceSetupDate.getText().toString().concat(".000"));
                     Log.d("WaterAnalysisActivity", "startTime:" + btnCheckDate.getText().toString().substring(0, 4));
                     if (flag) {
-                        mvpPresenter.getWaterUpYear(btnCheckDate.getText().toString().substring(0, 4));
+                        //smart
+                        refreshLayout.setEnableLoadMore(true);
+                        refreshLayout.setEnableRefresh(true);
+                        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+                            @Override
+                            public void onRefresh(@android.support.annotation.NonNull RefreshLayout refreshLayout) {
+                                mvpPresenter.getWaterUpYear(true,btnCheckDate.getText().toString().substring(0, 4));
+                                refreshLayout.finishRefresh();
+                            }
+                        });
+                        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+                            @Override
+                            public void onLoadMore(@android.support.annotation.NonNull RefreshLayout refreshLayout) {
+                                mvpPresenter.getWaterUpYear(false,btnCheckDate.getText().toString().substring(0, 4));
+                                refreshLayout.finishLoadMore();
+                            }
+                        });
+                        refreshLayout.autoRefresh();
+
                     } else {
                         toastShow("请选择区县");
                     }

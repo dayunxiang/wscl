@@ -24,9 +24,9 @@ public class ApiClient {
                 builder.addInterceptor(loggingInterceptor);
             }
             OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                    .connectTimeout(6, TimeUnit.SECONDS)
-                    .writeTimeout(6, TimeUnit.SECONDS)
-                    .readTimeout(6, TimeUnit.SECONDS)
+                    .connectTimeout(10, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS)
                     .build();
             mRetrofit = new Retrofit.Builder()
                     .baseUrl(Route.IP_URL)

@@ -22,6 +22,9 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.bin.david.form.core.SmartTable;
 import com.jaeger.library.StatusBarUtil;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.tmxk.wscl.android.R;
 import com.tmxk.wscl.android.adpter.GirdDropDownAdapter;
 import com.tmxk.wscl.android.emuns.DataTypeEnum;
@@ -64,6 +67,8 @@ public class WaterUpByMonthActivity extends MvpActivity<WaterAnalysisPresenter> 
     private int timerPickerPos = -1;
     private SmartTable table;
     private boolean flag = false;
+    @BindView(R.id.upMonthRefreshLayout)
+    RefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,6 +198,7 @@ public class WaterUpByMonthActivity extends MvpActivity<WaterAnalysisPresenter> 
 
     @Override
     public void onRefresh() {
+        refreshLayout.autoRefresh();
     }
 
     public void onClick(View view) {
@@ -202,7 +208,26 @@ public class WaterUpByMonthActivity extends MvpActivity<WaterAnalysisPresenter> 
 //                  Date startDate = CommonUtil.String2Date(btnDeviceSetupDate.getText().toString().concat(".000"));
                     Log.d("WaterAnalysisActivity", "startTime:" + btnCheckDate.getText().toString().substring(0, 7));
                     if (flag) {
-                        mvpPresenter.getWaterUpMonth(btnCheckDate.getText().toString().substring(0, 7));
+//                        mvpPresenter.getWaterUpMonth(btnCheckDate.getText().toString().substring(0, 7));
+
+                        //smart
+                        refreshLayout.setEnableLoadMore(true);
+                        refreshLayout.setEnableRefresh(true);
+                        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+                            @Override
+                            public void onRefresh(@android.support.annotation.NonNull RefreshLayout refreshLayout) {
+                                mvpPresenter.getWaterUpMonth(true,btnCheckDate.getText().toString().substring(0, 7));
+                                refreshLayout.finishRefresh();
+                            }
+                        });
+                        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+                            @Override
+                            public void onLoadMore(@android.support.annotation.NonNull RefreshLayout refreshLayout) {
+                                mvpPresenter.getWaterUpMonth(false, btnCheckDate.getText().toString().substring(0, 7));
+                                refreshLayout.finishLoadMore();
+                            }
+                        });
+                        refreshLayout.autoRefresh();
                     } else {
                         toastShow("请选择区县");
                     }

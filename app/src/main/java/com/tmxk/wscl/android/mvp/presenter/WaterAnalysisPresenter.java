@@ -127,8 +127,13 @@ public class WaterAnalysisPresenter extends BasePresenter<SewageArchiveView> {
                 });
     }
 
-    public void getWaterUpMonth(String date) {
-        addSubscription(apiService.getWaterUpMonth(date,1 ,1000),
+    public void getWaterUpMonth(boolean isRefresh, String date) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getWaterUpMonth(date,page ,3),
                 new ApiCallback<WaterUpMonthBean>() {
                     @Override
                     public void onSuccess(WaterUpMonthBean waterUpMonthBean) {
@@ -147,8 +152,13 @@ public class WaterAnalysisPresenter extends BasePresenter<SewageArchiveView> {
                 });
     }
 
-    public void getWaterUpYear(String date) {
-        addSubscription(apiService.getWaterUpYear(date,1 ,1000),
+    public void getWaterUpYear(boolean isRefresh, String date) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getWaterUpYear(date,page ,3),
                 new ApiCallback<WaterUpYearBean>() {
                     @Override
                     public void onSuccess(WaterUpYearBean waterUpYearBean) {

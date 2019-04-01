@@ -3,7 +3,10 @@ package com.tmxk.wscl.android.retrofit;
 import com.tmxk.wscl.android.mvp.model.AdminListBean;
 import com.tmxk.wscl.android.mvp.model.AlertEquipStatusBean;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
+import com.tmxk.wscl.android.mvp.model.CarInfoBean;
+import com.tmxk.wscl.android.mvp.model.CreateCarGpsBySysuserBean;
 import com.tmxk.wscl.android.mvp.model.DataTransferBean;
+import com.tmxk.wscl.android.mvp.model.GpsRecordBean;
 import com.tmxk.wscl.android.mvp.model.PowerOffBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.SewageMonitorBean;
@@ -81,6 +84,9 @@ public interface ApiService {
     @GET(Route.IP_URL + Route.SITE_SEWAGE_GET_SEWAGE_BY_AREA_URL)
     Observable<SewageListBean> getSewageByArea(@Query("offset") int offset, @Query("limit") int limit, @Query("areaId") int areaId);
 
+    @GET(Route.IP_URL + Route.SITE_SEWAGE_GET_ALL_SEWAGE)
+    Observable<SewageListBean> getAllSewage(@Query("offset") int offset, @Query("limit") int limit);
+
     @GET(Route.IP_URL + Route.SITE_SEWAGE_GET_SEWAGE_BY_ID_URL)
     Observable<SewageListBean.ObjectBean> getSewageById(@Query("id") int id);
 
@@ -134,4 +140,13 @@ public interface ApiService {
 
     @GET(Route.IP_URL + Route.WATER_UP_YEAR_URL)
     Observable<WaterUpYearBean> getWaterUpYear(@Path ("date")String date, @Query("offset") int offset, @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_CARINFO_BY_SYSUSER_ID)
+    Observable<CarInfoBean> getCarinfoBySysuserId(@Path ("sysuserId")int sysuserId);
+
+    @POST(Route.IP_URL + Route.GPS_RECORD_CREATE)
+    Observable<ResponseBody> createGpsRecord(@Body GpsRecordBean gpsRecordBean);
+
+    @POST(Route.IP_URL + Route.CREATE_CAR_GPS_BY_SYSUSER_ID)
+    Observable<ResponseBody> createGpsRecordBySysuser(@Body CreateCarGpsBySysuserBean createCarGpsBySysuserBean);
 }

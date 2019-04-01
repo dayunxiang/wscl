@@ -11,6 +11,8 @@ import com.tmxk.wscl.android.ui.device.DeviceDocActivity;
 import com.tmxk.wscl.android.ui.device.DeviceDocCreateActivity;
 import com.tmxk.wscl.android.ui.device.SewageArchiveActivity;
 import com.tmxk.wscl.android.ui.device.SewageCreateActivity;
+import com.tmxk.wscl.android.ui.location.GpsActivity;
+import com.tmxk.wscl.android.ui.location.SewageGpsActivity;
 import com.tmxk.wscl.android.ui.monitor.MonitorSewageActivity;
 import com.tmxk.wscl.android.ui.user.AdminActivity;
 import com.tmxk.wscl.android.ui.user.UserInfoActivity;
@@ -85,8 +87,8 @@ public class CommonUtil {
         classMap.put("nav1_3", AdminActivity.class);
 
         classMap.put("nav2_0", MonitorSewageActivity.class);
-        classMap.put("nav2_1", NullActivity.class);
-        classMap.put("nav2_2", NullActivity.class);
+        classMap.put("nav2_1", GpsActivity.class);
+        classMap.put("nav2_2", SewageGpsActivity.class);
         classMap.put("nav2_3", NullActivity.class);
 
         classMap.put("nav3_0", AlertSewageActivity.class);

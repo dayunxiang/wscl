@@ -6,6 +6,7 @@ import okhttp3.MediaType;
 
 public class Route {
     public final static MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+//    public static final String IP_URL = "http://61.147.198.178:8186";
     public static final String IP_URL = "http://10.254.4.29:8186";
     public static final String LOGIN_URL = "/tmxk/users/sys/login";
     public static final String USER_SYS_URL = "/tmxk/users/sys";
@@ -19,6 +20,7 @@ public class Route {
     public static final String SITE_DEVICE_DOC_SEWAGE_URL = "/tmxk/device/doc/delete/sewage";
     public static final String SITE_DEVICE_DOC_GET_SEWAGE_URL = "/tmxk/device/doc/query/sewage";
     public static final String SITE_SEWAGE_GET_SEWAGE_BY_AREA_URL = "/tmxk/sewage/query/area";
+    public static final String SITE_SEWAGE_GET_ALL_SEWAGE = "/tmxk/sewage/query/all";
     public static final String SITE_SEWAGE_GET_SEWAGE_BY_ID_URL = "/tmxk/sewage/query/id";
     public static final String SITE_SEWAGE_DEL_SEWAGE_BY_ID_URL = "/tmxk/sewage/delete/id";
     public static final String SITE_SEWAGE_URL = "/tmxk/sewage";
@@ -35,5 +37,8 @@ public class Route {
     public static final String WATER_UP_SEWAGE_URL = "/tmxk/waters/query-month-status/{date}";
     public static final String WATER_UP_MONTH_URL = "/tmxk/waters/query-month-status-all/{date}";
     public static final String WATER_UP_YEAR_URL = "/tmxk/waters/query-year-status-all/{date}";
+    public static final String GPS_RECORD_CREATE = "/tmxk/monitors/gps";
+    public static final String GET_CARINFO_BY_SYSUSER_ID = "/tmxk/monitors/carInfo/sysuser/{sysuserId}";
+    public static final String CREATE_CAR_GPS_BY_SYSUSER_ID = "/tmxk/monitors/carGpsBySysuser";
     public static final int STATUS_CODE = 200;
 }
