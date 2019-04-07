@@ -249,7 +249,7 @@ public class WaterUpByMonthActivity extends MvpActivity<WaterAnalysisPresenter> 
             @Override
             public void onTimeSelect(Date date, View v) {
                 if (timerPickerPos == 0) {
-                    btnCheckDate.setText(CommonUtil.getTime(date));
+                    btnCheckDate.setText(CommonUtil.getTimeByMonth(date));
                 }
                 timerPickerPos = -1;
                 Log.i("pvTime", "onTimeSelect");

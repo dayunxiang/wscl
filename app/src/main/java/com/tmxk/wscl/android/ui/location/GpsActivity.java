@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -125,7 +126,7 @@ public class GpsActivity extends MvpActivity<MonitorPresenter> implements Sewage
 //可选，默认gcj02，设置返回的定位结果坐标系，如果配合百度地图使用，建议设置为bd09ll;
         locationOption.setCoorType("gcj02");
 //可选，默认0，即仅定位一次，设置发起连续定位请求的间隔需要大于等于1000ms才是有效的
-        locationOption.setScanSpan(1000);
+        locationOption.setScanSpan(30000);
 //可选，设置是否需要地址信息，默认不需要
         locationOption.setIsNeedAddress(true);
 //可选，设置是否需要地址描述

@@ -3,7 +3,9 @@ package com.tmxk.wscl.android.retrofit;
 import com.tmxk.wscl.android.mvp.model.AdminListBean;
 import com.tmxk.wscl.android.mvp.model.AlertEquipStatusBean;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
+import com.tmxk.wscl.android.mvp.model.CarGpsRecordResBean;
 import com.tmxk.wscl.android.mvp.model.CarInfoBean;
+import com.tmxk.wscl.android.mvp.model.CarInfoResBean;
 import com.tmxk.wscl.android.mvp.model.CreateCarGpsBySysuserBean;
 import com.tmxk.wscl.android.mvp.model.DataTransferBean;
 import com.tmxk.wscl.android.mvp.model.GpsRecordBean;
@@ -149,4 +151,15 @@ public interface ApiService {
 
     @POST(Route.IP_URL + Route.CREATE_CAR_GPS_BY_SYSUSER_ID)
     Observable<ResponseBody> createGpsRecordBySysuser(@Body CreateCarGpsBySysuserBean createCarGpsBySysuserBean);
+
+    @GET(Route.IP_URL + Route.GET_CAR_GPS_BY_ID_AND_PERIOD)
+    Observable<CarGpsRecordResBean> getCarGpsByIdAndPeriod(@Path ("carIdOrName")String carIdOrName,
+                                                           @Query("offset") int offset, @Query("limit") int limit,
+                                                           @Query("start") String startTime, @Query("end") String endTime);
+
+    @GET(Route.IP_URL + Route.GET_CAR_GPS_RECENT_ONCE)
+    Observable<CarGpsRecordResBean> getCarGpsRecentOnce(@Query("offset") int offset, @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_CAR_ALL_CAR_INFO)
+    Observable<CarInfoResBean> getAllCarInfo(@Query("offset") int offset, @Query("limit") int limit);
 }

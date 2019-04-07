@@ -1,8 +1,10 @@
 package com.tmxk.wscl.android.mvp.presenter;
 
-import com.tmxk.wscl.android.mvp.model.AdminListBean;
+import com.tmxk.wscl.android.emuns.DataTypeEnum;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
+import com.tmxk.wscl.android.mvp.model.CarGpsRecordResBean;
 import com.tmxk.wscl.android.mvp.model.CarInfoBean;
+import com.tmxk.wscl.android.mvp.model.CarInfoResBean;
 import com.tmxk.wscl.android.mvp.model.CreateCarGpsBySysuserBean;
 import com.tmxk.wscl.android.mvp.model.GpsRecordBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
@@ -10,10 +12,6 @@ import com.tmxk.wscl.android.mvp.model.SewageMonitorBean;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
 import com.tmxk.wscl.android.retrofit.ApiCallback;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import lombok.extern.java.Log;
 import okhttp3.ResponseBody;
 
 public class MonitorPresenter extends BasePresenter<SewageArchiveView> {
@@ -107,7 +105,7 @@ public class MonitorPresenter extends BasePresenter<SewageArchiveView> {
                 });
     }
 
-    public void getCarinfoBySysuserId(int sysuserId) {
+    public void getCarInfoBySysuserId(int sysuserId) {
         addSubscription(apiService.getCarinfoBySysuserId(sysuserId),
                 new ApiCallback<CarInfoBean>() {
                     @Override
@@ -157,6 +155,66 @@ public class MonitorPresenter extends BasePresenter<SewageArchiveView> {
 //                        mvpView.toastShow("GPS记录成功");
                         android.util.Log.d("GpsRecordBySysuser","GPS记录成功");
                         mvpView.getDataSuccess(null, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getCarGpsByIdAndPeriod(String carIdOrName, String startTime,String endTime) {
+        addSubscription(apiService.getCarGpsByIdAndPeriod(carIdOrName,1,100000, startTime, endTime),
+                new ApiCallback<CarGpsRecordResBean>() {
+                    @Override
+                    public void onSuccess(CarGpsRecordResBean listCarGpsBean) {
+                        mvpView.getDataSuccess(listCarGpsBean, DataTypeEnum.TYPE01);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getAllCarInfo() {
+        addSubscription(apiService.getAllCarInfo(1,100000),
+                new ApiCallback<CarInfoResBean>() {
+                    @Override
+                    public void onSuccess(CarInfoResBean carInfoResBean) {
+                        mvpView.getDataSuccess(carInfoResBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getCarGpsRecentOnce() {
+        addSubscription(apiService.getCarGpsRecentOnce(1,100000),
+                new ApiCallback<CarGpsRecordResBean>() {
+                    @Override
+                    public void onSuccess(CarGpsRecordResBean listCarGpsBean) {
+                        mvpView.getDataSuccess(listCarGpsBean, DataTypeEnum.TYPE02);
                     }
 
                     @Override

@@ -11,6 +11,7 @@ import com.tmxk.wscl.android.ui.device.DeviceDocActivity;
 import com.tmxk.wscl.android.ui.device.DeviceDocCreateActivity;
 import com.tmxk.wscl.android.ui.device.SewageArchiveActivity;
 import com.tmxk.wscl.android.ui.device.SewageCreateActivity;
+import com.tmxk.wscl.android.ui.location.CarGpsActivity;
 import com.tmxk.wscl.android.ui.location.GpsActivity;
 import com.tmxk.wscl.android.ui.location.SewageGpsActivity;
 import com.tmxk.wscl.android.ui.monitor.MonitorSewageActivity;
@@ -89,7 +90,7 @@ public class CommonUtil {
         classMap.put("nav2_0", MonitorSewageActivity.class);
         classMap.put("nav2_1", GpsActivity.class);
         classMap.put("nav2_2", SewageGpsActivity.class);
-        classMap.put("nav2_3", NullActivity.class);
+        classMap.put("nav2_3", CarGpsActivity.class);
 
         classMap.put("nav3_0", AlertSewageActivity.class);
         classMap.put("nav3_1", AlertWaterQulityActivity.class);
@@ -141,6 +142,24 @@ public class CommonUtil {
     public static String getTime(Date date) {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(date);
+    }
+
+    public static String getTimeByDay(Date date) {
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);
+    }
+
+    public static String getTimeByMonth(Date date) {
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+        return format.format(date);
+    }
+
+    public static String getTimeByYear(Date date) {
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format = new SimpleDateFormat("yyyy");
         return format.format(date);
     }
 

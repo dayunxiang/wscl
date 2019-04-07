@@ -40,5 +40,8 @@ public class Route {
     public static final String GPS_RECORD_CREATE = "/tmxk/monitors/gps";
     public static final String GET_CARINFO_BY_SYSUSER_ID = "/tmxk/monitors/carInfo/sysuser/{sysuserId}";
     public static final String CREATE_CAR_GPS_BY_SYSUSER_ID = "/tmxk/monitors/carGpsBySysuser";
+    public static final String GET_CAR_GPS_BY_ID_AND_PERIOD = "/tmxk/monitors/carGps/{carIdOrName}";
+    public static final String GET_CAR_GPS_RECENT_ONCE = "/tmxk/monitors/carInfoAndGpsGetRecentOnce";
+    public static final String GET_CAR_ALL_CAR_INFO = "/tmxk/monitors/allCarInfo";
     public static final int STATUS_CODE = 200;
 }
