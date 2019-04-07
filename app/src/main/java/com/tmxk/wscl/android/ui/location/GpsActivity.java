@@ -2,6 +2,7 @@ package com.tmxk.wscl.android.ui.location;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
@@ -82,10 +85,20 @@ public class GpsActivity extends MvpActivity<MonitorPresenter> implements Sewage
                 Log.d("GpsActivity","LONGITUDE:"+Const.LONGITUDE+"");
                 Log.d("GpsActivity","USERID:"+Const.OPERATE_USER_ID+"");
                 Log.d("GpsActivity","USERNAME:"+Const.OPERATE_USER_NAME+"");
-                mvpPresenter.createGpsRecordBySysuser(gpsRecordBean);
+                if(Const.LATITUDE!=0&&Const.LONGITUDE!=0){
+                    mvpPresenter.createGpsRecordBySysuser(gpsRecordBean);
+                }
             }
         }, 0, 5*60*1000);
         mBaiduMap = gpsBmapView.getMap();
+        while (Const.LATITUDE==0||Const.LONGITUDE==0){
+            //刚开始获取不到坐标 需要延时下
+            SystemClock.sleep(1000);
+        }
+        showLoc();
+    }
+
+    private void showLoc(){
         //定义Maker坐标点
         LatLng point = new LatLng(Const.LATITUDE, Const.LONGITUDE);
         //构建Marker图标
@@ -93,6 +106,9 @@ public class GpsActivity extends MvpActivity<MonitorPresenter> implements Sewage
                 .fromResource(R.drawable.icon_gcoding);
         //构建MarkerOption，用于在地图上添加Marker
         mBaiduMap.addOverlay(new MarkerOptions().position(point).icon(bitmap).draggable(true).title(Const.OPERATE_USER_NAME));
+        MapStatus.Builder builder = new MapStatus.Builder();
+        builder.target(point).zoom(18.0f);
+        mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
     }
 
     @Override
