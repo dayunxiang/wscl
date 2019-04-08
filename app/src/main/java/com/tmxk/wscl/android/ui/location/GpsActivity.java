@@ -91,10 +91,6 @@ public class GpsActivity extends MvpActivity<MonitorPresenter> implements Sewage
             }
         }, 0, 5*60*1000);
         mBaiduMap = gpsBmapView.getMap();
-        while (Const.LATITUDE==0||Const.LONGITUDE==0){
-            //刚开始获取不到坐标 需要延时下
-            SystemClock.sleep(1000);
-        }
         showLoc();
     }
 
@@ -107,7 +103,7 @@ public class GpsActivity extends MvpActivity<MonitorPresenter> implements Sewage
         //构建MarkerOption，用于在地图上添加Marker
         mBaiduMap.addOverlay(new MarkerOptions().position(point).icon(bitmap).draggable(true).title(Const.OPERATE_USER_NAME));
         MapStatus.Builder builder = new MapStatus.Builder();
-        builder.target(point).zoom(18.0f);
+        builder.target(point).zoom(12.0f);
         mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
     }
 

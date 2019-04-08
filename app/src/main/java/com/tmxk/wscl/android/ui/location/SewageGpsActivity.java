@@ -21,6 +21,8 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.InfoWindow;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
@@ -229,6 +231,12 @@ public class SewageGpsActivity extends MvpActivity<MonitorPresenter> implements 
                     marker.setExtraInfo(mBundle);
                     mBaiduMap.setOnMarkerClickListener(onMarkerClickListener);
                 }
+                //定义Maker坐标点
+                LatLng point = new LatLng(sewageListBean.getObject().get(sewageListBean.getObject().size()-1).getCoordinateX(),
+                        sewageListBean.getObject().get(sewageListBean.getObject().size()-1).getCoordinateY());
+                MapStatus.Builder builder = new MapStatus.Builder();
+                builder.target(point).zoom(12.0f);
+                mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
             }
         } else if (object instanceof SewageMonitorBean) {
             final SewageMonitorBean sewageMonitorBean = (SewageMonitorBean) object;

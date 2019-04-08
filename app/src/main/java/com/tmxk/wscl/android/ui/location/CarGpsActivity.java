@@ -24,6 +24,8 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.InfoWindow;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
@@ -45,6 +47,7 @@ import com.tmxk.wscl.android.mvp.presenter.MonitorPresenter;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
 import com.tmxk.wscl.android.ui.base.MvpActivity;
 import com.tmxk.wscl.android.util.CommonUtil;
+import com.tmxk.wscl.android.util.Const;
 import com.tmxk.wscl.android.widget.DropDownMenuView;
 import com.yyydjk.library.DropDownMenu;
 
@@ -182,6 +185,12 @@ public class CarGpsActivity extends MvpActivity<MonitorPresenter> implements Sew
                     marker.setExtraInfo(mBundle);
                     mBaiduMap.setOnMarkerClickListener(onMarkerClickListener);
                 }
+                //定义Maker坐标点
+                LatLng point = new LatLng(gpsRecordResBean.getObject().get(gpsRecordResBean.getObject().size()-1).getCoordinateX(),
+                        gpsRecordResBean.getObject().get(gpsRecordResBean.getObject().size()-1).getCoordinateY());
+                MapStatus.Builder builder = new MapStatus.Builder();
+                builder.target(point).zoom(12.0f);
+                mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
             }
         }else if (DataTypeEnum.TYPE01.equals(dataTypeEnum)&&(model instanceof CarGpsRecordResBean )) {
             CarGpsRecordResBean gpsRecordResBean = (CarGpsRecordResBean) model;
@@ -222,6 +231,11 @@ public class CarGpsActivity extends MvpActivity<MonitorPresenter> implements Sew
                 //在地图上绘制折线
                 //mPloyline 折线对象
                 Overlay mPolyline = mBaiduMap.addOverlay(mOverlayOptions);
+                //定义Maker坐标点
+                LatLng point = new LatLng(points.get(points.size()-1).latitude,points.get(points.size()-1).longitude);
+                MapStatus.Builder builder = new MapStatus.Builder();
+                builder.target(point).zoom(12.0f);
+                mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
             }else{
                 Toast.makeText(this, "车辆GPS数据较少，无法绘制轨迹!", Toast.LENGTH_SHORT).show();
             }
