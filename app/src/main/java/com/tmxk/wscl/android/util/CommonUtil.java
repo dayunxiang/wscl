@@ -15,6 +15,7 @@ import com.tmxk.wscl.android.ui.location.CarGpsActivity;
 import com.tmxk.wscl.android.ui.location.GpsActivity;
 import com.tmxk.wscl.android.ui.location.SewageGpsActivity;
 import com.tmxk.wscl.android.ui.monitor.MonitorSewageActivity;
+import com.tmxk.wscl.android.ui.operates.AssignOrderActivity;
 import com.tmxk.wscl.android.ui.user.AdminActivity;
 import com.tmxk.wscl.android.ui.user.UserInfoActivity;
 import com.tmxk.wscl.android.ui.user.UserLoginLogActivity;
@@ -69,6 +70,13 @@ public class CommonUtil {
         return sdf.format(new Date(timeStamp));
     }
 
+    public static String stampToStr2(long timeStamp) {
+        //这个是你要转成后的时间的格式
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        return sdf.format(new Date(timeStamp));
+    }
+
     public static Date String2Date(String dateStr) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         return sdf.parse(dateStr);
@@ -97,7 +105,7 @@ public class CommonUtil {
         classMap.put("nav3_2", AlertPowerOffActivity.class);
         classMap.put("nav3_3", AlertDataTransferActivity.class);
 
-        classMap.put("nav4_0", NullActivity.class);
+        classMap.put("nav4_0", AssignOrderActivity.class);
         classMap.put("nav4_1", NullActivity.class);
         classMap.put("nav4_2", NullActivity.class);
         classMap.put("nav4_3", NullActivity.class);

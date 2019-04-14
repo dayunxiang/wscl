@@ -43,5 +43,7 @@ public class Route {
     public static final String GET_CAR_GPS_BY_ID_AND_PERIOD = "/tmxk/monitors/carGps/{carIdOrName}";
     public static final String GET_CAR_GPS_RECENT_ONCE = "/tmxk/monitors/carInfoAndGpsGetRecentOnce";
     public static final String GET_CAR_ALL_CAR_INFO = "/tmxk/monitors/allCarInfo";
+    public static final String GET_ALL_ASSIGN_ORDER = "/tmxk/operates/order-assignment/query/all";
+    public static final String GET_ASSIGN_ORDER_BY_CONDITION = "/tmxk/operates/order-assignment/query/condition";
     public static final int STATUS_CODE = 200;
 }

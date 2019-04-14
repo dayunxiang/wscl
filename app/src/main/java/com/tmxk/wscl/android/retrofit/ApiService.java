@@ -3,6 +3,7 @@ package com.tmxk.wscl.android.retrofit;
 import com.tmxk.wscl.android.mvp.model.AdminListBean;
 import com.tmxk.wscl.android.mvp.model.AlertEquipStatusBean;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
+import com.tmxk.wscl.android.mvp.model.AssignmentOrderListBean;
 import com.tmxk.wscl.android.mvp.model.CarGpsRecordResBean;
 import com.tmxk.wscl.android.mvp.model.CarInfoBean;
 import com.tmxk.wscl.android.mvp.model.CarInfoResBean;
@@ -162,4 +163,33 @@ public interface ApiService {
 
     @GET(Route.IP_URL + Route.GET_CAR_ALL_CAR_INFO)
     Observable<CarInfoResBean> getAllCarInfo(@Query("offset") int offset, @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_ALL_ASSIGN_ORDER)
+    Observable<AssignmentOrderListBean> getAllAssignOrder(@Query("offset") int offset, @Query("limit") int limit);
+
+    //sysuser_id=11&task_status=%E5%B7%B2%E5%AE%8C%E6%88%90&startTime=2010-11-19%2017%3A22%3A00.000&endTime=2100-11-19%2017%3A22%3A00.000&offset=1&limit=1000
+    @GET(Route.IP_URL + Route.GET_ASSIGN_ORDER_BY_CONDITION)
+    Observable<AssignmentOrderListBean> getAssignOrderByCondition(@Query("sysuser_id") int sysuserId,
+                                                                  @Query("task_status") String taskStatus,
+                                                                  @Query("startTime") String startTime,
+                                                                  @Query("startTime") String endTime,
+                                                                  @Query("offset") int offset,
+                                                                  @Query("limit") int limit);
+    @GET(Route.IP_URL + Route.GET_ASSIGN_ORDER_BY_CONDITION)
+    Observable<AssignmentOrderListBean> getAssignOrderByCondition_1(@Query("sysuser_id") int sysuserId,
+                                                                    @Query("startTime") String startTime,
+                                                                    @Query("startTime") String endTime,
+                                                                    @Query("offset") int offset,
+                                                                    @Query("limit") int limit);
+    @GET(Route.IP_URL + Route.GET_ASSIGN_ORDER_BY_CONDITION)
+    Observable<AssignmentOrderListBean> getAssignOrderByCondition_2(@Query("task_status") String taskStatus,
+                                                                    @Query("startTime") String startTime,
+                                                                    @Query("startTime") String endTime,
+                                                                    @Query("offset") int offset,
+                                                                    @Query("limit") int limit);
+    @GET(Route.IP_URL + Route.GET_ASSIGN_ORDER_BY_CONDITION)
+    Observable<AssignmentOrderListBean> getAssignOrderByCondition_3(@Query("startTime") String startTime,
+                                                                    @Query("startTime") String endTime,
+                                                                    @Query("offset") int offset,
+                                                                    @Query("limit") int limit);
 }
