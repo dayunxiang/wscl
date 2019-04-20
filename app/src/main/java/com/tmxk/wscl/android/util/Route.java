@@ -45,5 +45,11 @@ public class Route {
     public static final String GET_CAR_ALL_CAR_INFO = "/tmxk/monitors/allCarInfo";
     public static final String GET_ALL_ASSIGN_ORDER = "/tmxk/operates/order-assignment/query/all";
     public static final String GET_ASSIGN_ORDER_BY_CONDITION = "/tmxk/operates/order-assignment/query/condition";
+    public static final String PUT_ASSIGN_ORDER_TYPE_STATUS = "/tmxk/operates/order-assignment/status/{id}";
+    public static final String DEVICE_REPLACE_CREATE = "/tmxk/operates/device-replacement";
+    public static final String GATHER_PROBLEM_CREATE = "/tmxk/operates/problem-gather";
+    public static final String REPAIRMENT_CREATE = "/tmxk/operates/repairment";
+    public static final String REPAIRMENT_PUT = "/tmxk/operates/repairment";
+    public static final String GET_REPAIRMENT_BY_CONDITION = "/tmxk/operates/repairment/query/condition";
     public static final int STATUS_CODE = 200;
 }

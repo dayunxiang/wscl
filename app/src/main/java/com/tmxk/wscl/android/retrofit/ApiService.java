@@ -3,14 +3,19 @@ package com.tmxk.wscl.android.retrofit;
 import com.tmxk.wscl.android.mvp.model.AdminListBean;
 import com.tmxk.wscl.android.mvp.model.AlertEquipStatusBean;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
+import com.tmxk.wscl.android.mvp.model.AssignOrderPutBody;
 import com.tmxk.wscl.android.mvp.model.AssignmentOrderListBean;
 import com.tmxk.wscl.android.mvp.model.CarGpsRecordResBean;
 import com.tmxk.wscl.android.mvp.model.CarInfoBean;
 import com.tmxk.wscl.android.mvp.model.CarInfoResBean;
 import com.tmxk.wscl.android.mvp.model.CreateCarGpsBySysuserBean;
 import com.tmxk.wscl.android.mvp.model.DataTransferBean;
+import com.tmxk.wscl.android.mvp.model.DeviceReplaceCreateBody;
+import com.tmxk.wscl.android.mvp.model.GatherProblemBean;
 import com.tmxk.wscl.android.mvp.model.GpsRecordBean;
 import com.tmxk.wscl.android.mvp.model.PowerOffBean;
+import com.tmxk.wscl.android.mvp.model.RepairmentBean;
+import com.tmxk.wscl.android.mvp.model.RepairmentListBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.SewageMonitorBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
@@ -172,24 +177,72 @@ public interface ApiService {
     Observable<AssignmentOrderListBean> getAssignOrderByCondition(@Query("sysuser_id") int sysuserId,
                                                                   @Query("task_status") String taskStatus,
                                                                   @Query("startTime") String startTime,
-                                                                  @Query("startTime") String endTime,
+                                                                  @Query("endTime") String endTime,
                                                                   @Query("offset") int offset,
                                                                   @Query("limit") int limit);
     @GET(Route.IP_URL + Route.GET_ASSIGN_ORDER_BY_CONDITION)
     Observable<AssignmentOrderListBean> getAssignOrderByCondition_1(@Query("sysuser_id") int sysuserId,
                                                                     @Query("startTime") String startTime,
-                                                                    @Query("startTime") String endTime,
+                                                                    @Query("endTime") String endTime,
                                                                     @Query("offset") int offset,
                                                                     @Query("limit") int limit);
     @GET(Route.IP_URL + Route.GET_ASSIGN_ORDER_BY_CONDITION)
     Observable<AssignmentOrderListBean> getAssignOrderByCondition_2(@Query("task_status") String taskStatus,
                                                                     @Query("startTime") String startTime,
-                                                                    @Query("startTime") String endTime,
+                                                                    @Query("endTime") String endTime,
                                                                     @Query("offset") int offset,
                                                                     @Query("limit") int limit);
     @GET(Route.IP_URL + Route.GET_ASSIGN_ORDER_BY_CONDITION)
     Observable<AssignmentOrderListBean> getAssignOrderByCondition_3(@Query("startTime") String startTime,
-                                                                    @Query("startTime") String endTime,
+                                                                    @Query("endTime") String endTime,
                                                                     @Query("offset") int offset,
                                                                     @Query("limit") int limit);
+
+    @PUT(Route.IP_URL + Route.PUT_ASSIGN_ORDER_TYPE_STATUS)
+    Observable<ResponseBody> updateOrderTypeStatus(@Path ("id")int id,
+                                                   @Body AssignOrderPutBody assignOrderPutBody);
+
+    @POST(Route.IP_URL + Route.DEVICE_REPLACE_CREATE)
+    Observable<DeviceReplaceCreateBody> createDeviceReplace(@Body DeviceReplaceCreateBody deviceReplaceBody);
+
+    @POST(Route.IP_URL + Route.GATHER_PROBLEM_CREATE)
+    Observable<GatherProblemBean> createGatherProblem(@Body GatherProblemBean gatherProblemBody);
+
+    @POST(Route.IP_URL + Route.REPAIRMENT_CREATE)
+    Observable<RepairmentBean> createRepairment(@Body RepairmentBean repairmentBean);
+
+    @GET(Route.IP_URL + Route.GET_REPAIRMENT_BY_CONDITION)
+    Observable<RepairmentListBean> getRepairmentCondition(
+            @Query("status") String status,
+            @Query("startTime") String startTime,
+            @Query("endTime") String endTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_REPAIRMENT_BY_CONDITION)
+    Observable<RepairmentListBean> getRepairmentCondition(
+            @Query("sewage_id") int sewageId,
+            @Query("startTime") String startTime,
+            @Query("endTime") String endTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_REPAIRMENT_BY_CONDITION)
+    Observable<RepairmentListBean> getRepairmentCondition(
+            @Query("startTime") String startTime,
+            @Query("endTime") String endTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_REPAIRMENT_BY_CONDITION)
+    Observable<RepairmentListBean> getRepairmentCondition(
+            @Query("sewage_id") int sewageId,
+            @Query("status") String status,
+            @Query("startTime") String startTime,
+            @Query("endTime") String endTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @PUT(Route.IP_URL + Route.REPAIRMENT_PUT)
+    Observable<ResponseBody> updateRepairStatus(@Body RepairmentBean repairmentBean);
 }

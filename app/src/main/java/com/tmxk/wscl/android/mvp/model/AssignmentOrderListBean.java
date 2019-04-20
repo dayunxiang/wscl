@@ -498,6 +498,13 @@ public class AssignmentOrderListBean {
             private int equipment4Power;
             private int equipment5Power;
 
+            public SewageBean(int id) {
+                this.id = id;
+            }
+
+            public SewageBean() {
+            }
+
             public int getId() {
                 return id;
             }

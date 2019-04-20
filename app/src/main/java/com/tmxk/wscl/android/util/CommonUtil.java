@@ -16,6 +16,11 @@ import com.tmxk.wscl.android.ui.location.GpsActivity;
 import com.tmxk.wscl.android.ui.location.SewageGpsActivity;
 import com.tmxk.wscl.android.ui.monitor.MonitorSewageActivity;
 import com.tmxk.wscl.android.ui.operates.AssignOrderActivity;
+import com.tmxk.wscl.android.ui.operates.DealOrderActivity;
+import com.tmxk.wscl.android.ui.operates.DeviceReplcaeCreateActivity;
+import com.tmxk.wscl.android.ui.operates.GatherProblemCreateActivity;
+import com.tmxk.wscl.android.ui.operates.RepairDealActivity;
+import com.tmxk.wscl.android.ui.operates.RepairmentCreateActivity;
 import com.tmxk.wscl.android.ui.user.AdminActivity;
 import com.tmxk.wscl.android.ui.user.UserInfoActivity;
 import com.tmxk.wscl.android.ui.user.UserLoginLogActivity;
@@ -106,14 +111,13 @@ public class CommonUtil {
         classMap.put("nav3_3", AlertDataTransferActivity.class);
 
         classMap.put("nav4_0", AssignOrderActivity.class);
-        classMap.put("nav4_1", NullActivity.class);
-        classMap.put("nav4_2", NullActivity.class);
+        classMap.put("nav4_1", DealOrderActivity.class);
+        classMap.put("nav4_2", DeviceReplcaeCreateActivity.class);
         classMap.put("nav4_3", NullActivity.class);
         classMap.put("nav4_4", NullActivity.class);
-        classMap.put("nav4_5", NullActivity.class);
-        classMap.put("nav4_6", NullActivity.class);
-        classMap.put("nav4_7", NullActivity.class);
-        classMap.put("nav4_8", NullActivity.class);
+        classMap.put("nav4_5", GatherProblemCreateActivity.class);
+        classMap.put("nav4_6", RepairmentCreateActivity.class);
+        classMap.put("nav4_7", RepairDealActivity.class);
 
         classMap.put("nav5_0", NullActivity.class);
         classMap.put("nav5_1", NullActivity.class);
@@ -169,6 +173,13 @@ public class CommonUtil {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat format = new SimpleDateFormat("yyyy");
         return format.format(date);
+    }
+
+    public static boolean isEmpty(String object) {
+        if(object==null||("").equals(object)){
+            return true;
+        }
+        return false;
     }
 
     public static long diffDay(Date d1,Date d2) {

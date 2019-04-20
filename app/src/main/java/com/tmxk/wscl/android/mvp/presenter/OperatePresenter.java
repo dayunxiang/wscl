@@ -1,7 +1,12 @@
 package com.tmxk.wscl.android.mvp.presenter;
 
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
+import com.tmxk.wscl.android.mvp.model.AssignOrderPutBody;
 import com.tmxk.wscl.android.mvp.model.AssignmentOrderListBean;
+import com.tmxk.wscl.android.mvp.model.DeviceReplaceCreateBody;
+import com.tmxk.wscl.android.mvp.model.GatherProblemBean;
+import com.tmxk.wscl.android.mvp.model.RepairmentBean;
+import com.tmxk.wscl.android.mvp.model.RepairmentListBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
@@ -187,12 +192,232 @@ public class OperatePresenter extends BasePresenter<SewageArchiveView> {
                 });
     }
 
+    public void getRepairmentCondition(boolean isRefresh,int sewageId, String status, String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getRepairmentCondition(sewageId, status, startTime ,endTime ,page, 20),
+                new ApiCallback<RepairmentListBean>() {
+                    @Override
+                    public void onSuccess(RepairmentListBean repairmentListBean) {
+                        mvpView.getDataSuccess(repairmentListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getRepairmentCondition(boolean isRefresh,String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getRepairmentCondition(startTime ,endTime ,page, 20),
+                new ApiCallback<RepairmentListBean>() {
+                    @Override
+                    public void onSuccess(RepairmentListBean repairmentListBean) {
+                        mvpView.getDataSuccess(repairmentListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getRepairmentCondition(boolean isRefresh,int sewageId,String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getRepairmentCondition(sewageId, startTime ,endTime ,page, 20),
+                new ApiCallback<RepairmentListBean>() {
+                    @Override
+                    public void onSuccess(RepairmentListBean repairmentListBean) {
+                        mvpView.getDataSuccess(repairmentListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getRepairmentCondition(boolean isRefresh, String status, String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getRepairmentCondition(status, startTime ,endTime ,page, 20),
+                new ApiCallback<RepairmentListBean>() {
+                    @Override
+                    public void onSuccess(RepairmentListBean repairmentListBean) {
+                        mvpView.getDataSuccess(repairmentListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
     public void getAllSysuser() {
         addSubscription(apiService.getSysUsers(1, 10000),
                 new ApiCallback<UserListBean>() {
                     @Override
                     public void onSuccess(UserListBean userListBean) {
                         mvpView.getDataSuccess(userListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void updateOrderTypeStatus(int id, AssignOrderPutBody assignOrderPutBody) {
+        addSubscription(apiService.updateOrderTypeStatus(id, assignOrderPutBody),
+                new ApiCallback<ResponseBody>() {
+                    @Override
+                    public void onSuccess(ResponseBody responseBody) {
+                        mvpView.getDataSuccess("", null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void createDeviceReplace(DeviceReplaceCreateBody deviceReplaceBody) {
+        addSubscription(apiService.createDeviceReplace(deviceReplaceBody),
+                new ApiCallback<DeviceReplaceCreateBody>() {
+                    @Override
+                    public void onSuccess(DeviceReplaceCreateBody deviceReplaceBody) {
+                        mvpView.getDataSuccess(deviceReplaceBody, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void createGatherProblem(GatherProblemBean gatherProblemBean) {
+        addSubscription(apiService.createGatherProblem(gatherProblemBean),
+                new ApiCallback<GatherProblemBean>() {
+                    @Override
+                    public void onSuccess(GatherProblemBean gatherProblem) {
+                        mvpView.getDataSuccess(gatherProblem, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void createRepairment(RepairmentBean repairmentBean) {
+        addSubscription(apiService.createRepairment(repairmentBean),
+                new ApiCallback<RepairmentBean>() {
+                    @Override
+                    public void onSuccess(RepairmentBean repairmentBean) {
+                        mvpView.getDataSuccess(repairmentBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void updateRepairStatus(RepairmentBean repairmentBean) {
+        addSubscription(apiService.updateRepairStatus(repairmentBean),
+                new ApiCallback<ResponseBody>() {
+                    @Override
+                    public void onSuccess(ResponseBody responseBody) {
+                        mvpView.getDataSuccess("", null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getAllSewages() {
+        addSubscription(apiService.getAllSewage(1, 1000),
+                new ApiCallback<SewageListBean>() {
+                    @Override
+                    public void onSuccess(SewageListBean sewageListBean) {
+                        mvpView.getDataSuccess(sewageListBean, null);
                     }
 
                     @Override
