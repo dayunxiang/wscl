@@ -16,10 +16,12 @@ public abstract class RetrofitCallback<M> implements Callback<M> {
 
     @Override
     public void onResponse(Call<M> call, Response<M> response) {
-        if (response.isSuccessful()) {
-            onSuccess(response.body());
-        } else {
-            onFailure(response.code(), response.errorBody().toString());
+        if(response!=null){
+            if (response.isSuccessful()) {
+                onSuccess(response.body());
+            } else {
+                onFailure(response.code(), response.errorBody().toString());
+            }
         }
         onFinish();
     }

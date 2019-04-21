@@ -13,6 +13,8 @@ import com.tmxk.wscl.android.mvp.model.DataTransferBean;
 import com.tmxk.wscl.android.mvp.model.DeviceReplaceCreateBody;
 import com.tmxk.wscl.android.mvp.model.GatherProblemBean;
 import com.tmxk.wscl.android.mvp.model.GpsRecordBean;
+import com.tmxk.wscl.android.mvp.model.InspectionInfoListBean;
+import com.tmxk.wscl.android.mvp.model.InspectionUrls;
 import com.tmxk.wscl.android.mvp.model.PowerOffBean;
 import com.tmxk.wscl.android.mvp.model.RepairmentBean;
 import com.tmxk.wscl.android.mvp.model.RepairmentListBean;
@@ -20,6 +22,7 @@ import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.SewageMonitorBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocBean;
 import com.tmxk.wscl.android.mvp.model.SiteDeviceDocListBean;
+import com.tmxk.wscl.android.mvp.model.UploadPicResBean;
 import com.tmxk.wscl.android.mvp.model.UserBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.model.UserLoginLogListBean;
@@ -31,17 +34,20 @@ import com.tmxk.wscl.android.mvp.model.WaterUpMonthBean;
 import com.tmxk.wscl.android.mvp.model.WaterUpYearBean;
 import com.tmxk.wscl.android.util.Route;
 
-import java.util.Date;
+import java.io.File;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
@@ -245,4 +251,29 @@ public interface ApiService {
 
     @PUT(Route.IP_URL + Route.REPAIRMENT_PUT)
     Observable<ResponseBody> updateRepairStatus(@Body RepairmentBean repairmentBean);
+
+    @Multipart
+    @POST(Route.IP_URL + Route.UPLOAD_FILE)
+    Observable<UploadPicResBean> uploadFile(
+            @Path ("folderPath")String folderPath,
+            @Path ("filename")String filename,
+            @Part MultipartBody.Part file);
+
+    @GET(Route.IP_URL + Route.GET_INSPECTION_BY_CONDITION)
+    Observable<InspectionInfoListBean> getInspectionCondition(
+            @Query("sewage_id") int sewageId,
+            @Query("startTime") String startTime,
+            @Query("endTime") String endTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_INSPECTION_BY_CONDITION)
+    Observable<InspectionInfoListBean> getInspectionCondition(
+            @Query("startTime") String startTime,
+            @Query("endTime") String endTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @POST(Route.IP_URL + Route.INSPECTION_URL_CREATE)
+    Observable<InspectionUrls> createInspectionUrl(@Body InspectionUrls inspectionUrls);
 }

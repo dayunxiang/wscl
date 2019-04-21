@@ -1,6 +1,7 @@
 package com.tmxk.wscl.android.application;
 
 import android.app.Application;
+import android.os.StrictMode;
 
 import com.baidu.mapapi.CoordType;
 import com.baidu.mapapi.SDKInitializer;
@@ -25,5 +26,8 @@ public class MainApplication extends Application {
         if (isDebuggerConnected()) {
             android.os.Process.killProcess(android.os.Process.myPid());
         }
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        builder.detectFileUriExposure();
     }
 }

@@ -5,14 +5,22 @@ import com.tmxk.wscl.android.mvp.model.AssignOrderPutBody;
 import com.tmxk.wscl.android.mvp.model.AssignmentOrderListBean;
 import com.tmxk.wscl.android.mvp.model.DeviceReplaceCreateBody;
 import com.tmxk.wscl.android.mvp.model.GatherProblemBean;
+import com.tmxk.wscl.android.mvp.model.InspectionInfoListBean;
+import com.tmxk.wscl.android.mvp.model.InspectionUrls;
 import com.tmxk.wscl.android.mvp.model.RepairmentBean;
 import com.tmxk.wscl.android.mvp.model.RepairmentListBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
+import com.tmxk.wscl.android.mvp.model.UploadPicResBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
 import com.tmxk.wscl.android.retrofit.ApiCallback;
 
+import java.io.File;
+
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
+import retrofit2.http.Multipart;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public class OperatePresenter extends BasePresenter<SewageArchiveView> {
@@ -292,6 +300,56 @@ public class OperatePresenter extends BasePresenter<SewageArchiveView> {
                 });
     }
 
+    public void getInspectionCondition(boolean isRefresh, int sewage, String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getInspectionCondition(sewage, startTime ,endTime ,page, 20),
+                new ApiCallback<InspectionInfoListBean>() {
+                    @Override
+                    public void onSuccess(InspectionInfoListBean inspectionInfoListBean) {
+                        mvpView.getDataSuccess(inspectionInfoListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getInspectionCondition(boolean isRefresh, String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getInspectionCondition(startTime ,endTime ,page, 20),
+                new ApiCallback<InspectionInfoListBean>() {
+                    @Override
+                    public void onSuccess(InspectionInfoListBean inspectionInfoListBean) {
+                        mvpView.getDataSuccess(inspectionInfoListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
     public void getAllSysuser() {
         addSubscription(apiService.getSysUsers(1, 10000),
                 new ApiCallback<UserListBean>() {
@@ -372,6 +430,26 @@ public class OperatePresenter extends BasePresenter<SewageArchiveView> {
                 });
     }
 
+    public void createInspectionUrl(InspectionUrls inspectionUrls) {
+        addSubscription(apiService.createInspectionUrl(inspectionUrls),
+                new ApiCallback<InspectionUrls>() {
+                    @Override
+                    public void onSuccess(InspectionUrls inspectionUrls) {
+                        mvpView.getDataSuccess(inspectionUrls, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
     public void createRepairment(RepairmentBean repairmentBean) {
         addSubscription(apiService.createRepairment(repairmentBean),
                 new ApiCallback<RepairmentBean>() {
@@ -418,6 +496,26 @@ public class OperatePresenter extends BasePresenter<SewageArchiveView> {
                     @Override
                     public void onSuccess(SewageListBean sewageListBean) {
                         mvpView.getDataSuccess(sewageListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void uploadFile(String folderPath, String filename, MultipartBody.Part file) {
+        addSubscription(apiService.uploadFile(folderPath, filename, file),
+                new ApiCallback<UploadPicResBean>() {
+                    @Override
+                    public void onSuccess(UploadPicResBean uploadPicResBean) {
+                        mvpView.getDataSuccess(uploadPicResBean, null);
                     }
 
                     @Override

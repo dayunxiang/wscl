@@ -19,6 +19,8 @@ import com.tmxk.wscl.android.ui.operates.AssignOrderActivity;
 import com.tmxk.wscl.android.ui.operates.DealOrderActivity;
 import com.tmxk.wscl.android.ui.operates.DeviceReplcaeCreateActivity;
 import com.tmxk.wscl.android.ui.operates.GatherProblemCreateActivity;
+import com.tmxk.wscl.android.ui.operates.InspectionInfoActivity;
+import com.tmxk.wscl.android.ui.operates.OperatePhotoActivity;
 import com.tmxk.wscl.android.ui.operates.RepairDealActivity;
 import com.tmxk.wscl.android.ui.operates.RepairmentCreateActivity;
 import com.tmxk.wscl.android.ui.user.AdminActivity;
@@ -37,6 +39,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class CommonUtil {
     /*
@@ -114,7 +117,7 @@ public class CommonUtil {
         classMap.put("nav4_1", DealOrderActivity.class);
         classMap.put("nav4_2", DeviceReplcaeCreateActivity.class);
         classMap.put("nav4_3", NullActivity.class);
-        classMap.put("nav4_4", NullActivity.class);
+        classMap.put("nav4_4", InspectionInfoActivity.class);
         classMap.put("nav4_5", GatherProblemCreateActivity.class);
         classMap.put("nav4_6", RepairmentCreateActivity.class);
         classMap.put("nav4_7", RepairDealActivity.class);
@@ -124,7 +127,7 @@ public class CommonUtil {
         classMap.put("nav5_2", NullActivity.class);
 
         classMap.put("nav6_0", NullActivity.class);
-        classMap.put("nav6_1", NullActivity.class);
+        classMap.put("nav6_1", InspectionInfoActivity.class);
         classMap.put("nav6_2", NullActivity.class);
 
         classMap.put("nav7_0", WaterAnalysisMonthActivity.class);
@@ -132,8 +135,8 @@ public class CommonUtil {
         classMap.put("nav7_2", WaterUpBySewageActivity.class);
         classMap.put("nav7_3", WaterUpByMonthActivity.class);
         classMap.put("nav7_4", WaterUpByYearActivity.class);
-        classMap.put("nav7_5", NullActivity.class);
-        classMap.put("nav7_6", NullActivity.class);
+//        classMap.put("nav7_5", NullActivity.class);
+//        classMap.put("nav7_6", NullActivity.class);
 
         classMap.put("nav8_0", NullActivity.class);
         classMap.put("nav8_1", NullActivity.class);
@@ -184,5 +187,25 @@ public class CommonUtil {
 
     public static long diffDay(Date d1,Date d2) {
         return (d2.getTime()-d1.getTime()+1000000)/(60*60*24*1000);
+    }
+
+    public static String generateFileName() {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmss");
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
+        String timeStamp = sdf.format(new Date());
+        return "/WSCL_" + timeStamp;
+    }
+
+    public static String generateFileName1() {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmss");
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
+        String timeStamp = sdf.format(new Date());
+        return "operate_" + timeStamp;
+    }
+
+    public static String generateDay() {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
+        return sdf.format(new Date());
     }
 }

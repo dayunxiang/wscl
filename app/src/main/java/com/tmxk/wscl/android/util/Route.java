@@ -51,5 +51,8 @@ public class Route {
     public static final String REPAIRMENT_CREATE = "/tmxk/operates/repairment";
     public static final String REPAIRMENT_PUT = "/tmxk/operates/repairment";
     public static final String GET_REPAIRMENT_BY_CONDITION = "/tmxk/operates/repairment/query/condition";
+    public static final String GET_INSPECTION_BY_CONDITION = "/tmxk/operates/inspection-info/query/condition";
+    public static final String UPLOAD_FILE = "/tmxk/file-upload/files/{folderPath}/fileName/{filename}";
+    public static final String INSPECTION_URL_CREATE = "/tmxk/operates/inspection-urls";
     public static final int STATUS_CODE = 200;
 }
