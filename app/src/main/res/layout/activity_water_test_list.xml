@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/dl_bg">
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
+        android:onClick="onClick"
+        android:background="@android:color/transparent"
+        app:srlAccentColor="@android:color/white"
+        app:srlEnablePreviewInEditMode="true"
+        app:srlPrimaryColor="@color/primary">
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:divider="@null"
+            android:dividerHeight="10dp"
+            android:overScrollMode="never"
+            tools:listitem="@layout/list_item_water_test" />
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <com.tmxk.wscl.android.widget.DropDownMenuView
+        android:id="@+id/dropDownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:duration="300">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/primary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <Button
+                android:id="@+id/btnFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/selector_1affffff"
+                android:minWidth="?attr/actionBarSize"
+                android:minHeight="?attr/actionBarSize"
+                android:onClick="onClick"
+                android:scaleType="centerInside"
+                android:text="筛选"
+                android:textColor="@color/white"
+                tools:ignore="ContentDescription,HardcodedText" />
+
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewTop"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="请选择区县站点"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
+
+                <com.tmxk.wscl.android.util.MyScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.yyydjk.library.DropDownMenu
+                        android:id="@+id/sewageDropDownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:dddividerColor="@color/gray"
+                        app:ddmaskColor="@color/mask_color"
+                        app:ddmenuBackgroundColor="@color/white"
+                        app:ddmenuMenuHeightPercent="0.5"
+                        app:ddmenuSelectedIcon="@mipmap/drop_down_selected_icon"
+                        app:ddmenuTextSize="13sp"
+                        app:ddmenuUnselectedIcon="@mipmap/drop_down_unselected_icon"
+                        app:ddtextSelectedColor="@color/drop_down_selected"
+                        app:ddtextUnselectedColor="@color/drop_down_unselected"
+                        app:ddunderlineColor="@color/gray" />
+                </com.tmxk.wscl.android.util.MyScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="开始时间"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/btnStartDate"
+                    android:layout_width="0dp"
+                    android:layout_height="46.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_e6e6e6"
+                    android:ems="10"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:onClick="onClick"
+                    android:padding="2dp"
+                    android:text="不限"
+                    android:textColor="#333"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText,LabelFor" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="结束时间"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/btnEndDate"
+                    android:layout_width="0dp"
+                    android:layout_height="46.5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_e6e6e6"
+                    android:ems="10"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:onClick="onClick"
+                    android:padding="2dp"
+                    android:text="不限"
+                    android:textColor="#333"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText,LabelFor" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/dl_btn_style"
+                android:onClick="onClick"
+                android:text="查找"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+    </com.tmxk.wscl.android.widget.DropDownMenuView>
+
+
+</FrameLayout>

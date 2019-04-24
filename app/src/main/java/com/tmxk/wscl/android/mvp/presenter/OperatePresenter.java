@@ -4,6 +4,8 @@ import com.tmxk.wscl.android.mvp.model.AreaListBean;
 import com.tmxk.wscl.android.mvp.model.AssignOrderPutBody;
 import com.tmxk.wscl.android.mvp.model.AssignmentOrderListBean;
 import com.tmxk.wscl.android.mvp.model.DeviceReplaceCreateBody;
+import com.tmxk.wscl.android.mvp.model.DeviceReplaceListBean;
+import com.tmxk.wscl.android.mvp.model.EquipRepairRecordListBean;
 import com.tmxk.wscl.android.mvp.model.GatherProblemBean;
 import com.tmxk.wscl.android.mvp.model.InspectionInfoListBean;
 import com.tmxk.wscl.android.mvp.model.InspectionUrls;
@@ -12,6 +14,8 @@ import com.tmxk.wscl.android.mvp.model.RepairmentListBean;
 import com.tmxk.wscl.android.mvp.model.SewageListBean;
 import com.tmxk.wscl.android.mvp.model.UploadPicResBean;
 import com.tmxk.wscl.android.mvp.model.UserListBean;
+import com.tmxk.wscl.android.mvp.model.WaterTestListBean;
+import com.tmxk.wscl.android.mvp.model.WaterTestManageBodyBean;
 import com.tmxk.wscl.android.mvp.view.SewageArchiveView;
 import com.tmxk.wscl.android.retrofit.ApiCallback;
 
@@ -516,6 +520,259 @@ public class OperatePresenter extends BasePresenter<SewageArchiveView> {
                     @Override
                     public void onSuccess(UploadPicResBean uploadPicResBean) {
                         mvpView.getDataSuccess(uploadPicResBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getDeviceReplaceByCondition(boolean isRefresh, int sewageId,String proStartTime,
+                                            String proEndTime,String repStartTime,String repEndTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getDeviceReplaceByCondition(sewageId, proStartTime, proEndTime,
+                repStartTime, repEndTime ,page, 20),
+                new ApiCallback<DeviceReplaceListBean>() {
+                    @Override
+                    public void onSuccess(DeviceReplaceListBean deviceReplaceListBean) {
+                        mvpView.getDataSuccess(deviceReplaceListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getDeviceReplaceByCondition(boolean isRefresh,String proStartTime,
+                                            String proEndTime,String repStartTime,String repEndTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getDeviceReplaceByCondition(proStartTime, proEndTime,
+                repStartTime, repEndTime ,page, 20),
+                new ApiCallback<DeviceReplaceListBean>() {
+                    @Override
+                    public void onSuccess(DeviceReplaceListBean deviceReplaceListBean) {
+                        mvpView.getDataSuccess(deviceReplaceListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getEquipRepairRecordByCondition(boolean isRefresh,int sewageId, String repairMan,
+                                                String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getEquipRepairRecordByCondition(sewageId, repairMan,
+                startTime, endTime ,page, 20),
+                new ApiCallback<EquipRepairRecordListBean>() {
+                    @Override
+                    public void onSuccess(EquipRepairRecordListBean equipRepairRecordListBean) {
+                        mvpView.getDataSuccess(equipRepairRecordListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getEquipRepairRecordByCondition(boolean isRefresh,int sewageId,
+                                                String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getEquipRepairRecordByCondition(sewageId,
+                startTime, endTime ,page, 20),
+                new ApiCallback<EquipRepairRecordListBean>() {
+                    @Override
+                    public void onSuccess(EquipRepairRecordListBean equipRepairRecordListBean) {
+                        mvpView.getDataSuccess(equipRepairRecordListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getEquipRepairRecordByCondition(boolean isRefresh,String repairMan,
+                                                String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getEquipRepairRecordByCondition(repairMan,
+                startTime, endTime ,page, 20),
+                new ApiCallback<EquipRepairRecordListBean>() {
+                    @Override
+                    public void onSuccess(EquipRepairRecordListBean equipRepairRecordListBean) {
+                        mvpView.getDataSuccess(equipRepairRecordListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getEquipRepairRecordByCondition(boolean isRefresh, String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getEquipRepairRecordByCondition(startTime, endTime ,page, 20),
+                new ApiCallback<EquipRepairRecordListBean>() {
+                    @Override
+                    public void onSuccess(EquipRepairRecordListBean equipRepairRecordListBean) {
+                        mvpView.getDataSuccess(equipRepairRecordListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getWaterTestManagerByCondition(boolean isRefresh,int sewageId,
+                                                String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getWaterTestManagerByCondition(sewageId,
+                startTime, endTime ,page, 20),
+                new ApiCallback<WaterTestListBean>() {
+                    @Override
+                    public void onSuccess(WaterTestListBean waterTestListBean) {
+                        mvpView.getDataSuccess(waterTestListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getWaterTestManagerByCondition(boolean isRefresh,
+                                                String startTime, String endTime) {
+        if (isRefresh) {
+            page = 1;
+        } else {
+            page++;
+        }
+        addSubscription(apiService.getWaterTestManagerByCondition(startTime, endTime ,page, 20),
+                new ApiCallback<WaterTestListBean>() {
+                    @Override
+                    public void onSuccess(WaterTestListBean waterTestListBean) {
+                        mvpView.getDataSuccess(waterTestListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getWaterTestTop12(int sewageId) {
+        addSubscription(apiService.getWaterTestTop12(sewageId),
+                new ApiCallback<WaterTestListBean>() {
+                    @Override
+                    public void onSuccess(WaterTestListBean waterTestListBean) {
+                        mvpView.getDataSuccess(waterTestListBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void createWaterTestManager(WaterTestManageBodyBean waterTest) {
+        addSubscription(apiService.createWaterTestManager(waterTest),
+                new ApiCallback<WaterTestManageBodyBean>() {
+                    @Override
+                    public void onSuccess(WaterTestManageBodyBean waterTest) {
+                        mvpView.getDataSuccess(waterTest, null);
                     }
 
                     @Override

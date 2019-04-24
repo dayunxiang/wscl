@@ -8,7 +8,6 @@ import com.tmxk.wscl.android.ui.alert.AlertPowerOffActivity;
 import com.tmxk.wscl.android.ui.alert.AlertSewageActivity;
 import com.tmxk.wscl.android.ui.alert.AlertWaterQulityActivity;
 import com.tmxk.wscl.android.ui.device.DeviceDocActivity;
-import com.tmxk.wscl.android.ui.device.DeviceDocCreateActivity;
 import com.tmxk.wscl.android.ui.device.SewageArchiveActivity;
 import com.tmxk.wscl.android.ui.device.SewageCreateActivity;
 import com.tmxk.wscl.android.ui.location.CarGpsActivity;
@@ -17,10 +16,11 @@ import com.tmxk.wscl.android.ui.location.SewageGpsActivity;
 import com.tmxk.wscl.android.ui.monitor.MonitorSewageActivity;
 import com.tmxk.wscl.android.ui.operates.AssignOrderActivity;
 import com.tmxk.wscl.android.ui.operates.DealOrderActivity;
+import com.tmxk.wscl.android.ui.operates.DeviceReplaceActivity;
 import com.tmxk.wscl.android.ui.operates.DeviceReplcaeCreateActivity;
+import com.tmxk.wscl.android.ui.operates.EquipRepairRecordActivity;
 import com.tmxk.wscl.android.ui.operates.GatherProblemCreateActivity;
 import com.tmxk.wscl.android.ui.operates.InspectionInfoActivity;
-import com.tmxk.wscl.android.ui.operates.OperatePhotoActivity;
 import com.tmxk.wscl.android.ui.operates.RepairDealActivity;
 import com.tmxk.wscl.android.ui.operates.RepairmentCreateActivity;
 import com.tmxk.wscl.android.ui.user.AdminActivity;
@@ -33,6 +33,8 @@ import com.tmxk.wscl.android.ui.water.WaterAnalysisYearActivity;
 import com.tmxk.wscl.android.ui.water.WaterUpByMonthActivity;
 import com.tmxk.wscl.android.ui.water.WaterUpBySewageActivity;
 import com.tmxk.wscl.android.ui.water.WaterUpByYearActivity;
+import com.tmxk.wscl.android.ui.water.testManager.WaterTestCreateActivity;
+import com.tmxk.wscl.android.ui.water.testManager.WaterTestManagerActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,6 +50,7 @@ public class CommonUtil {
     public static String stampToDate(String s) {
         String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         long lt = new Long(s);
         Date date = new Date(lt);
         res = simpleDateFormat.format(date);
@@ -57,8 +60,8 @@ public class CommonUtil {
      * 将时间戳转换为时间
      */
     public static Date stamp2Date(String s) {
-        String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         long lt = new Long(s);
         return new Date(lt);
     }
@@ -67,6 +70,7 @@ public class CommonUtil {
         //这个是你要转成后的时间的格式
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.");
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         // 时间戳转换成时间
         return sdf.format(date);
     }
@@ -75,6 +79,7 @@ public class CommonUtil {
         //这个是你要转成后的时间的格式
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         return sdf.format(new Date(timeStamp));
     }
 
@@ -82,11 +87,13 @@ public class CommonUtil {
         //这个是你要转成后的时间的格式
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         return sdf.format(new Date(timeStamp));
     }
 
     public static Date String2Date(String dateStr) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         return sdf.parse(dateStr);
     }
 
@@ -122,13 +129,13 @@ public class CommonUtil {
         classMap.put("nav4_6", RepairmentCreateActivity.class);
         classMap.put("nav4_7", RepairDealActivity.class);
 
-        classMap.put("nav5_0", NullActivity.class);
+        classMap.put("nav5_0", WaterTestCreateActivity.class);
         classMap.put("nav5_1", NullActivity.class);
-        classMap.put("nav5_2", NullActivity.class);
+        classMap.put("nav5_2", WaterTestManagerActivity.class);
 
-        classMap.put("nav6_0", NullActivity.class);
+        classMap.put("nav6_0", DeviceReplaceActivity.class);
         classMap.put("nav6_1", InspectionInfoActivity.class);
-        classMap.put("nav6_2", NullActivity.class);
+        classMap.put("nav6_2", EquipRepairRecordActivity.class);
 
         classMap.put("nav7_0", WaterAnalysisMonthActivity.class);
         classMap.put("nav7_1", WaterAnalysisYearActivity.class);

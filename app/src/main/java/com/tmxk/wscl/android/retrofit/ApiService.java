@@ -11,6 +11,8 @@ import com.tmxk.wscl.android.mvp.model.CarInfoResBean;
 import com.tmxk.wscl.android.mvp.model.CreateCarGpsBySysuserBean;
 import com.tmxk.wscl.android.mvp.model.DataTransferBean;
 import com.tmxk.wscl.android.mvp.model.DeviceReplaceCreateBody;
+import com.tmxk.wscl.android.mvp.model.DeviceReplaceListBean;
+import com.tmxk.wscl.android.mvp.model.EquipRepairRecordListBean;
 import com.tmxk.wscl.android.mvp.model.GatherProblemBean;
 import com.tmxk.wscl.android.mvp.model.GpsRecordBean;
 import com.tmxk.wscl.android.mvp.model.InspectionInfoListBean;
@@ -30,11 +32,12 @@ import com.tmxk.wscl.android.mvp.model.WaterAnalysisMonthBean;
 import com.tmxk.wscl.android.mvp.model.WaterAnalysisYearBean;
 import com.tmxk.wscl.android.mvp.model.WaterQualityStatusBean;
 import com.tmxk.wscl.android.mvp.model.WaterSupBySewageBean;
+import com.tmxk.wscl.android.mvp.model.WaterTestListBean;
+import com.tmxk.wscl.android.mvp.model.WaterTestManageBodyBean;
 import com.tmxk.wscl.android.mvp.model.WaterUpMonthBean;
 import com.tmxk.wscl.android.mvp.model.WaterUpYearBean;
 import com.tmxk.wscl.android.util.Route;
 
-import java.io.File;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -276,4 +279,76 @@ public interface ApiService {
 
     @POST(Route.IP_URL + Route.INSPECTION_URL_CREATE)
     Observable<InspectionUrls> createInspectionUrl(@Body InspectionUrls inspectionUrls);
+
+    @GET(Route.IP_URL + Route.GET_DEVICE_REPLACE_BY_CONDITION)
+    Observable<DeviceReplaceListBean> getDeviceReplaceByCondition(
+            @Query("sewage_id") int sewageId,
+            @Query("proStartTime") String proStartTime,
+            @Query("proEndTime") String proEndTime,
+            @Query("repStartTime") String repStartTime,
+            @Query("repEndTime") String repEndTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_DEVICE_REPLACE_BY_CONDITION)
+    Observable<DeviceReplaceListBean> getDeviceReplaceByCondition(
+            @Query("proStartTime") String proStartTime,
+            @Query("proEndTime") String proEndTime,
+            @Query("repStartTime") String repStartTime,
+            @Query("repEndTime") String repEndTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_EQUIP_REPAIR_RECORD_BY_CONDITION)
+    Observable<EquipRepairRecordListBean> getEquipRepairRecordByCondition(
+            @Query("sewage_id") int sewageId,
+            @Query("repairman") String repairMan,
+            @Query("startTime") String startTime,
+            @Query("endTime") String endTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_EQUIP_REPAIR_RECORD_BY_CONDITION)
+    Observable<EquipRepairRecordListBean> getEquipRepairRecordByCondition(
+            @Query("repairman") String repairMan,
+            @Query("startTime") String startTime,
+            @Query("endTime") String endTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_EQUIP_REPAIR_RECORD_BY_CONDITION)
+    Observable<EquipRepairRecordListBean> getEquipRepairRecordByCondition(
+            @Query("sewage_id") int sewageId,
+            @Query("startTime") String startTime,
+            @Query("endTime") String endTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_EQUIP_REPAIR_RECORD_BY_CONDITION)
+    Observable<EquipRepairRecordListBean> getEquipRepairRecordByCondition(
+            @Query("startTime") String startTime,
+            @Query("endTime") String endTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_WATER_TEST_MANAGER_BY_CONDITION)
+    Observable<WaterTestListBean> getWaterTestManagerByCondition(
+            @Query("sewage_id") int sewageId,
+            @Query("startTime") String startTime,
+            @Query("endTime") String endTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_WATER_TEST_MANAGER_BY_CONDITION)
+    Observable<WaterTestListBean> getWaterTestManagerByCondition(
+            @Query("startTime") String startTime,
+            @Query("endTime") String endTime,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_WATER_TEST_TOP_12)
+    Observable<WaterTestListBean> getWaterTestTop12(@Query("sewage_id") int sewageId);
+
+    @POST(Route.IP_URL + Route.WATER_TEST_MANAGER_CREATE)
+    Observable<WaterTestManageBodyBean> createWaterTestManager(@Body WaterTestManageBodyBean waterTest);
 }

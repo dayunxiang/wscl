@@ -54,5 +54,10 @@ public class Route {
     public static final String GET_INSPECTION_BY_CONDITION = "/tmxk/operates/inspection-info/query/condition";
     public static final String UPLOAD_FILE = "/tmxk/file-upload/files/{folderPath}/fileName/{filename}";
     public static final String INSPECTION_URL_CREATE = "/tmxk/operates/inspection-urls";
+    public static final String GET_DEVICE_REPLACE_BY_CONDITION = "/tmxk/operates/device-replacement/query/condition";
+    public static final String GET_EQUIP_REPAIR_RECORD_BY_CONDITION = "/tmxk/operates/equip-repair-record/query/condition";
+    public static final String GET_WATER_TEST_MANAGER_BY_CONDITION = "/tmxk/water-test-manager/query/condition";
+    public static final String WATER_TEST_MANAGER_CREATE = "/tmxk/water-test-manager";
+    public static final String GET_WATER_TEST_TOP_12 = "/tmxk/water-test-manager/query/top12";
     public static final int STATUS_CODE = 200;
 }
