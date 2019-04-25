@@ -34,6 +34,7 @@ import com.tmxk.wscl.android.ui.water.WaterUpByMonthActivity;
 import com.tmxk.wscl.android.ui.water.WaterUpBySewageActivity;
 import com.tmxk.wscl.android.ui.water.WaterUpByYearActivity;
 import com.tmxk.wscl.android.ui.water.testManager.WaterTestCreateActivity;
+import com.tmxk.wscl.android.ui.water.testManager.WaterTestHistoryTop12Activity;
 import com.tmxk.wscl.android.ui.water.testManager.WaterTestManagerActivity;
 
 import java.text.ParseException;
@@ -130,7 +131,7 @@ public class CommonUtil {
         classMap.put("nav4_7", RepairDealActivity.class);
 
         classMap.put("nav5_0", WaterTestCreateActivity.class);
-        classMap.put("nav5_1", NullActivity.class);
+        classMap.put("nav5_1", WaterTestHistoryTop12Activity.class);
         classMap.put("nav5_2", WaterTestManagerActivity.class);
 
         classMap.put("nav6_0", DeviceReplaceActivity.class);
