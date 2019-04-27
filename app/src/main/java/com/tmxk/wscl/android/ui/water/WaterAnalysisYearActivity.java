@@ -72,6 +72,8 @@ public class WaterAnalysisYearActivity extends MvpActivity<WaterAnalysisPresente
     private LineChart chart;
     private TimePickerView pvTime;
     private int timerPickerPos = -1;
+    private TextView tvYear;
+    private TextView tvMonth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,8 @@ public class WaterAnalysisYearActivity extends MvpActivity<WaterAnalysisPresente
 
         btnCheckDate = (Button) findViewById(R.id.btnCheckTime);
         btnOk = (Button) findViewById(R.id.btnOk);
+        tvYear = (TextView) findViewById(R.id.tvYear);
+        tvMonth = (TextView) findViewById(R.id.tvMonth);
         chart = (LineChart) findViewById(R.id.chart);
         chart.setVisibility(View.INVISIBLE);
         //init region menu
@@ -200,21 +204,26 @@ public class WaterAnalysisYearActivity extends MvpActivity<WaterAnalysisPresente
                 final ArrayList<String> xValues = new ArrayList<>();
                 List<Entry> yValues = new ArrayList<>();
                 List<Entry> y2Values = new ArrayList<>();
+                double total = 0.00;
                 for (int i=0;i<waterAnalysisYearBean.getObject().size();i++) {
                     //初始化数据
                     // the labels that should be drawn on the XAxis
-                    xValues.add(CommonUtil.stampToStr(waterAnalysisYearBean.getObject().get(i).getDate()).substring(0,7));
+                    xValues.add(CommonUtil.stampToStr(waterAnalysisYearBean.getObject().get(i).getDate()).substring(5,7)+"月");
                     yValues.add(new Entry(i, waterAnalysisYearBean.getObject().get(i).getDailyData()));
                     y2Values.add(new Entry(i, waterAnalysisYearBean.getObject().get(i).getDesignData()));
+                    total += waterAnalysisYearBean.getObject().get(i).getDailyData();
                 }
+                tvYear.setText("本年度已累计处理："+String.format("%.2f", total)+" 吨");
+                tvMonth.setText("平均月处理量："+String.format("%.2f",total/12)+" 吨");
                 //TODO 绘制曲线
-                chart.setVisibility(View.VISIBLE);chart.setVisibility(View.VISIBLE);
+                chart.setVisibility(View.VISIBLE);
                 LineDataSet setComp1 = new LineDataSet(yValues, "水量值");
                 setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
                 setComp1.setColor(Color.BLUE);
-                LineDataSet setComp2 = new LineDataSet(y2Values, "设计值");
+                LineDataSet setComp2 = new LineDataSet(y2Values, "设计值:" + waterAnalysisYearBean.getObject().get(0).getDesignData());
                 setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
                 setComp2.setColor(Color.RED);
+                setComp2.setDrawValues(false);
                 IAxisValueFormatter formatter = new IAxisValueFormatter() {
                     @Override
                     public String getFormattedValue(float value, AxisBase axis) {
@@ -225,6 +234,7 @@ public class WaterAnalysisYearActivity extends MvpActivity<WaterAnalysisPresente
                 xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
                 xAxis.setValueFormatter(formatter);
                 xAxis.setTextSize(10f);
+                xAxis.setLabelCount(12, true);
                 xAxis.setTextColor(Color.BLACK);
                 xAxis.setDrawAxisLine(true);
                 xAxis.setDrawGridLines(false);
@@ -235,7 +245,7 @@ public class WaterAnalysisYearActivity extends MvpActivity<WaterAnalysisPresente
 //                yAxis.setAxisMaximum(100f); // the axis maximum is 100
                 yAxis.setTextColor(Color.BLACK);
                 yAxis.setGranularity(1f); // interval 1
-                yAxis.setLabelCount(6, true); // force 6 labels
+                yAxis.setLabelCount(12, true); // force 6 labels
                 YAxis yAxisR = chart.getAxisRight();
                 yAxisR.setEnabled(false);
 
