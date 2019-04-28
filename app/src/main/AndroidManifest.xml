@@ -255,6 +255,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
+            android:name=".ui.operates.InspectionInfoCreateActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
             android:name=".ui.NullActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"

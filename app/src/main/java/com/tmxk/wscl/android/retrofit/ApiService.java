@@ -15,6 +15,8 @@ import com.tmxk.wscl.android.mvp.model.DeviceReplaceListBean;
 import com.tmxk.wscl.android.mvp.model.EquipRepairRecordListBean;
 import com.tmxk.wscl.android.mvp.model.GatherProblemBean;
 import com.tmxk.wscl.android.mvp.model.GpsRecordBean;
+import com.tmxk.wscl.android.mvp.model.InspectionEntryBean;
+import com.tmxk.wscl.android.mvp.model.InspectionEntryListBean;
 import com.tmxk.wscl.android.mvp.model.InspectionInfoListBean;
 import com.tmxk.wscl.android.mvp.model.InspectionUrls;
 import com.tmxk.wscl.android.mvp.model.PowerOffBean;
@@ -351,4 +353,28 @@ public interface ApiService {
 
     @POST(Route.IP_URL + Route.WATER_TEST_MANAGER_CREATE)
     Observable<WaterTestManageBodyBean> createWaterTestManager(@Body WaterTestManageBodyBean waterTest);
+
+    @POST(Route.IP_URL + Route.INSPECTION_INFO_CREATE)
+    Observable<InspectionInfoListBean.ObjectBean> createInspectionInfo(@Body InspectionInfoListBean.ObjectBean objectBean);
+
+    @GET(Route.IP_URL + Route.GET_ALL_INSPECTION_ENTRIES)
+    Observable<InspectionEntryListBean> getAllInspectinEntries(
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_INSPECTION_ENTRIES_BY_PARENT_NO)
+    Observable<InspectionEntryListBean> getInspectinEntriesByParentno(
+            @Query("parentNo") int parentNo,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_INSPECTION_ENTRIES_BY_TYPE)
+    Observable<InspectionEntryListBean> getInspectinEntriesByType(
+            @Query("type") String type,
+            @Query("offset") int offset,
+            @Query("limit") int limit);
+
+    @GET(Route.IP_URL + Route.GET_INSPECTION_ENTRIES_BY_NO_AND_CLILDREN)
+    Observable<InspectionEntryBean> getInspectinEntriesByNoAndChildren(
+            @Query("no") int no);
 }

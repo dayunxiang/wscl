@@ -59,5 +59,10 @@ public class Route {
     public static final String GET_WATER_TEST_MANAGER_BY_CONDITION = "/tmxk/water-test-manager/query/condition";
     public static final String WATER_TEST_MANAGER_CREATE = "/tmxk/water-test-manager";
     public static final String GET_WATER_TEST_TOP_12 = "/tmxk/water-test-manager/query/top12";
+    public static final String INSPECTION_INFO_CREATE = "/tmxk/operates/inspection-info";
+    public static final String GET_ALL_INSPECTION_ENTRIES = "/tmxk/operates/inspection-entry/query/all";
+    public static final String GET_INSPECTION_ENTRIES_BY_PARENT_NO = "/tmxk/operates/inspection-entry/query/parent-no";
+    public static final String GET_INSPECTION_ENTRIES_BY_TYPE = "/tmxk/operates/inspection-entry/query/type";
+    public static final String GET_INSPECTION_ENTRIES_BY_NO_AND_CLILDREN = "/tmxk/operates/inspection-entry/query/no-with-children";
     public static final int STATUS_CODE = 200;
 }

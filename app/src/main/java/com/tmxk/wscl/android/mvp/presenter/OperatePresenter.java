@@ -1,5 +1,6 @@
 package com.tmxk.wscl.android.mvp.presenter;
 
+import com.tmxk.wscl.android.emuns.DataTypeEnum;
 import com.tmxk.wscl.android.mvp.model.AreaListBean;
 import com.tmxk.wscl.android.mvp.model.AssignOrderPutBody;
 import com.tmxk.wscl.android.mvp.model.AssignmentOrderListBean;
@@ -7,6 +8,8 @@ import com.tmxk.wscl.android.mvp.model.DeviceReplaceCreateBody;
 import com.tmxk.wscl.android.mvp.model.DeviceReplaceListBean;
 import com.tmxk.wscl.android.mvp.model.EquipRepairRecordListBean;
 import com.tmxk.wscl.android.mvp.model.GatherProblemBean;
+import com.tmxk.wscl.android.mvp.model.InspectionEntryBean;
+import com.tmxk.wscl.android.mvp.model.InspectionEntryListBean;
 import com.tmxk.wscl.android.mvp.model.InspectionInfoListBean;
 import com.tmxk.wscl.android.mvp.model.InspectionUrls;
 import com.tmxk.wscl.android.mvp.model.RepairmentBean;
@@ -773,6 +776,106 @@ public class OperatePresenter extends BasePresenter<SewageArchiveView> {
                     @Override
                     public void onSuccess(WaterTestManageBodyBean waterTest) {
                         mvpView.getDataSuccess(waterTest, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void createInspectionInfo(InspectionInfoListBean.ObjectBean objectBean) {
+        addSubscription(apiService.createInspectionInfo(objectBean),
+                new ApiCallback<InspectionInfoListBean.ObjectBean>() {
+                    @Override
+                    public void onSuccess(InspectionInfoListBean.ObjectBean objectBean) {
+                        mvpView.getDataSuccess(objectBean, null);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getAllInspectinEntries() {
+        addSubscription(apiService.getAllInspectinEntries(1,1000),
+                new ApiCallback<InspectionEntryListBean>() {
+                    @Override
+                    public void onSuccess(InspectionEntryListBean inspectionEntryListBean) {
+                        mvpView.getDataSuccess(inspectionEntryListBean, DataTypeEnum.TYPE00);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getInspectinEntriesByParentno(int parentno) {
+        addSubscription(apiService.getInspectinEntriesByParentno(parentno, 1,1000),
+                new ApiCallback<InspectionEntryListBean>() {
+                    @Override
+                    public void onSuccess(InspectionEntryListBean inspectionEntryListBean) {
+                        mvpView.getDataSuccess(inspectionEntryListBean, DataTypeEnum.TYPE01);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getInspectinEntriesByType(String type) {
+        addSubscription(apiService.getInspectinEntriesByType(type, 1,1000),
+                new ApiCallback<InspectionEntryListBean>() {
+                    @Override
+                    public void onSuccess(InspectionEntryListBean inspectionEntryListBean) {
+                        mvpView.getDataSuccess(inspectionEntryListBean, DataTypeEnum.TYPE02);
+                    }
+
+                    @Override
+                    public void onFailure(String msg) {
+                        mvpView.getDataFail(msg);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mvpView.hideLoading();
+                    }
+                });
+    }
+
+    public void getInspectinEntriesByNoAndChildren(int no) {
+        addSubscription(apiService.getInspectinEntriesByNoAndChildren(no),
+                new ApiCallback<InspectionEntryBean>() {
+                    @Override
+                    public void onSuccess(InspectionEntryBean inspectionEntryBean) {
+                        mvpView.getDataSuccess(inspectionEntryBean, null);
                     }
 
                     @Override
