@@ -12,4 +12,5 @@ public class Const {
     public static final int ALBUM_CHOOSE_IMG = 0x02; //跳转相册获取照片返回
     public static final int FLAG_MODIFY_FINISH = 0x03; //裁剪照片完成
     public static Map<String, String> INSPECTION_ENTRY = new HashMap<>(); //巡检录入entry
+    public static boolean IS_GPS_COLLECTED = true;//是否已记录gps
 }

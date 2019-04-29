@@ -72,26 +72,38 @@ public class GpsActivity extends MvpActivity<MonitorPresenter> implements Sewage
     }
 
     private void initData() {
-        Timer timer = new Timer(true);
-        timer.schedule(new java.util.TimerTask() {
-            public void run() {
-                //要操作的方法
-                CreateCarGpsBySysuserBean gpsRecordBean = new CreateCarGpsBySysuserBean();
-                gpsRecordBean.setCoordinateX(Const.LATITUDE);
-                gpsRecordBean.setCoordinateY(Const.LONGITUDE);
-                gpsRecordBean.setSysuserId(Const.OPERATE_USER_ID);
-                gpsRecordBean.setActuallyDriver(Const.OPERATE_USER_NAME);
-                Log.d("GpsActivity","LATITUDE:"+Const.LATITUDE+"");
-                Log.d("GpsActivity","LONGITUDE:"+Const.LONGITUDE+"");
-                Log.d("GpsActivity","USERID:"+Const.OPERATE_USER_ID+"");
-                Log.d("GpsActivity","USERNAME:"+Const.OPERATE_USER_NAME+"");
-                if(Const.LATITUDE!=0&&Const.LONGITUDE!=0){
-                    mvpPresenter.createGpsRecordBySysuser(gpsRecordBean);
+        if(Const.IS_GPS_COLLECTED){
+            Timer timer = new Timer(true);
+            timer.schedule(new java.util.TimerTask() {
+                public void run() {
+                    //要操作的方法
+                    CreateCarGpsBySysuserBean gpsRecordBean = new CreateCarGpsBySysuserBean();
+                    gpsRecordBean.setCoordinateX(Const.LATITUDE);
+                    gpsRecordBean.setCoordinateY(Const.LONGITUDE);
+                    gpsRecordBean.setSysuserId(Const.OPERATE_USER_ID);
+                    gpsRecordBean.setActuallyDriver(Const.OPERATE_USER_NAME);
+                    Log.d("GpsActivity","LATITUDE:"+Const.LATITUDE+"");
+                    Log.d("GpsActivity","LONGITUDE:"+Const.LONGITUDE+"");
+                    Log.d("GpsActivity","USERID:"+Const.OPERATE_USER_ID+"");
+                    Log.d("GpsActivity","USERNAME:"+Const.OPERATE_USER_NAME+"");
+                    if(Const.LATITUDE!=0&&Const.LONGITUDE!=0){
+                        mvpPresenter.createGpsRecordBySysuser(gpsRecordBean);
+                    }
                 }
-            }
-        }, 0, 5*60*1000);
+            }, 0, 5*60*1000);
+            Const.IS_GPS_COLLECTED = false;
+        }
         mBaiduMap = gpsBmapView.getMap();
-        showLoc();
+        new Thread(){
+            public void run(){
+                try {
+                    if(Const.LATITUDE==0||Const.LONGITUDE==0){
+                        Thread.sleep(5000);
+                    }
+                    showLoc();
+                } catch (InterruptedException e) { }
+            }
+        }.start();
     }
 
     private void showLoc(){
